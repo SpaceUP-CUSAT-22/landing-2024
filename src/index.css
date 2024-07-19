@@ -4,3 +4,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+a{
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+  
+a:focus {
+    outline: none !important;
+}
+
+html {
+    overflow-y: scroll;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+}
+
+body {
+    overflow-y: visible;
+    position: relative;
+    overflow-x: hidden;
+}
+
+html, body {
+    scroll-behavior: smooth !important;
+}
