@@ -40,16 +40,15 @@ const MenuCard = ({ href, name, handleMenuToggle, diva, texta, divanimate, texta
       transition: { duration: 0.6 }
     })
     textanimate(texta.current, {
-      fontSize: '2.25rem',
+      fontSize: window.innerWidth < 768 ? '1.25rem' : '2.25rem',
       transition: { duration: 0.6 }
     })
-  }, [diva, texta])
+  }, [])
 
   return(
     <motion.a 
       initial={{ width: 0, height: 0, transformOrigin: "top left", padding: 0 }}
       ref={diva}
-      transition={{ duration: 0.6 }}
       onClick={handleMenuToggle} 
       href={href} 
       className='rounded-[20px] flex justify-center cursor-pointer bg-red-500'
@@ -57,8 +56,7 @@ const MenuCard = ({ href, name, handleMenuToggle, diva, texta, divanimate, texta
       <motion.h1 
         initial={{ fontSize: 0 }}
         ref={texta}
-        transition={{ duration: 0.6 }}
-        className='orbitron text-white text-4xl font-bold my-auto'
+        className='orbitron text-white text-2xl md:text-4xl font-bold my-auto'
       >{name}</motion.h1>
     </motion.a>
   )
@@ -67,13 +65,13 @@ const MenuCard = ({ href, name, handleMenuToggle, diva, texta, divanimate, texta
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState((false))
-  // const [diva, divanimate] = useAnimate()
-  // const [texta, textanimate] = useAnimate()
 
   const divAnimates = React.useRef(MenuItems.map(() => React.createRef()));
   const textAnimates = React.useRef(MenuItems.map(() => React.createRef()));
+
   const divAnimateControls = MenuItems.map(() => useAnimate());
   const textAnimateControls = MenuItems.map(() => useAnimate());
+
   const handleMenuToggle = () => {
     if (showMenu) {
       divAnimateControls.forEach(([_, animate], index) => {
@@ -82,21 +80,21 @@ const Navbar = () => {
           width: 0,
           padding: 0,
           transformOrigin: 'bottom right',
-          transition: { duration: 1 },
+          transition: { duration: 0.6 },
         });
       });
 
       textAnimateControls.forEach(([_, animate], index) => {
         animate(textAnimates.current[index].current, {
           fontSize: 0,
-          transition: { duration: 1 },
+          transition: { duration: 0.6 },
         });
       });
 
       // setShowMenu(false);
       setTimeout(() => {
         setShowMenu(false);
-      }, 1000);
+      }, 500);
     } else {
       setShowMenu(true);
     }
@@ -114,7 +112,7 @@ const Navbar = () => {
       </div>
       {showMenu && (
         <div className='z-[100] fixed top-0 left-0 w-full h-full flex justify-center items-center bg-transparent'>
-          <div className='w-[90%] h-[90%] grid grid-cols-3 gap-8 '>
+          <div className='w-[90%] h-[90%] grid grid-cols-2 md:grid-cols-3 gap-8 '>
             {MenuItems.map((item, index) => (
               <MenuCard 
                 key={index} 
