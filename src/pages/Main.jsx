@@ -94,7 +94,7 @@ const Main = () => {
   return (
     <>
       <div ref={component}>
-        <div className="bg-[#050B17] h-[100vh]">
+        <div className="bg-yellow-500 h-[100vh]">
           <Home />
         </div>
 
@@ -117,8 +117,9 @@ const Main = () => {
         </div>
 
 
-        <div ref={slider3} className="bg-[#050B17] w-[600vw] md:h-screen flex flex-wrap">
+        <div ref={slider3} className="bg-[#050B17] w-[600vw] h-screen flex flex-wrap">
           <PrevImages />
+          
         </div>
 
 
