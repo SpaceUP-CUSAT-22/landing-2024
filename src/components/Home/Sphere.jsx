@@ -89,7 +89,7 @@ const Sphere = () => {
         };
     }, [])
   return (
-    <div className='md:block hidden absolute top-0 m-0 p-0 w-full' id="sphere"></div>
+    <div className='md:block block absolute md:top-0 top-20 m-0 p-0 w-full' id="sphere"></div>
   )
 }
 

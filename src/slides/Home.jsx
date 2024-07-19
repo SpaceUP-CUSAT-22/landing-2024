@@ -10,7 +10,9 @@ const Home = () => {
   return (
     <div className=''>
       <Navbar />
-      <Hero />
+      <div className='md:px-0 px-20'>
+        <Hero />
+      </div>
       <Typer />
       <div>
         <Particles />
