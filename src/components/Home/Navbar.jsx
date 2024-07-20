@@ -94,7 +94,7 @@ const Navbar = () => {
       // setShowMenu(false);
       setTimeout(() => {
         setShowMenu(false);
-      }, 500);
+      }, 300);
     } else {
       setShowMenu(true);
     }
