@@ -111,7 +111,7 @@ const Navbar = () => {
         
       </div>
       {showMenu && (
-        <div className='z-[100] fixed top-0 left-0 w-full h-full flex justify-center items-center bg-transparent'>
+        <div className='z-[100] fixed top-10 left-0 w-full h-full flex justify-center items-center bg-transparent py-5'>
           <div className='w-[90%] h-[90%] grid grid-cols-2 md:grid-cols-3 gap-8 '>
             {MenuItems.map((item, index) => (
               <MenuCard 

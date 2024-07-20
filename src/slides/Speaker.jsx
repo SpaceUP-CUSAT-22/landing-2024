@@ -5,10 +5,10 @@ import Content from '../components/Speakers/Content';
 
 const Speaker = ({ name, para1, para2, picture, designation }) => {
   return (
-    <>
+    <div className='panel'>
       <Title />
       <Content name={name} para1={para1} para2={para2} picture={picture} designation={designation} />
-    </>
+    </div>
   );
 };
 

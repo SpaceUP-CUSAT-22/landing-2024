@@ -4,7 +4,7 @@ import './style.css'
 const Content = ({ para1, name, designation, para2, picture, bg }) => {
   return (
     // <div className={`flex items-center justify-center w-[100vw] h-[100vh] bg-[${bg}] text-white overflow-hidden relative`}>
-    <div className="panel2 flex items-center justify-center w-[100vw] h-[100vh] text-white overflow-hidden relative px-20">
+    <div className="md:pt-0 pt-40 panel2 flex items-center justify-center w-[100vw] h-[100vh] text-white overflow-hidden relative px-5 md:px-20">
         <div className="grid md:grid-cols-3 grid-cols-1 items-center justify-center w-[100vw] h-[100vh] box-border">
           <div className="flex-1 p-5 box-border font-exo text-xl">
             <p>{para1}</p>

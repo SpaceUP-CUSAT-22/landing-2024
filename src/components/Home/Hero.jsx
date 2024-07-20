@@ -1,64 +1,67 @@
-import React from 'react'
+import React, { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
 
 const Hero = () => {
-  React.useEffect(() => {
-    // let mouse = {'x': 0, 'y': 0};
-    // let homex = 0;
-    // let homey = 0;
-    // let forcex = 0;
-    // let forcey = 0;
-    // let magnet = 1200;
-    // let wrapper = document.getElementById('wrapper');
-    // let catchmeBtn = document.getElementById('catchmeBtn');
-    // let catchmeBtnBounding = catchmeBtn.getBoundingClientRect();
-    // let placeholder = document.createElement('div');
+  const buttonRef = useRef(null);
 
-    // wrapper.addEventListener('mousemove', function(e) {
-    //   mouse = {'x': e.pageX, 'y': e.pageY};
-    // });
-    // wrapper.addEventListener('mouseenter', function(e) {
-    //   placeholder.style.display = 'inline-block';
-    //   placeholder.style.width = '100' + 'px';
-    //   placeholder.style.height = '100' + 'px';
-    //   catchmeBtn.parentElement.insertBefore(placeholder, catchmeBtn);
-      
-    //   catchmeBtn.style.position = 'absolute';
-    // });
+  useEffect(() => {
+    const button = buttonRef.current;
 
-    // homex = catchmeBtnBounding.left;
-    // homey = catchmeBtnBounding.top;
+    const handleMouseMove = (e) => {
+      const { clientX: mouseX, clientY: mouseY } = e;
+      const { left, top, width, height } = button.getBoundingClientRect();
+      const buttonX = left + width / 2;
+      const buttonY = top + height / 2;
+      const deltaX = mouseX - buttonX;
+      const deltaY = mouseY - buttonY;
+      const distance = Math.sqrt(deltaX ** 2 + deltaY ** 2);
+      const maxDistance = 200; // Maximum distance the button will move
 
-    // setInterval(function () {
-    //   let el = catchmeBtn;
-    //   let position = el.getBoundingClientRect();
-    //   let x0 = position.left + window.scrollX;
-    //   let y0 = position.top + window.scrollY;
-    //   let x1 = mouse.x;
-    //   let y1 = mouse.y;
-    //   let distancex = x1-x0;
-    //   let distancey = y1-y0;
+      // Calculate the position offset based on cursor distance
+      const offsetX = (deltaX / distance) * maxDistance;
+      const offsetY = (deltaY / distance) * maxDistance;
 
-    //   let distance = Math.sqrt((distancex * distancex) + (distancey * distancey));
+      // Animate the button position with GSAP
+      gsap.to(button, {
+        x: -offsetX,
+        y: -offsetY,
+        duration: 0.3,
+        ease: 'power3.out'
+      });
+    };
 
-    //   let powerx = x0 - (distancex / distance) * magnet / distance;
-    //   let powery = y0 - (distancey / distance) * magnet / distance;
+    const wrapper = document.getElementById('wrapper')
 
-    //   forcex = (forcex + (homex - x0) / 2) / 4;
-    //   forcey = (forcey + (homey - y0) / 2) / 4;
+    // Add mousemove event listener
+    wrapper.addEventListener('mousemove', handleMouseMove);
 
-    //   el.style.top = (powery + forcey) + 'px';
-    //   el.style.left = (powerx + forcex) + 'px';
-    // }, 15);
-  }, [])
+    // Clean up event listener on component unmount
+    return () => {
+      wrapper.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, []);
+
+  const redirect = () => {
+    window.open('https://youtu.be/dQw4w9WgXcQ?si=uXzFpENlYYz8ssFs', '_blank');
+  }
+
   return (
     <div className='z-[99] absolute block md:top-40 top-60 md:left-[30%] left-[5%] px-10'>
       <h1 className='orbitron text-center text-white text-6xl md:text-9xl'>Space Up</h1>
       <br />
       <div id="wrapper" className='w-[30rem]'>
-        <button  data-cursor="pointer" id="catchmeBtn" className='cursor-pointer hover:bg-[#CC2B35] md:ml-64 ml-28 bg-[#A6232B] text-white exo text-center md:px-5 md:py-4 md:text-md text-md px-2 py-1'>BUY TICKETS</button>
+        <button
+          ref={buttonRef}
+          data-cursor="pointer"
+          id="catchmeBtn"
+          onClick={redirect}
+          className='cursor-pointer hover:bg-[#CC2B35] md:ml-64 ml-28 bg-[#A6232B] text-white exo text-center md:px-5 md:py-4 md:text-md text-md px-2 py-1'
+        >
+          BUY TICKETS
+        </button>
       </div>
     </div>
-  )
+  );
 }
 
-export default Hero
+export default Hero;
