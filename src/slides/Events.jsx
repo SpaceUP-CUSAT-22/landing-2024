@@ -48,17 +48,18 @@ const Events = () => {
     //   markers: false
     // });
 
-
   }, [])
   return (
-    <div className='panel1 w-[100vw] py-20'>
-      <h1 className='orbitron text-center text-[#A6232B] text-5xl md:text-8xl'>Events</h1>
-      <div className='cards'>
-        <Card key={0} num={1} />
-        <Card key={1} num={2} />
-        <Card key={2} num={3} />
+    <>
+      <div className='panel1 w-[100vw] py-20'>
+        <h1 className='orbitron text-center text-[#A6232B] text-5xl md:text-8xl'>Events</h1>
+        <div className='cards'>
+          <Card key={0} num={1} />
+          <Card key={1} num={2} />
+          <Card key={2} num={3} />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 

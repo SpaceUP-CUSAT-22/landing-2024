@@ -35,3 +35,51 @@ body {
 html, body {
     scroll-behavior: smooth !important;
 }
+
+
+.container{
+    -ms-scroll-snap-type: y mandatory;
+    scroll-snap-type: y mandatory;
+    flex-basis: 50%;
+  max-height: 100vh;
+}
+
+.container.proximity{
+    -ms-scroll-snap-type: y proximity;
+    scroll-snap-type: y proximity;
+}
+
+.panel{
+    height: 100vh;
+}
+
+#dot,
+#ball {
+  position: fixed; /* Sabit konumlandırma */
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+#cursor {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      background-color: #A62328;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9999;
+      transition: width 0.2s ease, height 0.2s ease; /* Smooth size transitions */
+    }
+
+    #cursor-border {
+      position: fixed;
+      width: 50px;
+      height: 50px;
+      border: 2px solid #A62328;
+      border-radius: 50%;
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 9998;
+      transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease; /* Smooth size and color transitions */
+    }

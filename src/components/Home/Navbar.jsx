@@ -76,10 +76,10 @@ const Navbar = () => {
     if (showMenu) {
       divAnimateControls.forEach(([_, animate], index) => {
         animate(divAnimates.current[index].current, {
+          transformOrigin: 'bottom right',
           height: 0,
           width: 0,
           padding: 0,
-          transformOrigin: 'bottom right',
           transition: { duration: 0.6 },
         });
       });
@@ -94,19 +94,19 @@ const Navbar = () => {
       // setShowMenu(false);
       setTimeout(() => {
         setShowMenu(false);
-      }, 500);
+      }, 300);
     } else {
       setShowMenu(true);
     }
   };
   return (
     <>
-      <div className='absolute w-full z-[101]'>
+      <div className='absolute w-full'>
         <div className='flex justify-between p-5 items-center'>
           <Link to='/' className=''>
             <img src="/logo.png" alt="logo" className='md:w-28 w-20' />
           </Link>
-          <i onClick={handleMenuToggle} className={`fixed right-10 cursor-pointer fa-solid ${showMenu ? 'fa-x' : 'fa-bars'} text-[#A6232B] text-4xl`}></i>
+          <i onClick={handleMenuToggle} className={`fixed z-[101] right-10 cursor-pointer fa-solid ${showMenu ? 'fa-x' : 'fa-bars'} text-[#A6232B] text-4xl`}></i>
         </div> 
         
       </div>
