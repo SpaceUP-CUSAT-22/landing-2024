@@ -76,10 +76,10 @@ const Navbar = () => {
     if (showMenu) {
       divAnimateControls.forEach(([_, animate], index) => {
         animate(divAnimates.current[index].current, {
+          transformOrigin: 'bottom right',
           height: 0,
           width: 0,
           padding: 0,
-          transformOrigin: 'bottom right',
           transition: { duration: 0.6 },
         });
       });
@@ -101,7 +101,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <div className='absolute w-full '>
+      <div className='absolute w-full'>
         <div className='flex justify-between p-5 items-center'>
           <Link to='/' className=''>
             <img src="/logo.png" alt="logo" className='md:w-28 w-20' />
@@ -111,7 +111,7 @@ const Navbar = () => {
         
       </div>
       {showMenu && (
-        <div className='z-[100] fixed top-0 left-0 w-full h-full flex justify-center items-center bg-transparent'>
+        <div className='z-[100] fixed top-10 left-0 w-full h-full flex justify-center items-center bg-transparent py-5'>
           <div className='w-[90%] h-[90%] grid grid-cols-2 md:grid-cols-3 gap-8 '>
             {MenuItems.map((item, index) => (
               <MenuCard 
