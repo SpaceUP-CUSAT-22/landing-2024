@@ -1,4 +1,6 @@
 import React from 'react'
+import { useState, useEffect, useRef } from 'react';
+
 
 const images = [
     "/previmages/gallery4.jpg",
@@ -8,19 +10,43 @@ const images = [
     "/previmages/gallery1.jpeg",
     "/previmages/gallery6.jpeg"
 ]
+
+const useInView = (options) => {
+  const [isIntersecting, setIsIntersecting] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsIntersecting(entry.isIntersecting),
+      options
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [options]);
+
+  return [ref, isIntersecting];
+};
   
 const TopImage = ({ image }) => {
+  const [ref, isVisible] = useInView({ threshold: 0.5 });
     return (
-      <div className="flex justify-center items-center md:items-start h-full">
-        <img src={image} alt="Top" className="max-h-96 w-auto" />
+      <div ref={ref} className={`flex justify-center items-center md:items-start h-full transition-opacity duration-1000 ${isVisible?'opacity-100':'opacity-0'}`}>
+        <img src={image} alt="Top" className="w-auto max-h-96" />
       </div>
     )
 }
   
 const BottomImage = ({ image }) => {
+  const [ref,isVisible]=useInView({threshold:0.5})
     return (
-      <div className="flex justify-center mt-0 items-center md:items-end h-full">
-        <img src={image} alt="Bottom" className="max-h-96 w-auto" />
+      <div ref={ref}className={`flex items-center justify-center h-full mt-0 md:items-end transition-opacity duration-1000 ${isVisible?'opacity-100':'opacity-0'} `}>
+        <img src={image} alt="Bottom" className="w-auto max-h-96" />
       </div>
     )
 }
