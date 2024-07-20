@@ -7,7 +7,6 @@ import TimeSchedule from '../slides/TimeSchedule'
 import About from '../slides/About'
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
-import './style.css'
 
 gsap.registerPlugin(ScrollTrigger);
 
