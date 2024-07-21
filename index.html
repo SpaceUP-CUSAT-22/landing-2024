@@ -5,10 +5,36 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
     <title>Spaceup 2024</title>
   </head>
   <body>
+    <div id="cursor"></div>
+    <div id="cursor-border"></div>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <script>
+      const cursor = document.querySelector("#cursor");
+    const cursorBorder = document.querySelector("#cursor-border");
+    const cursorPos = { x: 0, y: 0 };
+    const cursorBorderPos = { x: 0, y: 0 };
+
+    document.addEventListener("mousemove", (e) => {
+      cursorPos.x = e.clientX;
+      cursorPos.y = e.clientY;
+
+      cursor.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    });
+
+    requestAnimationFrame(function loop() {
+      const easting = 12; // Lower value makes it smoother and more responsive
+      cursorBorderPos.x += (cursorPos.x - cursorBorderPos.x) / easting;
+      cursorBorderPos.y += (cursorPos.y - cursorBorderPos.y) / easting;
+
+      cursorBorder.style.transform = `translate(${cursorBorderPos.x}px, ${cursorBorderPos.y}px)`;
+      requestAnimationFrame(loop);
+    });
+
+    </script>
   </body>
 </html>

@@ -5,7 +5,20 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      scrollSnapAlign: {
+        start: 'start',
+      }
+    },
   },
-  plugins: [],
+  plugins: [
+    function({ addUtilities }) {
+      const newUtilities = {
+        '.snap-start': {
+          scrollSnapAlign: 'start',
+        },
+      };
+      addUtilities(newUtilities);
+    },
+  ],
 }
