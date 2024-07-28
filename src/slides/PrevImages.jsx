@@ -6,7 +6,7 @@ import Images from '../components/PrevImages/Images'
 const PrevImages = () => {
   return (
     <>
-      <Title />
+      {/* <Title /> */}
       <BgLines />
       <Images />
     </>
