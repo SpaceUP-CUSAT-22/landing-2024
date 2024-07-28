@@ -36,14 +36,14 @@ const MenuCard2 = ({ showMenu, href, name, handleMenuToggle, diva, texta, divani
     const animateDiv = async() => {
       if(showMenu){
         await Promise.all([
-          divanimate(diva.current, { width: '0%', opacity: 0 }, { duration: 0 }),
+          divanimate(diva.current, { width: '0%', opacity: 0, zIndex: 100 }, { duration: 0 }),
           textanimate(texta.current, { opacity: 0 }, { duration: 0 })
         ]);
         
         await Promise.all([
           divanimate(
             diva.current,
-            { width: '100%', opacity: 1 },
+            { width: '100%', opacity: 1, zIndex: 102 },
             { duration: 0.6, delay }
           ),
           textanimate(
@@ -54,8 +54,8 @@ const MenuCard2 = ({ showMenu, href, name, handleMenuToggle, diva, texta, divani
         ]);
       }else{
         await Promise.all([
-          divanimate(diva.current, { width: '0%', opacity: 0 }, { duration: 0.3, delay }),
-          textanimate(texta.current, { opacity: 0 }, { duration: 0.3, delay })
+          divanimate(diva.current, { width: '0%', opacity: 0, zIndex: 100 }, { duration: 0.6, delay }),
+          textanimate(texta.current, { opacity: 0 }, { duration: 0.6, delay })
         ]);
       }
     }
@@ -116,7 +116,7 @@ const Navbar = () => {
       </div>
       
       <div 
-        className={`fixed overflow-y-auto top-0 w-screen h-screen max-w-screen max-h-screen transition-all duration-300 ${
+        className={`fixed overflow-y-auto top-0 w-screen h-screen max-w-screen max-h-screen transition-all duration-600 ${
           showMenu ? 'z-[102]' : 'z-[100]'
         }`}
       >
