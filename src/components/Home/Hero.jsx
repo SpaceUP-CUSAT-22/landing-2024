@@ -66,7 +66,7 @@ const Hero = () => {
   };
 
   return (
-    <div className='z-[99] absolute block md:top-40 top-60 md:left-[30%] left-[-10%] md:px-10'>
+    <div className='z-[101] absolute block md:top-40 top-60 md:left-[30%] left-[-10%] md:px-10'>
       <h1 className='orbitron text-center text-white text-6xl md:text-9xl'>Space Up</h1>
       {/* <img src="/logo.png" className='md:w-[30rem] w-[10rem] ml-16 mt-[-100px] mb-20' alt="logo" /> */}
       <br />

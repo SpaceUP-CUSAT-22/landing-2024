@@ -111,13 +111,13 @@ const Navbar = () => {
           <Link to='/' className=''>
             <img src="/logo.png" alt="logo" className='md:w-28 w-20' />
           </Link>
-          <i onClick={handleMenuToggle} className={`fixed z-[101] right-10 cursor-pointer fa-solid ${showMenu ? 'fa-x' : 'fa-bars'} text-[#A6232B] text-4xl`}></i>
+          <i onClick={handleMenuToggle} className={`fixed z-[103] right-10 cursor-pointer fa-solid ${showMenu ? 'fa-x' : 'fa-bars'} text-[#A6232B] text-4xl`}></i>
         </div> 
       </div>
       
           <div 
             className={`fixed w-screen h-screen max-w-screen max-h-screen transition-all duration-300 ${
-              showMenu ? 'bg-black z-[100]' : 'bg-transparent'
+              showMenu ? 'z-[102]' : 'z-[100]'
             }`}
           >
           <MenuCard2 showMenu={showMenu} name={"Home"} href={'#home'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef1} texta={textAnimateRef1} divanimate={divAnimateControl1} textanimate={textAnimateControl1} delay={0} />
