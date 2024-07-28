@@ -36,26 +36,26 @@ const MenuCard2 = ({ showMenu, href, name, handleMenuToggle, diva, texta, divani
     const animateDiv = async() => {
       if(showMenu){
         await Promise.all([
-          divanimate(diva.current, { width: '0%', padding: 0 }, { duration: 0 }),
-          textanimate(texta.current, { fontSize: '0rem' }, { duration: 0 })
+          divanimate(diva.current, { width: '0%', opacity: 0 }, { duration: 0 }),
+          textanimate(texta.current, { opacity: 0 }, { duration: 0 })
         ]);
         
         await Promise.all([
           divanimate(
             diva.current,
-            { width: '100%', padding: '50px' },
+            { width: '100%', opacity: 1 },
             { duration: 0.6, delay }
           ),
           textanimate(
             texta.current,
-            { fontSize: window.innerWidth >= 768 ? '4rem' : '2rem' },
+            { opacity: 1 },
             { duration: 0.6, delay }
           )
         ]);
       }else{
         await Promise.all([
-          divanimate(diva.current, { width: '0%', padding: 0 }, { duration: 0.3, delay }),
-          textanimate(texta.current, { fontSize: '0rem' }, { duration: 0.3, delay })
+          divanimate(diva.current, { width: '0%', opacity: 0 }, { duration: 0.3, delay }),
+          textanimate(texta.current, { opacity: 0 }, { duration: 0.3, delay })
         ]);
       }
     }
@@ -71,11 +71,11 @@ const MenuCard2 = ({ showMenu, href, name, handleMenuToggle, diva, texta, divani
     >
       <div
         ref={diva}
-        className='w-0 bg-black p-0'
+        className='w-0 bg-black p-20'
       >
         <h1
         ref={texta}
-        className='orbitron text-white font-bold'>
+        className='orbitron text-white font-bold text-4xl md:text-7xl'>
           {name}
         </h1>
       </div>
@@ -115,17 +115,17 @@ const Navbar = () => {
         </div> 
       </div>
       
-          <div 
-            className={`fixed w-screen h-screen max-w-screen max-h-screen transition-all duration-300 ${
-              showMenu ? 'z-[102]' : 'z-[100]'
-            }`}
-          >
-          <MenuCard2 showMenu={showMenu} name={"Home"} href={'#home'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef1} texta={textAnimateRef1} divanimate={divAnimateControl1} textanimate={textAnimateControl1} delay={0} />
-          <MenuCard2 showMenu={showMenu} name={"Events"} href={'#events'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef2} texta={textAnimateRef2} divanimate={divAnimateControl2} textanimate={textAnimateControl2} delay={0.1} />
-          <MenuCard2 showMenu={showMenu} name={"Speakers"} href={'#speakers'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef3} texta={textAnimateRef3} divanimate={divAnimateControl3} textanimate={textAnimateControl3} delay={0.2} />
-          <MenuCard2 showMenu={showMenu} name={"Previous Images"} href={'#previmages'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef4} texta={textAnimateRef4} divanimate={divAnimateControl4} textanimate={textAnimateControl4} delay={0.3} />
-          <MenuCard2 showMenu={showMenu} name={"About"} href={'#about'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef5} texta={textAnimateRef5} divanimate={divAnimateControl5} textanimate={textAnimateControl5} delay={0.4} />
-        </div>
+      <div 
+        className={`fixed overflow-y-auto top-0 w-screen h-screen max-w-screen max-h-screen transition-all duration-300 ${
+          showMenu ? 'z-[102]' : 'z-[100]'
+        }`}
+      >
+        <MenuCard2 showMenu={showMenu} name={"Home"} href={'#home'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef1} texta={textAnimateRef1} divanimate={divAnimateControl1} textanimate={textAnimateControl1} delay={0} />
+        <MenuCard2 showMenu={showMenu} name={"Events"} href={'#events'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef2} texta={textAnimateRef2} divanimate={divAnimateControl2} textanimate={textAnimateControl2} delay={0.1} />
+        <MenuCard2 showMenu={showMenu} name={"Speakers"} href={'#speakers'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef3} texta={textAnimateRef3} divanimate={divAnimateControl3} textanimate={textAnimateControl3} delay={0.2} />
+        <MenuCard2 showMenu={showMenu} name={"Previous Images"} href={'#previmages'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef4} texta={textAnimateRef4} divanimate={divAnimateControl4} textanimate={textAnimateControl4} delay={0.3} />
+        <MenuCard2 showMenu={showMenu} name={"About"} href={'#about'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef5} texta={textAnimateRef5} divanimate={divAnimateControl5} textanimate={textAnimateControl5} delay={0.4} />
+      </div>
     </>
   )
 }

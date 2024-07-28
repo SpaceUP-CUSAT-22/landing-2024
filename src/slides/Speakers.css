@@ -1,0 +1,14 @@
+.glow {
+    height: 20rem;
+    width: 20rem;
+    background-color: #FF33CA;
+    filter: blur(150px);
+    border-radius: 150px;
+    z-index: 0;
+    position: relative;
+    opacity:0.90;
+}
+
+.glow:nth-of-type(even) {
+    background-color: #33FFCA; /* Change to your desired color */
+}

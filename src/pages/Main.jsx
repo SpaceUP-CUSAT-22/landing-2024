@@ -77,14 +77,6 @@ const Main = () => {
           <Home />
         </div>
 
-        <div id="previmages" ref={slider3} className="relative z-2 bg-[#050B17] w-[600vw] h-screen flex flex-wrap">
-          <PrevImages />
-        </div>
-
-        <div id="about" className='relative z-2 bg-black py-10 md:h-[100vh]'>
-          <About />
-        </div>
-
         
         <div id="events" className="w-[600vw] flex flex-wrap bg-[#050B17]">
           <Events2 />
@@ -101,7 +93,15 @@ const Main = () => {
 
         {/* <div id="timeschedule" className='relative z-2 bg-zinc-900 flex h-[100vh]'>
           <TimeSchedule />
-        </div> */}        
+        </div> */}   
+
+        <div id="previmages" ref={slider3} className="relative z-2 bg-[#050B17] w-[600vw] h-screen flex flex-wrap">
+          <PrevImages />
+        </div>
+
+        <div id="about" className='relative z-2 bg-black py-10 md:h-[100vh]'>
+          <About />
+        </div>
 
         <Footer />
 
