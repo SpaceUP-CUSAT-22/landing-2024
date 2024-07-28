@@ -4,8 +4,8 @@ import './Events2.css'
 const Events2 = () => {
   return (
     <>
-        <section className="game-section md:mt-0 mt-32">
-        <h1 className='md:pt-10 md:pb-20 orbitron text-center text-red-500 text-5xl md:text-8xl line-title'>Events</h1>
+        <section className="relative z-[101] game-section md:mt-0 mt-32">
+            <h1 className='md:pt-10 md:pb-20 orbitron text-center text-red-500 text-5xl md:text-8xl line-title'>Events</h1>
             <div className="owl-carousel custom-carousel owl-theme">
                 <div className="item active" style={{ backgroundImage: 'url(https://www.yudiz.com/codepen/expandable-animated-card-slider/dota-2.jpg)' }}>
                     <div className="item-desc">

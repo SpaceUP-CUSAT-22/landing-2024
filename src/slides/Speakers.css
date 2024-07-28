@@ -1,14 +1,17 @@
 .glow {
     height: 20rem;
     width: 20rem;
-    background-color: #FF33CA;
     filter: blur(150px);
     border-radius: 150px;
     z-index: 0;
-    position: relative;
+    position: fixed;
     opacity:0.90;
 }
 
-.glow:nth-of-type(even) {
-    background-color: #33FFCA; /* Change to your desired color */
+.glow-red {
+    background-color: red;
+}
+
+.glow-white {
+    background-color: white;
 }
