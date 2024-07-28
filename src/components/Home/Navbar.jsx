@@ -29,76 +29,81 @@ const MenuItems = [
   }
 ]
 
-const MenuCard = ({ href, name, handleMenuToggle, diva, texta, divanimate, textanimate }) => {
 
+const MenuCard2 = ({ showMenu, href, name, handleMenuToggle, diva, texta, divanimate, textanimate, delay }) => {
   React.useEffect(() => {
-    divanimate(diva.current, {
-      width: '100%',
-      height: '100%',
-      padding: '5rem',
-      transformOrigin: 'top right',
-      transition: { duration: 0.6 }
-    })
-    textanimate(texta.current, {
-      fontSize: window.innerWidth < 768 ? '1.25rem' : '2.25rem',
-      transition: { duration: 0.6 }
-    })
-  }, [])
 
-  return(
-    <motion.a 
-      initial={{ width: 0, height: 0, transformOrigin: "top left", padding: 0 }}
-      ref={diva}
-      onClick={handleMenuToggle} 
-      href={href} 
-      className='rounded-[20px] flex justify-center cursor-pointer bg-red-500'
+    const animateDiv = async() => {
+      if(showMenu){
+        await Promise.all([
+          divanimate(diva.current, { width: '0%', padding: 0 }, { duration: 0 }),
+          textanimate(texta.current, { fontSize: '0rem' }, { duration: 0 })
+        ]);
+        
+        await Promise.all([
+          divanimate(
+            diva.current,
+            { width: '100%', padding: '50px' },
+            { duration: 0.6, delay }
+          ),
+          textanimate(
+            texta.current,
+            { fontSize: window.innerWidth >= 768 ? '4rem' : '2rem' },
+            { duration: 0.6, delay }
+          )
+        ]);
+      }else{
+        await Promise.all([
+          divanimate(diva.current, { width: '0%', padding: 0 }, { duration: 0.3, delay }),
+          textanimate(texta.current, { fontSize: '0rem' }, { duration: 0.3, delay })
+        ]);
+      }
+    }
+
+    animateDiv()
+
+  }, [showMenu])
+
+  return (
+    <a 
+      onClick={handleMenuToggle}
+      href={href}
     >
-      <motion.h1 
-        initial={{ fontSize: 0 }}
+      <div
+        ref={diva}
+        className='w-0 bg-black p-0'
+      >
+        <h1
         ref={texta}
-        className='orbitron text-white text-2xl md:text-4xl font-bold my-auto'
-      >{name}</motion.h1>
-    </motion.a>
+        className='orbitron text-white font-bold'>
+          {name}
+        </h1>
+      </div>
+    </a>
   )
 }
+
 
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = React.useState((false))
 
-  const divAnimates = React.useRef(MenuItems.map(() => React.createRef()));
-  const textAnimates = React.useRef(MenuItems.map(() => React.createRef()));
+  const [divAnimateRef1, divAnimateControl1] = useAnimate();
+  const [divAnimateRef2, divAnimateControl2] = useAnimate();
+  const [divAnimateRef3, divAnimateControl3] = useAnimate();
+  const [divAnimateRef4, divAnimateControl4] = useAnimate();
+  const [divAnimateRef5, divAnimateControl5] = useAnimate();
 
-  const divAnimateControls = MenuItems.map(() => useAnimate());
-  const textAnimateControls = MenuItems.map(() => useAnimate());
+  const [textAnimateRef1, textAnimateControl1] = useAnimate();
+  const [textAnimateRef2, textAnimateControl2] = useAnimate();
+  const [textAnimateRef3, textAnimateControl3] = useAnimate();
+  const [textAnimateRef4, textAnimateControl4] = useAnimate();
+  const [textAnimateRef5, textAnimateControl5] = useAnimate();
 
-  const handleMenuToggle = () => {
-    if (showMenu) {
-      divAnimateControls.forEach(([_, animate], index) => {
-        animate(divAnimates.current[index].current, {
-          transformOrigin: 'bottom right',
-          height: 0,
-          width: 0,
-          padding: 0,
-          transition: { duration: 0.6 },
-        });
-      });
-
-      textAnimateControls.forEach(([_, animate], index) => {
-        animate(textAnimates.current[index].current, {
-          fontSize: 0,
-          transition: { duration: 0.6 },
-        });
-      });
-
-      // setShowMenu(false);
-      setTimeout(() => {
-        setShowMenu(false);
-      }, 300);
-    } else {
-      setShowMenu(true);
-    }
+  const handleMenuToggle = async () => {
+    setShowMenu(!showMenu);
   };
+
   return (
     <>
       <div className='absolute w-full'>
@@ -108,27 +113,19 @@ const Navbar = () => {
           </Link>
           <i onClick={handleMenuToggle} className={`fixed z-[101] right-10 cursor-pointer fa-solid ${showMenu ? 'fa-x' : 'fa-bars'} text-[#A6232B] text-4xl`}></i>
         </div> 
-        
       </div>
-      {showMenu && (
-        <div className='z-[100] fixed top-10 left-0 w-full h-full flex justify-center items-center bg-transparent py-5'>
-          <div className='w-[90%] h-[90%] grid grid-cols-2 md:grid-cols-3 gap-8 '>
-            {MenuItems.map((item, index) => (
-              <MenuCard 
-                key={index} 
-                href={item.href} 
-                name={item.name} 
-                setShowMenu={setShowMenu} 
-                diva={divAnimates.current[index]}
-                texta={textAnimates.current[index]}
-                divanimate={divAnimateControls[index][1]}
-                textanimate={textAnimateControls[index][1]}
-                handleMenuToggle={handleMenuToggle}
-              />
-            ))}
-          </div>
+      
+          <div 
+            className={`fixed w-screen h-screen max-w-screen max-h-screen transition-all duration-300 ${
+              showMenu ? 'bg-black z-[100]' : 'bg-transparent'
+            }`}
+          >
+          <MenuCard2 showMenu={showMenu} name={"Home"} href={'#home'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef1} texta={textAnimateRef1} divanimate={divAnimateControl1} textanimate={textAnimateControl1} delay={0} />
+          <MenuCard2 showMenu={showMenu} name={"Events"} href={'#events'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef2} texta={textAnimateRef2} divanimate={divAnimateControl2} textanimate={textAnimateControl2} delay={0.1} />
+          <MenuCard2 showMenu={showMenu} name={"Speakers"} href={'#speakers'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef3} texta={textAnimateRef3} divanimate={divAnimateControl3} textanimate={textAnimateControl3} delay={0.2} />
+          <MenuCard2 showMenu={showMenu} name={"Previous Images"} href={'#previmages'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef4} texta={textAnimateRef4} divanimate={divAnimateControl4} textanimate={textAnimateControl4} delay={0.3} />
+          <MenuCard2 showMenu={showMenu} name={"About"} href={'#about'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef5} texta={textAnimateRef5} divanimate={divAnimateControl5} textanimate={textAnimateControl5} delay={0.4} />
         </div>
-      )}
     </>
   )
 }

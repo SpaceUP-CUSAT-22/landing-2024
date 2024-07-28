@@ -7,6 +7,8 @@ import TimeSchedule from '../slides/TimeSchedule'
 import About from '../slides/About'
 import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
+import Events2 from '../slides/Events2'
+import Footer from '../slides/Footer'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,7 +79,7 @@ const Main = () => {
 
         
         <div id="events" className="w-[600vw] flex flex-wrap bg-[#050B17]">
-          <Events />
+          <Events2 />
         </div>
 
 
@@ -89,9 +91,9 @@ const Main = () => {
         </div>
 
 
-        <div id="timeschedule" className='relative z-2 bg-zinc-900 flex h-[100vh]'>
+        {/* <div id="timeschedule" className='relative z-2 bg-zinc-900 flex h-[100vh]'>
           <TimeSchedule />
-        </div>
+        </div> */}
 
 
         <div id="previmages" ref={slider3} className="relative z-2 bg-[#050B17] w-[600vw] h-screen flex flex-wrap">
@@ -103,6 +105,7 @@ const Main = () => {
           <About />
         </div>
 
+        <Footer />
 
       </div>
     </>
