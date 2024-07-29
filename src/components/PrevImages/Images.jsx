@@ -2,12 +2,14 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 const images = [
-  "/previmages/gallery4.jpg",
-  "/previmages/gallery2.jpeg",
-  "/previmages/gallery3.jpeg",
-  "/previmages/gallery5.jpg",
-  "/previmages/gallery1.jpeg",
-  "/previmages/gallery6.jpeg",
+  "/previmages/DSC_0012.JPG",
+  "/previmages/DSC_0045.JPG",
+  "/previmages/DSC_0061.JPG",
+  "/previmages/DSC_0100.JPG",
+  "/previmages/DSC_0108.JPG",
+  "/previmages/DSC_0152.JPG",
+  "/previmages/insta_kids_2.png",
+  "/previmages/insta_kids_1_1.png",
 ];
 
 const useInView = (options) => {
@@ -65,7 +67,7 @@ const Images = () => {
     <>
       {images.map((image, index) => (
         <div
-          className="mr-20 panel3 md:w-[50vw] w-[100vw] h-[100vh] "
+          className="relative z-[101] mr-10 panel3 md:w-[25vw] w-[100vw] h-[100vh] "
           key={index}
         >
           {index % 2 === 0 ? (
