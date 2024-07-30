@@ -17,8 +17,8 @@ const Footer = () => {
           <a href="#previmages" className='hover:text-red-500 text-white exo text-lg md:text-left text-center'>Images</a>
           <a href="#about" className='hover:text-red-500 text-white exo text-lg md:text-left text-center'>About</a>
         </div>
-        <div className='flex flex-col m-auto md:m-0 '>
-          <a className='cursor-pointer' href="https://www.instagram.com/ires_cusat/" target='_blank' ><i className='hover:text-red-500 cursor-pointer fab fa-instagram text-white text-2xl'></i></a>
+        <div className='flex md:flex-col m-auto md:m-0 '>
+          <a className='cursor-pointer md:mr-0 mr-3' href="https://www.instagram.com/ires_cusat/" target='_blank' ><i className='hover:text-red-500 cursor-pointer fab fa-instagram text-white text-2xl'></i></a>
           <a className='cursor-pointer' href="https://www.linkedin.com/company/sedscusat/" target='_blank' ><i className='hover:text-red-500 cursor-pointer fab fa-linkedin-in text-white text-2xl'></i></a>
         </div>
       </div>
