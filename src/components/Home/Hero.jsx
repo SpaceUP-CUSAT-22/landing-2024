@@ -1,10 +1,25 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import Typer from './Typer';
+// import { ToastContainer, toast } from 'react-toastify';
+// import 'react-toastify/dist/ReactToastify.css';
 
 const Hero = () => {
+  const [toast, setToast] = React.useState(false)
   const buttonRef = useRef(null);
   const originalPositionRef = useRef({ x: 0, y: 0 });
+
+  const notify = () => {
+    setToast(true)
+  }
+
+  useEffect(() => {
+    if (toast){
+      setTimeout(() => {
+        setToast(false)
+      }, 5000)
+    }
+  }, [toast])
 
   useEffect(() => {
     const button = buttonRef.current;
@@ -63,31 +78,40 @@ const Hero = () => {
   const redirect = () => {
     if(window.innerWidth > 758){
       window.open('https://youtu.be/dQw4w9WgXcQ?si=uXzFpENlYYz8ssFs', '_blank');
+    }else{
+      notify()
     }
   };
 
   return (
-    <div className="absolute z-[101] left-1/2 md:mt-0 mt-10 transform -translate-x-1/2 w-full max-w-[30rem] px-4 text-center">
-      <img 
-        src="/logo.png" 
-        className="w-full mb-8" 
-        alt="logo" 
-      />
+    <>
+      {toast && <div className='fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2'>
+        <div className='bg-white bg-opacity-50 px-10 py-5 rounded'>
+          <p className='text-white exo text-center'>Coming soon!</p>
+        </div>
+      </div>}
+      <div className="absolute z-[101] left-1/2 md:mt-0 mt-10 transform -translate-x-1/2 w-full max-w-[30rem] px-4 text-center">
+        <img 
+          src="/logo.png" 
+          className="w-full mb-8" 
+          alt="logo" 
+        />
 
-      <div className='' id="wrapper">
-        <button
-          ref={buttonRef}
-          data-cursor="pointer"
-          id="catchmeBtn"
-          onClick={redirect}
-          className="cursor-pointer bg-[#A6232B] hover:bg-[#CC2B35] text-white exo text-center px-6 py-3 text-lg transition-colors duration-300"
-        >
-          BUY TICKETS
-        </button>
+        <div className='' id="wrapper">
+          <button
+            ref={buttonRef}
+            data-cursor="pointer"
+            id="catchmeBtn"
+            onClick={redirect}
+            className="cursor-pointer bg-[#A6232B] hover:bg-[#CC2B35] text-white exo text-center px-6 py-3 text-lg transition-colors duration-300"
+          >
+            BUY TICKETS
+          </button>
+        </div>
+
+        <Typer />
       </div>
-
-      <Typer />
-    </div>
+    </>
   );
 }
 
