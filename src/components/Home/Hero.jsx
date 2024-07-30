@@ -28,6 +28,7 @@ const Hero = () => {
     originalPositionRef.current = { x: button.offsetLeft, y: button.offsetTop };
 
     const handleMouseMove = (e) => {
+      setToast(true)
       const { clientX: mouseX, clientY: mouseY } = e;
       const { left, top, width, height } = button.getBoundingClientRect();
       const buttonX = left + width / 2;
@@ -51,6 +52,7 @@ const Hero = () => {
     };
 
     const handleMouseLeave = () => {
+      setToast(false)
       // Animate the button back to its original position
       gsap.to(button, {
         x: 0,
@@ -84,12 +86,13 @@ const Hero = () => {
   };
 
   return (
-    <>
-      {toast && <div className='fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2'>
+    <> 
+      <div className={`fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2 ${toast ? 'opacity-100' : 'opacity-0'}`}>
         <div className='bg-white bg-opacity-50 px-10 py-5 rounded'>
           <p className='text-white exo text-center'>Coming soon!</p>
         </div>
-      </div>}
+      </div>
+      
       <div className="absolute z-[101] left-1/2 md:mt-0 mt-10 transform -translate-x-1/2 w-full max-w-[30rem] px-4 text-center">
         <img 
           src="/logo.png" 
