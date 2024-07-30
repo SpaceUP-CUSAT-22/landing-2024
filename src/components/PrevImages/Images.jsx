@@ -2,14 +2,14 @@ import React from "react";
 import { useState, useEffect, useRef } from "react";
 
 const images = [
-  "/previmages/DSC_0012.JPG",
-  "/previmages/DSC_0045.JPG",
-  "/previmages/DSC_0061.JPG",
-  "/previmages/DSC_0100.JPG",
-  "/previmages/DSC_0108.JPG",
-  "/previmages/DSC_0152.JPG",
-  "/previmages/insta_kids_2.png",
-  "/previmages/insta_kids_1_1.png",
+  "/previmages/DSC_0012.webp",
+  "/previmages/DSC_0045.webp",
+  "/previmages/DSC_0061.webp",
+  "/previmages/DSC_0100.webp",
+  "/previmages/DSC_0108.webp",
+  "/previmages/DSC_0152.webp",
+  "/previmages/insta_kids_2.webp",
+  "/previmages/insta_kids_1_1.webp",
 ];
 
 const useInView = (options) => {

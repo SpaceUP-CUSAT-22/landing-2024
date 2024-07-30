@@ -93,7 +93,7 @@ const Hero = () => {
         </div>
       </div>
       
-      <div className="absolute z-[101] left-1/2 md:mt-0 mt-10 transform -translate-x-1/2 w-full max-w-[30rem] px-4 text-center">
+      <div className="absolute z-[101] left-1/2 md:mt-20 mt-10 transform -translate-x-1/2 w-full max-w-[30rem] px-4 text-center">
         <img 
           src="/logo.png" 
           className="w-full mb-8" 

@@ -2,7 +2,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className='relative z-[101] bg-black px-20 py-20'>
+    <div className='relative z-[101] bg-black px-20 py-10'>
       <div className='grid grid-cols-1 md:grid-cols-4 items-center'>
         <img src="/logo.png" className='md:w-[20rem] w-[10rem] m-auto md:m-0 mb-20' alt="logo" />
         <div className='cursor-pointer flex flex-col m-auto md:m-0 mb-20'>
@@ -22,7 +22,7 @@ const Footer = () => {
           <a className='cursor-pointer' href="https://www.linkedin.com/company/sedscusat/" target='_blank' ><i className='hover:text-red-500 cursor-pointer fab fa-linkedin-in text-white text-2xl'></i></a>
         </div>
       </div>
-      <p className='text-center text-white exo mt-40 cursor-pointer'>SpaceUp 2024 © All rights reserved.</p>
+      <p className='text-center text-white exo mt-20 cursor-pointer'>SpaceUp 2024 © All rights reserved.</p>
         {/* <div className='relative z-[101] flex justify-around mb-40'>
             <a className='cursor-pointer' href="https://www.instagram.com/ires_cusat/" target='_blank' ><i className='cursor-pointer fab fa-instagram text-white text-2xl'></i></a>
             <a className='cursor-pointer' href="https://www.linkedin.com/company/sedscusat/" target='_blank' ><i className='cursor-pointer fab fa-linkedin-in text-white text-2xl'></i></a>
