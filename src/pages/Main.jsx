@@ -9,6 +9,7 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import Events2 from '../slides/Events2'
 import Footer from '../slides/Footer'
+import Preloader from '../slides/Preloader'
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -72,6 +73,7 @@ const Main = () => {
   });
   return (
     <>
+      <Preloader />
       <div className='' ref={component}>
         <div id="home" className="bg-[#050B17] h-[100vh]">
           <Home />
