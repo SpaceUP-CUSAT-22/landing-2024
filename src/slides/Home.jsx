@@ -13,7 +13,7 @@ const Home = () => {
       <div className='md:px-0 px-20'>
         <Hero />
       </div>
-      <Typer />
+      {/* <Typer /> */}
       <div>
         <Particles />
         <Sphere />      

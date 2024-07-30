@@ -114,7 +114,7 @@ const Particles = () => {
         tick();
     }, [])
     return (
-        <canvas className='z-[101] bg-[#050B17]' id="canvas"></canvas>
+        <canvas className='z-[100] bg-[#050B17]' id="canvas"></canvas>
     )
 }
 

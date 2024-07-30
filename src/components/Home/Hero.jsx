@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import Typer from './Typer';
 
 const Hero = () => {
   const buttonRef = useRef(null);
@@ -66,21 +67,26 @@ const Hero = () => {
   };
 
   return (
-    <div className='z-[101] absolute block md:top-40 top-60 md:left-[30%] left-[-3%] md:px-10'>
-      {/* <h1 className='orbitron text-center text-white text-6xl md:text-9xl'>Space Up</h1> */}
-      <img src="/logo.png" className='md:w-[30rem] w-[20rem] ml-16 mt-[-100px] mb-20' alt="logo" />
-      <br />
-      <div id="wrapper" className='w-[30rem]'>
+    <div className="absolute z-[101] left-1/2 md:mt-0 mt-10 transform -translate-x-1/2 w-full max-w-[30rem] px-4 text-center">
+      <img 
+        src="/logo.png" 
+        className="w-full mb-8" 
+        alt="logo" 
+      />
+
+      <div className='' id="wrapper">
         <button
           ref={buttonRef}
           data-cursor="pointer"
           id="catchmeBtn"
           onClick={redirect}
-          className='cursor-pointer hover:bg-[#CC2B35] md:ml-64 ml-40 bg-[#A6232B] text-white exo text-center md:px-5 md:py-4 md:text-md text-md px-2 py-1'
+          className="cursor-pointer bg-[#A6232B] hover:bg-[#CC2B35] text-white exo text-center px-6 py-3 text-lg transition-colors duration-300"
         >
           BUY TICKETS
         </button>
       </div>
+
+      <Typer />
     </div>
   );
 }
