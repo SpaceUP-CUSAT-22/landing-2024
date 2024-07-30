@@ -6,9 +6,9 @@ const Footer = () => {
       <div className='grid grid-cols-1 md:grid-cols-4 items-center'>
         <img src="/logo.png" className='md:w-[20rem] w-[10rem] m-auto md:m-0 mb-20' alt="logo" />
         <div className='cursor-pointer flex flex-col m-auto md:m-0 mb-20'>
-          <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center'>CUSAT</p>
-          <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center'>+91 9633276748</p>
-          <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center'>sedscusat@gmail.com</p>
+          <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center my-2'>Cochin University of Science & Technology, Kalamassery, Kochi, 682022</p>
+          <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center my-2'>+91 9633276748</p>
+          <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center my-2'>spaceup@cusat.ac.in</p>
         </div>
         <div className='flex flex-col m-auto mb-20 md:m-0 '>
           <a href="#home" className='hover:text-red-500 text-white exo text-lg md:text-left text-center'>Home</a>
