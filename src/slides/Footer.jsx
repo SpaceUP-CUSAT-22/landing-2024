@@ -10,7 +10,7 @@ const Footer = () => {
           <p className='hover:text-red-500 text-white text-lg md:text-left text-center'>+91 9633276748</p>
           <p className='hover:text-red-500 text-white text-lg md:text-left text-center'>sedscusat@gmail.com</p>
         </div>
-        <div className='flex flex-col m-auto md:m-0 '>
+        <div className='flex flex-col m-auto mb-20 md:m-0 '>
           <a href="#home" className='hover:text-red-500 text-white text-lg md:text-left text-center'>Home</a>
           <a href="#events" className='hover:text-red-500 text-white text-lg md:text-left text-center'>Events</a>
           <a href="#speakers" className='hover:text-red-500 text-white text-lg md:text-left text-center'>Speakers</a>
