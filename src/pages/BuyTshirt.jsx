@@ -236,7 +236,7 @@ const BuyTshirt = () => {
                     {formData.cusatian == 'nonseds' &&
                     <div className='flex items-center'>
                       <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' required/>
-                      <label htmlFor="" className='text-white exo '>Delivery required</label>
+                      <label htmlFor="" className='text-white exo '>Home delivery required</label>
                     </div>
                     }
                     {formData.cusatian == 'nonseds' && checkbox &&
