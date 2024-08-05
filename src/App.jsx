@@ -17,6 +17,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/register" element={<Register />} />
           <Route path="/buymerch" element={<BuyTshirt />} />
+          <Route path="/buytshirt" element={<BuyTshirt />} />
         </Routes>
       </BrowserRouter>
     </>
