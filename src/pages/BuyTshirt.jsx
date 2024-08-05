@@ -31,7 +31,7 @@ const BuyTshirt = () => {
     color: 'green',
     message: 'Order submitted successfully! Check your email for the token.'
   })
-  const [price, setPrice] = React.useState(399)
+  const [price, setPrice] = React.useState(459)
   useEffect(() => {
     if (toast.value){
       setTimeout(() => {
@@ -49,17 +49,18 @@ const BuyTshirt = () => {
     phone: '',
     size: 'Small',
     cusatian: 'Are you a CUSATian',
+    address: '',
     file: null,
   });
   useEffect(() => {
     if(formData.cusatian == 'cusatian'){
       setPrice(349)
     }else if(formData.cusatian == 'noncusatian'){
-      setPrice(399)
+      setPrice(459)
     }else if(formData.cusatian == 'seds'){
       setPrice(299)
     }else{
-      setPrice(399)
+      setPrice(459)
     }
   }, [formData])
   const [isLoading, setIsLoading] = useState(false);
@@ -134,6 +135,7 @@ const BuyTshirt = () => {
         cusatian: formData.cusatian,
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
+        address: formData.address,
         token: token,
       });
 
@@ -226,16 +228,19 @@ const BuyTshirt = () => {
                       <option value="cusatian">CUSATian</option>
                       <option value="noncusatian">Non-CUSATian</option>
                     </select>
+                    {formData.cusatian == 'noncusatian' && 
+                    <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
+                    </textarea>}
                   </div>
                   <button 
                     onClick={handleGPayRedirect} 
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {price}
+                    Pay ₹ {price != 459 ? price : "399    +    ₹ 60 (delivery charge)"} via GPay
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay {price}</span>
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price != 459 ? price : "399    +    ₹ 60 (delivery charge)"}</span>
                   <img src={qrCodes[formData.cusatian] || '/qrcode.png'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
                   <label className='exo text-white mt-6'>Upload screenshot of payment</label>
                   <input 
