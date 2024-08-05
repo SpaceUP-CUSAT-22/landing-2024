@@ -3,16 +3,23 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore, collection, addDoc, query, where, getDocs } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 import emailjs from '@emailjs/browser';
+import Footer from '../slides/Footer'
 
 const firebaseConfig = {
-    apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
-    authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
-    projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
-    storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
-    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGINGSENDERID,
-    appId: import.meta.env.VITE_FIREBASE_APPID,
-    measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID
+  apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTHDOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECTID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGEBUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGINGSENDERID,
+  appId: import.meta.env.VITE_FIREBASE_APPID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID
 };
+
+const qrCodes = {
+  'cusatian': '/qrcode.png',
+  'noncusatian': '/qrcode.png',
+  'seds': '/qrcode.png'
+}
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -24,6 +31,7 @@ const BuyTshirt = () => {
     color: 'green',
     message: 'Order submitted successfully! Check your email for the token.'
   })
+  const [price, setPrice] = React.useState(399)
   useEffect(() => {
     if (toast.value){
       setTimeout(() => {
@@ -34,6 +42,7 @@ const BuyTshirt = () => {
       }, 5000)
     }
   }, [toast])
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -42,6 +51,17 @@ const BuyTshirt = () => {
     cusatian: 'Are you a CUSATian',
     file: null,
   });
+  useEffect(() => {
+    if(formData.cusatian == 'cusatian'){
+      setPrice(349)
+    }else if(formData.cusatian == 'noncusatian'){
+      setPrice(399)
+    }else if(formData.cusatian == 'seds'){
+      setPrice(299)
+    }else{
+      setPrice(399)
+    }
+  }, [formData])
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -64,8 +84,7 @@ const BuyTshirt = () => {
         to_email: email,
         to_name: name,
         from_name: 'SEDS',
-        token: token,
-        message: `Random message ${token}`
+        token: token
       },
       import.meta.env.VITE_EMAILJS_USERID
     ).then((result) => {
@@ -151,12 +170,18 @@ const BuyTshirt = () => {
 
   
     const handleGPayRedirect = () => {
-      const receiverUPI = 'abhinavcv007@okaxis';
-      const amount = '500.00';
+      if(window.innerWidth >= 768){
+        setToast({
+          value: true,
+          color: 'red',
+          message: 'Sorry! This feature is only available on mobile devices.'
+        })
+      }
+      const receiverUPI = 'sedscusat@oksbi';
       const note = 'Payment for Tshirt';
       const name = 'SEDS';
 
-      const upiUrl = `upi://pay?pa=${receiverUPI}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+      const upiUrl = `upi://pay?pa=${receiverUPI}&pn=${encodeURIComponent(name)}&am=${price}&cu=INR&tn=${encodeURIComponent(note)}`;
 
       console.log(upiUrl);
 
@@ -170,27 +195,34 @@ const BuyTshirt = () => {
           <p className='text-white exo text-center'>{toast.message}</p>
         </div>
       </div>
-      <div className='h-full py-20 w-screen max-w-screen bg-[#050B17] px-4 sm:px-6 md:px-8 lg:px-10'>
+      <div className='h-full pt-10 pb-20 w-screen max-w-screen bg-[#050B17] px-4 sm:px-6 md:px-8 lg:px-10'>
         <div className='max-w-4xl mx-auto'>
           <div className='flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center w-full'>
-              <h1 className='exo text-white text-5xl md:text-7xl mb-8'>Buy Tshirt</h1>
+              {/* <h1 className='exo text-white text-5xl md:text-7xl mb-8'>Buy Tshirt</h1> */}
+              <img 
+                src="/logo.png" 
+                className="w-80 mb-8" 
+                alt="logo" 
+              />
               <form onSubmit={handleSubmit} className='w-full'>
                 <div className='flex flex-col w-full bg-black bg-opacity-30 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
-                  <img src="https://www.shutterstock.com/image-photo/mens-black-blank-tshirt-templatefrom-260nw-1409865368.jpg" className='mb-10 w-full max-w-[20rem] h-auto m-auto' alt="tshirt1" />
+                  <img src="/tshirt.png" className='mb-10 w-full max-w-[40rem] h-auto m-auto' alt="tshirt1" />
                   <div className='space-y-4'>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option>Size</option>
-                      <option value="small">Small</option>
-                      <option value="medium">Medium</option>
-                      <option value="large">Large</option>
-                      <option value="extralarge">Extra Large</option>
+                      <option value="XS">XS</option>
+                      <option value="S">S</option>
+                      <option value="M">M</option>
+                      <option value="L">L</option>
+                      <option value="XL">XL</option>
                     </select>
                     <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
-                      <option>Are you a CUSATian</option>
+                      <option>Are you a ...?</option>
+                      <option value="seds">SEDS Member</option>
                       <option value="cusatian">CUSATian</option>
                       <option value="noncusatian">Non-CUSATian</option>
                     </select>
@@ -200,10 +232,11 @@ const BuyTshirt = () => {
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ 500
+                    Pay ₹ {price}
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay {price}</span>
+                  <img src={qrCodes[formData.cusatian] || '/qrcode.png'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
                   <label className='exo text-white mt-6'>Upload screenshot of payment</label>
                   <input 
                     type="file" 
@@ -231,6 +264,7 @@ const BuyTshirt = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
