@@ -16,7 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/buytshirt" element={<BuyTshirt />} />
+          <Route path="/buymerch" element={<BuyTshirt />} />
         </Routes>
       </BrowserRouter>
     </>

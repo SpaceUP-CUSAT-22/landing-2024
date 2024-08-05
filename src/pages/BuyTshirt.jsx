@@ -174,7 +174,7 @@ const BuyTshirt = () => {
         setToast({
           value: true,
           color: 'red',
-          message: 'Sorry! This feature is only available on mobile devices.'
+          message: 'Sorry! This feature is only available on mobile devices. Please scan the QR code'
         })
       }
       const receiverUPI = 'sedscusat@oksbi';
