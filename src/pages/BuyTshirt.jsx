@@ -52,17 +52,18 @@ const BuyTshirt = () => {
     address: '',
     file: null,
   });
+  const [checkbox, setCheckBox] = useState(false);
   useEffect(() => {
-    if(formData.cusatian == 'cusatian'){
-      setPrice(349)
-    }else if(formData.cusatian == 'noncusatian'){
-      setPrice(459)
-    }else if(formData.cusatian == 'seds'){
+    if(formData.cusatian == 'seds'){
+      setPrice(249)
+    }else if(formData.cusatian == 'nonseds' && checkbox){
+      setPrice(359)
+    }else if(formData.cusatian == 'nonseds'){
       setPrice(299)
     }else{
-      setPrice(459)
+      setPrice(249)
     }
-  }, [formData])
+  }, [formData, checkbox])
   const [isLoading, setIsLoading] = useState(false);
 
   const handleInputChange = (e) => {
@@ -190,6 +191,11 @@ const BuyTshirt = () => {
       window.location.href = upiUrl;
     };
 
+    const handleCheckboxChange = (e) => {
+      const { name, checked } = e.target;
+      setCheckBox(checked)
+    };
+
   return (
     <>
       <div className={`fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2 ${toast.value ? 'opacity-100' : 'opacity-0'}`}>
@@ -225,10 +231,15 @@ const BuyTshirt = () => {
                     <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option>Are you a ...?</option>
                       <option value="seds">SEDS Member</option>
-                      <option value="cusatian">CUSATian</option>
-                      <option value="noncusatian">Non-CUSATian</option>
+                      <option value="nonseds">Non SEDS Member</option>
                     </select>
-                    {formData.cusatian == 'noncusatian' && 
+                    {formData.cusatian == 'nonseds' &&
+                    <div className='flex items-center'>
+                      <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' required/>
+                      <label htmlFor="" className='text-white exo '>Delivery required</label>
+                    </div>
+                    }
+                    {formData.cusatian == 'nonseds' && checkbox &&
                     <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
                     </textarea>}
                   </div>
@@ -237,10 +248,10 @@ const BuyTshirt = () => {
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {price != 459 ? price : "399    +    ₹ 60 (delivery charge)"} via GPay
+                    Pay ₹ {price != 359 ? price : "299    +    ₹ 60 (delivery charge)"} via GPay
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price != 459 ? price : "399    +    ₹ 60 (delivery charge)"}</span>
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price != 359 ? price : "299    +    ₹ 60 (delivery charge)"}</span>
                   <img src={qrCodes[formData.cusatian] || '/qrcode.png'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
                   <label className='exo text-white mt-6'>Upload screenshot of payment</label>
                   <input 
