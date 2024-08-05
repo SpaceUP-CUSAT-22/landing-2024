@@ -151,83 +151,86 @@ const BuyTshirt = () => {
 
   
     const handleGPayRedirect = () => {
-        const receiverUPI = 'abhinavcv007@okaxis';
-        const amount = '500.00';
-        const note = 'Payment for Tshirt';
-        const name = 'SEDS';
+      const receiverUPI = 'abhinavcv007@okaxis';
+      const amount = '500.00';
+      const note = 'Payment for Tshirt';
+      const name = 'SEDS';
 
-        const upiUrl = `upi://pay?pa=${receiverUPI}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
+      const upiUrl = `upi://pay?pa=${receiverUPI}&pn=${encodeURIComponent(name)}&am=${amount}&cu=INR&tn=${encodeURIComponent(note)}`;
 
-        console.log(upiUrl);
+      console.log(upiUrl);
 
-        window.location.href = upiUrl;
+      window.location.href = upiUrl;
     };
 
   return (
     <>
-        <div className={`fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2 ${toast.value ? 'opacity-100' : 'opacity-0'}`}>
-            <div className={`bg-${toast.color}-500 px-10 py-5 rounded`}>
-            <p className='text-white exo text-center'>{toast.message}</p>
-            </div>
+      <div className={`fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2 ${toast.value ? 'opacity-100' : 'opacity-0'}`}>
+        <div className={`bg-${toast.color}-500 px-10 py-5 rounded`}>
+          <p className='text-white exo text-center'>{toast.message}</p>
         </div>
-        <div className='min-h-screen min-w-screen bg-[#050B17] overflow-y-hidden'>
-        <div className=''>
-            <div className='flex justify-center items-center'>
-            <div className='flex flex-col justify-center items-center'>
-                <h1 className='exo text-white text-5xl md:text-7xl'>Buy Tshirt</h1>
-                <form onSubmit={handleSubmit} className='flex flex-col md:flex-row'>
-                    <div className='flex flex-col w-full m-5 bg-black bg-opacity-30 px-10 pt-5 py-10'>
-                        <img src="/tshirt1.png" className='w-[20rem] h-[20rem] m-auto' alt="tshirt1" />
-                        <h1 className='exo text-white text-2xl'>Tshirt 1</h1>
-                        <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg my-2' required/>
-                        <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg my-2' required/>
-                        <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg my-2' required/>
-                        <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg my-2' required>
-                            <option>Size</option>
-                            <option value="small">Small</option>
-                            <option value="medium">Medium</option>
-                            <option value="large">Large</option>
-                            <option value="extralarge">Extra Large</option>
-                        </select>
-                        <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg my-2' required>
-                            <option>Are you a CUSATian</option>
-                            <option value="cusatian">CUSATian</option>
-                            <option value="noncusatian">Non-CUSATian</option>
-                        </select>
-                        <button 
-                        onClick={handleGPayRedirect} 
-                        type="button" 
-                        className='exo text-white bg-red-500 p-2 rounded-lg'
-                        >
-                        Pay ₹ 500
-                        </button>
-                        <label className='exo text-white mt-5'>Upload screenshot of payment</label>
-                        <input 
-                        type="file" 
-                        name="file" 
-                        onChange={handleInputChange} 
-                        className='exo text-white bg-[#050B17] p-2 rounded-lg my-2' 
-                        required
-                        />
-                        <button 
-                        type="submit" 
-                        className='exo text-white bg-[#1E3A8A] p-2 rounded-lg mt-4 flex justify-center items-center'
-                        disabled={isLoading}
-                        >
-                        {isLoading ? (
-                            <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                            </svg>
-                        ) : null}
-                        {isLoading ? 'Processing...' : 'Submit Order'}
-                        </button>   
-                    </div>
-                </form>
+      </div>
+      <div className='h-full py-20 w-screen max-w-screen bg-[#050B17] px-4 sm:px-6 md:px-8 lg:px-10'>
+        <div className='max-w-4xl mx-auto'>
+          <div className='flex justify-center items-center'>
+            <div className='flex flex-col justify-center items-center w-full'>
+              <h1 className='exo text-white text-5xl md:text-7xl mb-8'>Buy Tshirt</h1>
+              <form onSubmit={handleSubmit} className='w-full'>
+                <div className='flex flex-col w-full bg-black bg-opacity-30 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
+                  <img src="https://www.shutterstock.com/image-photo/mens-black-blank-tshirt-templatefrom-260nw-1409865368.jpg" className='mb-10 w-full max-w-[20rem] h-auto m-auto' alt="tshirt1" />
+                  <div className='space-y-4'>
+                    <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
+                    <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
+                    <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
+                    <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                      <option>Size</option>
+                      <option value="small">Small</option>
+                      <option value="medium">Medium</option>
+                      <option value="large">Large</option>
+                      <option value="extralarge">Extra Large</option>
+                    </select>
+                    <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                      <option>Are you a CUSATian</option>
+                      <option value="cusatian">CUSATian</option>
+                      <option value="noncusatian">Non-CUSATian</option>
+                    </select>
+                  </div>
+                  <button 
+                    onClick={handleGPayRedirect} 
+                    type="button" 
+                    className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
+                  >
+                    Pay ₹ 500
+                  </button>
+                  <span className='exo text-white text-center mt-4'>OR</span>
+                  <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
+                  <label className='exo text-white mt-6'>Upload screenshot of payment</label>
+                  <input 
+                    type="file" 
+                    name="file" 
+                    onChange={handleInputChange} 
+                    className='exo text-white bg-[#050B17] p-2 rounded-lg mt-2 w-full' 
+                    required
+                  />
+                  <button 
+                    type="submit" 
+                    className='exo text-white bg-[#1E3A8A] p-2 rounded-lg mt-6 flex justify-center items-center w-full'
+                    disabled={isLoading}
+                  >
+                    {isLoading ? (
+                      <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
+                        <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                        <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      </svg>
+                    ) : null}
+                    {isLoading ? 'Processing...' : 'Submit Order'}
+                  </button>   
+                </div>
+              </form>
             </div>
-            </div>
+          </div>
         </div>
-        </div>
+      </div>
     </>
   );
 };
