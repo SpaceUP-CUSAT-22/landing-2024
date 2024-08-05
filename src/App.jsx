@@ -4,11 +4,11 @@ import Main from "./pages/Main"
 import Register from "./pages/Register"
 import Main2 from "./pages/Main2"
 import gsap from 'gsap'
+import BuyTshirt from './pages/BuyTshirt'
 
 function App() {
   React.useEffect(() => {
     
-
   }, [])
   return (
     <>
@@ -16,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/buytshirt" element={<BuyTshirt />} />
         </Routes>
       </BrowserRouter>
     </>
