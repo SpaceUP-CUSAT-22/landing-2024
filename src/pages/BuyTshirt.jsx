@@ -65,6 +65,7 @@ const BuyTshirt = () => {
     }
   }, [formData, checkbox])
   const [isLoading, setIsLoading] = useState(false);
+  const [viewSize, setViewSize] = useState(false)
 
   const handleInputChange = (e) => {
     const { name, value, files } = e.target;
@@ -198,6 +199,7 @@ const BuyTshirt = () => {
 
   return (
     <>
+
       <div className={`fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2 ${toast.value ? 'opacity-100' : 'opacity-0'}`}>
         <div className={`bg-${toast.color}-500 px-10 py-5 rounded`}>
           <p className='text-white exo text-center'>{toast.message}</p>
@@ -220,14 +222,27 @@ const BuyTshirt = () => {
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
-                      <option>Size</option>
-                      <option value="XS">XS</option>
-                      <option value="S">S</option>
-                      <option value="M">M</option>
-                      <option value="L">L</option>
-                      <option value="XL">XL</option>
-                    </select>
+                    <div className='flex justify-between'>
+                      <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-[80%]' required>
+                        <option>Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                      </select>
+                      <button 
+                        type="button" 
+                        onClick={() => setViewSize(prevState => !prevState)} 
+                        className='exo text-white bg-blue-500 p-2 rounded-lg'
+                      >
+                        {viewSize ? 'Hide Size Chart' : 'View Size Chart'}
+                      </button>
+                    </div>
+                    {viewSize && 
+                      <img src="/sizechart.jpg" className='w-full max-w-[20rem] h-auto m-auto mt-4' alt="sizechart" />
+                    }
                     <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option>Are you a ...?</option>
                       <option value="seds">SEDS Member</option>
@@ -235,7 +250,7 @@ const BuyTshirt = () => {
                     </select>
                     {formData.cusatian == 'nonseds' &&
                     <div className='flex items-center'>
-                      <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' required/>
+                      <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' />
                       <label htmlFor="" className='text-white exo '>Home delivery required</label>
                     </div>
                     }
