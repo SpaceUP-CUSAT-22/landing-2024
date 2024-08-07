@@ -264,9 +264,9 @@ const Register = () => {
                     </select>
                     <select name="session" value={formData.session} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Which among the parallel session do you want to register?</option>
-                      <option value="Jrs Studio">Jrs Studio</option>
-                      <option value="Garuda">Garuda</option>
-                      <option value="Varun">Varun</option>
+                      <option value="jithin">AI-Powered Space Exploration: Uncovering the Secrets of Life in the Universe - by Mr. Jithin Raj</option>
+                      <option value="varun">Unveiling Earth: Insights from Space - by Mr. Varun K</option>
+                      {/* <option value="Varun">Varun</option> */}
                     </select>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Do you want a T-shirt?</option>
