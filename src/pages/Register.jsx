@@ -193,6 +193,21 @@ const Register = () => {
       window.location.href = upiUrl;
     };
 
+    const upiid = 'sedscusat@oksbi'
+
+    const handleCopy = () => {
+      navigator.clipboard.writeText(upiid).then(() => {
+        console.log('Email copied to clipboard!');
+        setToast({
+          value: true,
+          color: 'green',
+          message: 'UPI ID copied to clipboard!'
+        })
+      }, (err) => {
+        console.error('Could not copy text: ', err);
+      });
+    };
+
   return (
     <>
 
@@ -255,10 +270,19 @@ const Register = () => {
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {price} via GPay
+                    Pay ₹ {price}
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price}</span>
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price} to{' '}
+                  <span
+                    onClick={handleCopy}
+                    style={{ cursor: 'pointer' }}
+                    className='bg-[#050B17] p-1 rounded-lg text-blue-500'
+                    title="Click to copy"
+                  >
+                    {upiid}
+                    <i class="fa-solid fa-copy ml-3"></i>
+                  </span></span>
                   <img src={qrCodes[formData.cusatian] || '/qrcode.png'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
                   <label className='exo text-white mt-6'>Upload screenshot of payment</label>
                   <input 
