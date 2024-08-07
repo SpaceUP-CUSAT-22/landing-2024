@@ -51,6 +51,9 @@ const Register = () => {
     cusatian: 'Are you a CUSATian',
     address: '',
     tshirt: '',
+    session: '',
+    institution: '',
+    class: '',
     file: null,
   });
   const [checkbox, setCheckBox] = useState(false);
@@ -145,6 +148,9 @@ const Register = () => {
         tshirt: formData.tshirt,
         timestamp: new Date(),
         address: formData.address,
+        session: formData.session,
+        institution: formData.institution,
+        class: formData.class,
         token: token,
       });
 
@@ -166,6 +172,9 @@ const Register = () => {
         cusatian: 'Are you a CUSATian',
         tshirt: '',
         address: '',
+        session: '',
+        institution: '',
+        class: '',
         file: null,
       });
     } catch (error) {
@@ -246,10 +255,18 @@ const Register = () => {
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
+                    <input type="text" name="institution" placeholder='Institution' value={formData.institution} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
+                    <input type="text" name="class" placeholder='Class or Year of study' value={formData.class} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Are you a ...?</option>
                       <option value="seds">SEDS Member</option>
                       <option value="nonseds">Non SEDS Member</option>
+                    </select>
+                    <select name="session" value={formData.session} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                      <option value="" selected>Which among the parallel session do you want to register?</option>
+                      <option value="Jrs Studio">Jrs Studio</option>
+                      <option value="Garuda">Garuda</option>
+                      <option value="Varun">Varun</option>
                     </select>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Do you want a T-shirt?</option>
