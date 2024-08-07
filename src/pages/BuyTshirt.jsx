@@ -85,6 +85,7 @@ const BuyTshirt = () => {
       import.meta.env.VITE_EMAILJS_TEMPLATEID,
       {
         to_email: email,
+        reply_to: 'sedscusat@gmail.com',
         to_name: name,
         from_name: 'SEDS',
         token: token

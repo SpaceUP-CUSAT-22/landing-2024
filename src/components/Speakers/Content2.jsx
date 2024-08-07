@@ -8,11 +8,11 @@ gsap.registerPlugin(ScrollTrigger);
 const Content2 = () => {
   const gridRef = useRef(null);
   const gridItems = [
-    { image: '/jane.jpg', description: "Her exceptional contributions to missile technology and defense systems have not only elevated India's capabilities but also inspired countless individuals, especially women, to pursue careers in science and technology. Dr. Thomas's keynote address promises to be an enlightening and inspiring start to our event, setting the stage for an incredible day of space exploration discussions and insights. Don't miss the opportunity to hear from this visionary leader at SpaceUp CUSAT on October 14, 2023." },
-    { image: '/jane2.jpg', description: "Her exceptional contributions to missile technology and defense systems have not only elevated India's capabilities but also inspired countless individuals, especially women, to pursue careers in science and technology. Dr. Thomas's keynote address promises to be an enlightening and inspiring start to our event, setting the stage for an incredible day of space exploration discussions and insights. Don't miss the opportunity to hear from this visionary leader at SpaceUp CUSAT on October 14, 2023." },
-    { image: '/jane.jpg', description: "Her exceptional contributions to missile technology and defense systems have not only elevated India's capabilities but also inspired countless individuals, especially women, to pursue careers in science and technology. Dr. Thomas's keynote address promises to be an enlightening and inspiring start to our event, setting the stage for an incredible day of space exploration discussions and insights. Don't miss the opportunity to hear from this visionary leader at SpaceUp CUSAT on October 14, 2023." },
-    { image: '/jane2.jpg', description: "Her exceptional contributions to missile technology and defense systems have not only elevated India's capabilities but also inspired countless individuals, especially women, to pursue careers in science and technology. Dr. Thomas's keynote address promises to be an enlightening and inspiring start to our event, setting the stage for an incredible day of space exploration discussions and insights. Don't miss the opportunity to hear from this visionary leader at SpaceUp CUSAT on October 14, 2023." },
-    { image: '/jane.jpg', description: "Her exceptional contributions to missile technology and defense systems have not only elevated India's capabilities but also inspired countless individuals, especially women, to pursue careers in science and technology. Dr. Thomas's keynote address promises to be an enlightening and inspiring start to our event, setting the stage for an incredible day of space exploration discussions and insights. Don't miss the opportunity to hear from this visionary leader at SpaceUp CUSAT on October 14, 2023." },
+    { image: '/jane.jpg', description: "The beginning of space to the end of space is what we have always dreamed to know. We are thrilled to announce our special guest, Dr. T. N. Suresh Kumar, former senior scientist at ISRO. He will guide us through the wondrous journey to zero gravity and the edge of space. Join us for this extraordinary adventure." },
+    { image: '/jane2.jpg', description: "The beginning of space to the end of space is what we have always dreamed to know. We are thrilled to announce our special guest, Dr. T. N. Suresh Kumar, former senior scientist at ISRO. He will guide us through the wondrous journey to zero gravity and the edge of space. Join us for this extraordinary adventure." },
+    { image: '/jane.jpg', description: "The beginning of space to the end of space is what we have always dreamed to know. We are thrilled to announce our special guest, Dr. T. N. Suresh Kumar, former senior scientist at ISRO. He will guide us through the wondrous journey to zero gravity and the edge of space. Join us for this extraordinary adventure." },
+    { image: '/jane2.jpg', description: "The beginning of space to the end of space is what we have always dreamed to know. We are thrilled to announce our special guest, Dr. T. N. Suresh Kumar, former senior scientist at ISRO. He will guide us through the wondrous journey to zero gravity and the edge of space. Join us for this extraordinary adventure." },
+    { image: '/jane.jpg', description: "The beginning of space to the end of space is what we have always dreamed to know. We are thrilled to announce our special guest, Dr. T. N. Suresh Kumar, former senior scientist at ISRO. He will guide us through the wondrous journey to zero gravity and the edge of space. Join us for this extraordinary adventure." },
   ];
 
   useEffect(() => {
@@ -72,7 +72,7 @@ const Content2 = () => {
   };
 
   return (
-    <div ref={gridRef} className='cursor-pointer relative z-[102] flex w-screen h-screen'>
+    <div ref={gridRef} className='cursor-pointer relative z-[102] grid grid-cols-1 md:flex w-screen h-screen'>
       {gridItems.map((item, i) => (
         <div 
           key={i}
