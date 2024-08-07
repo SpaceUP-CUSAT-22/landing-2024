@@ -74,14 +74,14 @@ He's the first Indian to reach the stratosphere, experience zero gravity, and vi
   };
 
   return (
-    <div ref={gridRef} className='cursor-pointer relative z-[102] grid grid-cols-2 md:flex w-screen h-screen'>
+    <div ref={gridRef} className='cursor-pointer relative z-[102] grid grid-cols-1 md:flex w-screen min-h-screen'>
   {gridItems.map((item, i) => (
     <div 
       key={i}
-      className={`flex-1 relative overflow-hidden ${i === gridItems.length - 1 ? 'col-span-2' : ''}`}
+      className={`relative overflow-hidden h-[60vh] sm:h-[50vh] md:h-screen md:flex-1`}
       style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
-      <div className='bg-red-500 bg-opacity-50 h-full top-0 absolute bottom-0 left-0 w-full bg-opacity-50'>
+      <div className='bg-red-500 bg-opacity-50 absolute inset-0'>
         <h1 className='orbitron text-white text-4xl'></h1>
       </div>
       <div className="description absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white p-4 opacity-0 transform translate-y-full">
