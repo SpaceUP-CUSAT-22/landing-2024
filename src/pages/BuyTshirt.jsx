@@ -139,6 +139,7 @@ const BuyTshirt = () => {
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
         address: formData.address,
+        price: price,
         token: token,
       });
 

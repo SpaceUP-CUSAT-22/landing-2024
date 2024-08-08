@@ -151,6 +151,7 @@ const Register = () => {
         session: formData.session,
         institution: formData.institution,
         class: formData.class,
+        price: price,
         token: token,
       });
 
