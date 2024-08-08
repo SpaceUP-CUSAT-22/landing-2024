@@ -121,8 +121,8 @@ const Navbar = () => {
         }`}
       >
         <MenuCard2 showMenu={showMenu} name={"Home"} href={'#home'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef1} texta={textAnimateRef1} divanimate={divAnimateControl1} textanimate={textAnimateControl1} delay={0} />
-        <MenuCard2 showMenu={showMenu} name={"Events (coming soon)"} href={'#events'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef2} texta={textAnimateRef2} divanimate={divAnimateControl2} textanimate={textAnimateControl2} delay={0.1} />
-        <MenuCard2 showMenu={showMenu} name={"Speakers (coming soon)"} href={'#speakers'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef3} texta={textAnimateRef3} divanimate={divAnimateControl3} textanimate={textAnimateControl3} delay={0.2} />
+        <MenuCard2 showMenu={showMenu} name={"Events"} href={'#events'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef2} texta={textAnimateRef2} divanimate={divAnimateControl2} textanimate={textAnimateControl2} delay={0.1} />
+        <MenuCard2 showMenu={showMenu} name={"Speakers"} href={'#speakers'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef3} texta={textAnimateRef3} divanimate={divAnimateControl3} textanimate={textAnimateControl3} delay={0.2} />
         <MenuCard2 showMenu={showMenu} name={"Previous Images"} href={'#previmages'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef4} texta={textAnimateRef4} divanimate={divAnimateControl4} textanimate={textAnimateControl4} delay={0.3} />
         <MenuCard2 showMenu={showMenu} name={"About"} href={'#about'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef5} texta={textAnimateRef5} divanimate={divAnimateControl5} textanimate={textAnimateControl5} delay={0.4} />
       </div>
