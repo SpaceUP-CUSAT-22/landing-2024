@@ -16,9 +16,9 @@ const firebaseConfig = {
 };
 
 const qrCodes = {
-  'cusatian': '/qrcode2.jpeg',
-  'noncusatian': '/qrcode2.jpeg',
-  'seds': '/qrcode2.jpeg'
+  'cusatian': '/qrcode.png',
+  'noncusatian': '/qrcode.png',
+  'seds': '/qrcode.png'
 }
 
 const app = initializeApp(firebaseConfig);
@@ -200,7 +200,7 @@ const Register = () => {
           message: 'Sorry! This feature is only available on mobile devices. Please scan the QR code'
         })
       }
-      const receiverUPI = 'akurup32@fifederal';
+      const receiverUPI = 'pjayasurya@fbl';
       const note = 'Payment for Tshirt';
       const name = 'SEDS';
 
@@ -211,7 +211,7 @@ const Register = () => {
       window.location.href = upiUrl;
     };
 
-    const upiid = 'akurup32@fifederal'
+    const upiid = 'pjayasurya@fbl'
 
     const handleCopy = () => {
       navigator.clipboard.writeText(upiid).then(() => {

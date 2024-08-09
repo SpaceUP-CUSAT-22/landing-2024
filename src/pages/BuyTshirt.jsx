@@ -183,7 +183,7 @@ const BuyTshirt = () => {
           message: 'Sorry! This feature is only available on mobile devices. Please scan the QR code'
         })
       }
-      const receiverUPI = 'sedscusat@oksbi';
+      const receiverUPI = 'pjayasurya@fbl';
       const note = 'Payment for Tshirt';
       const name = 'SEDS';
 
