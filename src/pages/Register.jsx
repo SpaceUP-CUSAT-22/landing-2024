@@ -126,6 +126,19 @@ const Register = () => {
         return;
       }
 
+      const sessionQuery = query(collection(db, "registrations"), where("session", "==", formData.session));
+      const sessionQuerySnapshot = await getDocs(sessionQuery);
+
+      if (sessionQuerySnapshot.size >= 50) {
+        setToast({
+          value: true,
+          color: 'red',
+          message: 'This session is already full. Please choose another session.'
+        });
+        setIsLoading(false);
+        return;
+      }
+
       // Upload file to Firebase Storage
       let fileUrl = '';
       if (formData.file) {
