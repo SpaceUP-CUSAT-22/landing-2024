@@ -83,6 +83,9 @@ Surendran has authored two astronomy-related books: "Nakshatragalum Nhattuveelau
       className={`relative overflow-hidden h-[60vh] sm:h-[50vh] md:h-screen md:flex-1`}
       style={{ backgroundImage: `url(${item.image})`, backgroundSize: 'cover', backgroundPosition: 'center' }}
     >
+      {/* <div className='bg-red-500 bg-opacity-50 absolute inset-0'>
+        <h1 className='orbitron text-white text-4xl'></h1>
+      </div> */}
       <div className="description absolute bottom-0 left-0 w-full bg-black bg-opacity-50 text-white p-4 opacity-0 transform translate-y-full">
         <p>{item.description}</p>
       </div>

@@ -280,9 +280,9 @@ const Register = () => {
                       <option value="" selected>Which among the parallel session do you want to register?</option>
                       <option value="jithin">AI-Powered Space Exploration: Uncovering the Secrets of Life in the Universe - by Mr. Jithin Raj</option>
                       <option value="varun">Unveiling Earth: Insights from Space - by Mr. Varun K</option>
-                      <option value="surendran">On the Celestial Shores of the Milky Way - by Mr. Surendran Punnaherry</option>
-                      <option value="paulose">Alien Hoaxes: Fact, Fiction, and the Fine Line Between - by Mr. Paulose Thomas</option>
-                      <option value="suresh">Journey to zero Gravity and Edge of Space - by Dr. T N Suresh Kumar</option>
+                      {/* <option value="surendran">On the Celestial Shores of the Milky Way - by Mr. Surendran Punnasherry</option> */}
+                      {/* <option value="paulose">Alien Hoaxes: Fact, Fiction, and the Fine Line Between - by Mr. Paulose Thomas</option> */}
+                      {/* <option value="suresh">Journey to zero Gravity and Edge of Space - by Dr. T N Suresh Kumar</option> */}
                       <option value="ajison">Exploring the Final Frontier : Reaching Out to Outer Space with UAV's aka Drone (workshop) - by Mr. Ajison George</option>
                     </select>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
