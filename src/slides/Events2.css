@@ -63,7 +63,7 @@ button {
 /* -------- title style ------- */
 .line-title {
   position: relative;
-  width: 400px;
+  width: 1300px;
 }
 .line-title::before,
 .line-title::after {
@@ -198,7 +198,7 @@ button {
     line-height: 32px;
   }
   .line-title {
-    width: 330px;
+    width: 400px;
   }
 
   /* -------- Landing page ------- */
@@ -232,7 +232,7 @@ button {
     line-height: 24px;
   }
   .line-title {
-    width: 250px;
+    width: 300px;
   }
 
   /* -------- Landing page ------- */

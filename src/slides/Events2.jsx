@@ -5,7 +5,7 @@ const Events2 = () => {
   return (
     <>
         <section className="relative z-[101] game-section md:mt-0 mt-32">
-            <h1 className='md:pt-10 md:pb-20 orbitron text-center text-red-500 text-5xl md:text-8xl line-title'>Events</h1>
+            <h1 className='md:pt-10 md:pb-20 mb-10 orbitron text-center text-red-500 text-4xl md:text-8xl line-title'>Events & Workshops</h1>
             <div className="owl-carousel custom-carousel owl-theme">
                 <div className="item active" style={{ backgroundImage: 'url(/event1.jpg)' }}>
                     <div className="item-desc">

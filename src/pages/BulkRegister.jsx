@@ -25,7 +25,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-const Register = () => {
+const BulkRegister = () => {
   const [toast, setToast] = React.useState({
     value: false,
     color: 'green',
@@ -53,8 +53,7 @@ const Register = () => {
     tshirt: '',
     session: '',
     institution: '',
-    class: '',
-    file: null,
+    class: ''
   });
   const [checkbox, setCheckBox] = useState(false);
 
@@ -112,7 +111,7 @@ const Register = () => {
 
     try {
       // Check for duplicate entries
-      const q = query(collection(db, "registrations"), where("email", "==", formData.email));
+      const q = query(collection(db, "bulkregistrations"), where("email", "==", formData.email));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -126,7 +125,7 @@ const Register = () => {
         return;
       }
 
-      const sessionQuery = query(collection(db, "registrations"), where("session", "==", formData.session));
+      const sessionQuery = query(collection(db, "bulkregistrations"), where("session", "==", formData.session));
       const sessionQuerySnapshot = await getDocs(sessionQuery);
 
       if (sessionQuerySnapshot.size >= 50) {
@@ -139,25 +138,17 @@ const Register = () => {
         return;
       }
 
-      // Upload file to Firebase Storage
-      let fileUrl = '';
-      if (formData.file) {
-        const storageRef = ref(storage, `payment_screenshots/registrations/${formData.email}_${formData.file.name}`);
-        await uploadBytes(storageRef, formData.file);
-        fileUrl = await getDownloadURL(storageRef);
-      }
-
       // Generate token
       const token = generateToken();
 
       // Add data to Firestore
-      await addDoc(collection(db, "registrations"), {
+      await addDoc(collection(db, "bulkregistrations"), {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         size: formData.size,
         cusatian: formData.cusatian,
-        paymentScreenshot: fileUrl,
+        bulk: true,
         tshirt: formData.tshirt,
         timestamp: new Date(),
         address: formData.address,
@@ -188,8 +179,7 @@ const Register = () => {
         address: '',
         session: '',
         institution: '',
-        class: '',
-        file: null,
+        class: ''
       });
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -267,7 +257,7 @@ const Register = () => {
                   {/* <img src="/tshirt.png" className='mb-10 w-full max-w-[40rem] h-auto m-auto' alt="tshirt1" /> */}
                   <div className='space-y-4'>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
+                    <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' />
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="text" name="institution" placeholder='Institution' value={formData.institution} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="text" name="class" placeholder='Class or Year of study' value={formData.class} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
@@ -322,33 +312,6 @@ const Register = () => {
                     </textarea>}
                   </div>
                   <button 
-                    onClick={handleGPayRedirect} 
-                    type="button" 
-                    className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
-                  >
-                    Pay ₹ {price}
-                  </button>
-                  <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price} to{' '}
-                  <span
-                    onClick={handleCopy}
-                    style={{ cursor: 'pointer' }}
-                    className='bg-[#050B17] p-1 rounded-lg text-blue-500'
-                    title="Click to copy"
-                  >
-                    {upiid}
-                    <i class="fa-solid fa-copy ml-3"></i>
-                  </span></span>
-                  <img src={qrCodes[formData.cusatian] || '/qrcode2.jpeg'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
-                  <label className='exo text-white mt-6'>Upload screenshot of payment</label>
-                  <input 
-                    type="file" 
-                    name="file" 
-                    onChange={handleInputChange} 
-                    className='exo text-white bg-[#050B17] p-2 rounded-lg mt-2 w-full' 
-                    required
-                  />
-                  <button 
                     type="submit" 
                     className='exo text-white bg-[#1E3A8A] p-2 rounded-lg mt-6 flex justify-center items-center w-full'
                     disabled={isLoading}
@@ -372,4 +335,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default BulkRegister;
