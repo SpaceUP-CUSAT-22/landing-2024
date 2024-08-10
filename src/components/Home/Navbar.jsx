@@ -117,7 +117,7 @@ const Navbar = () => {
       
       <div 
         className={`fixed overflow-y-auto top-0 w-screen h-screen max-w-screen max-h-screen transition-all duration-600 ${
-          showMenu ? 'z-[102]' : 'z-[100]'
+          showMenu ? 'z-[102]' : 'z-[100] md:block hidden'
         }`}
       >
         <MenuCard2 showMenu={showMenu} name={"Home"} href={'#home'} handleMenuToggle={handleMenuToggle} diva={divAnimateRef1} texta={textAnimateRef1} divanimate={divAnimateControl1} textanimate={textAnimateControl1} delay={0} />
