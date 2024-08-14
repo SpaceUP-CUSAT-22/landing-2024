@@ -48,26 +48,21 @@ const BulkRegister = () => {
     email: '',
     phone: '',
     size: 'Small',
-    cusatian: 'Are you a CUSATian',
     address: '',
     tshirt: '',
     session: '',
     institution: '',
-    class: ''
+    cusatian: '',
+    class: '',
+    food: ''
   });
   const [checkbox, setCheckBox] = useState(false);
 
   useEffect(() => {
-    if(formData.cusatian == 'seds' && formData.tshirt != 'yes'){
+    if(formData.tshirt != 'yes'){
       setPrice(349)
-    }else if(formData.cusatian == 'nonseds' && formData.tshirt != 'yes'){
-      setPrice(399)
-    }else if(formData.cusatian == 'seds' && formData.tshirt == 'yes'){
-      setPrice(598)
-    }else if(formData.cusatian == 'nonseds' && formData.tshirt == 'yes' && !checkbox){
-      setPrice(698)
-    }else if(formData.cusatian == 'nonseds' && formData.tshirt == 'yes' && checkbox){
-      setPrice(758)
+    }else if(formData.tshirt == 'yes'){
+      setPrice(648)
     }
   }, [formData, checkbox])
 
@@ -142,21 +137,23 @@ const BulkRegister = () => {
       const token = generateToken();
 
       // Add data to Firestore
-      await addDoc(collection(db, "bulkregistrations"), {
+      await addDoc(collection(db, "registrations"), {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         size: formData.size,
-        cusatian: formData.cusatian,
-        bulk: true,
+        paymentScreenshot: fileUrl,
         tshirt: formData.tshirt,
         timestamp: new Date(),
         address: formData.address,
         session: formData.session,
+        cusatian: formData.cusatian,
         institution: formData.institution,
         class: formData.class,
+        food: formData.food,
         price: price,
         token: token,
+        arrived: true
       });
 
       // Send email
@@ -179,7 +176,8 @@ const BulkRegister = () => {
         address: '',
         session: '',
         institution: '',
-        class: ''
+        food: '',
+        class: '',
       });
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -257,23 +255,28 @@ const BulkRegister = () => {
                   {/* <img src="/tshirt.png" className='mb-10 w-full max-w-[40rem] h-auto m-auto' alt="tshirt1" /> */}
                   <div className='space-y-4'>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' />
+                    <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    <input type="text" name="institution" placeholder='Institution' value={formData.institution} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    <input type="text" name="class" placeholder='Class or Year of study' value={formData.class} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
-                      <option value="" selected>Are you a ...?</option>
-                      <option value="seds">SEDS Member</option>
-                      <option value="nonseds">Non SEDS Member</option>
-                    </select>
+                    <input type="text" name="institution" placeholder='Institution' value={formData.institution} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' />
+                    <input type="text" name="class" placeholder='Class or Year of study' value={formData.class} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' />
                     <select name="session" value={formData.session} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Which among the parallel session do you want to register?</option>
-                      {/* <option value="jithin">AI-Powered Space Exploration: Uncovering the Secrets of Life in the Universe - by Mr. Jithin Raj</option> */}
+                      <option value="jithin">AI-Powered Space Exploration: Uncovering the Secrets of Life in the Universe - by Mr. Jithin Raj</option>
                       <option value="varun">Unveiling Earth: Insights from Space - by Mr. Varun K</option>
                       {/* <option value="surendran">On the Celestial Shores of the Milky Way - by Mr. Surendran Punnaherry</option> */}
                       {/* <option value="paulose">Alien Hoaxes: Fact, Fiction, and the Fine Line Between - by Mr. Paulose Thomas</option> */}
                       {/* <option value="suresh">Journey to zero Gravity and Edge of Space - by Dr. T N Suresh Kumar</option> */}
                       <option value="ajison">Exploring the Final Frontier : Reaching Out to Outer Space with UAV's aka Drone (workshop) - by Mr. Ajison George</option>
+                    </select>
+                    <select name="food" value={formData.food} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                      <option value="" selected>Your food preference</option>
+                      <option value="non-veg">Non-veg</option>
+                      <option value="veg">Veg</option>
+                    </select>
+                    <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                      <option value="" selected>Are you a ...?</option>
+                      <option value="seds">SEDS Member</option>
+                      <option value="nonseds">Non SEDS Member</option>
                     </select>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Do you want a T-shirt?</option>
@@ -301,15 +304,15 @@ const BulkRegister = () => {
                     {viewSize && 
                       <img src="/sizechart.jpg" className='w-full max-w-[20rem] h-auto m-auto mt-4' alt="sizechart" />
                     }
-                    {formData.cusatian == 'nonseds' && formData.tshirt == 'yes' &&
+                    {/* {formData.cusatian == 'nonseds' && formData.tshirt == 'yes' &&
                     <div className='flex items-center'>
                       <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' />
                       <label htmlFor="" className='text-white exo '>Home delivery required</label>
                     </div>
-                    }
-                    {formData.cusatian == 'nonseds' && checkbox &&
-                    <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
-                    </textarea>}
+                    } */}
+                    
+                    <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' >
+                    </textarea>
                   </div>
                   <button 
                     type="submit" 

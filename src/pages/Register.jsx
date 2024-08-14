@@ -184,6 +184,7 @@ const Register = () => {
         address: '',
         session: '',
         institution: '',
+        food: '',
         class: '',
         file: null,
       });

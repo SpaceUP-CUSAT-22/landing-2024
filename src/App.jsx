@@ -18,6 +18,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/register" element={<Register />} />
           <Route path="/bulkregister" element={<BulkRegister />} />
+          <Route path="/spot" element={<BulkRegister />} />
           <Route path="/buymerch" element={<BuyTshirt />} />
           <Route path="/buytshirt" element={<BuyTshirt />} />
         </Routes>
