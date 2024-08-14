@@ -323,7 +323,7 @@ const Register = () => {
                     </div>
                     }*/}
                     
-                    <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
+                    <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' >
                     </textarea>
                   </div>
                   <button 
