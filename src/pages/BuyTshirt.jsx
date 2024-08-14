@@ -31,7 +31,7 @@ const BuyTshirt = () => {
     color: 'green',
     message: 'Order submitted successfully! Check your email for the token.'
   })
-  const [price, setPrice] = React.useState(459)
+  const [price, setPrice] = React.useState(299)
   useEffect(() => {
     if (toast.value){
       setTimeout(() => {
@@ -53,17 +53,17 @@ const BuyTshirt = () => {
     file: null,
   });
   const [checkbox, setCheckBox] = useState(false);
-  useEffect(() => {
-    if(formData.cusatian == 'seds'){
-      setPrice(299)
-    }else if(formData.cusatian == 'nonseds' && checkbox){
-      setPrice(359)
-    }else if(formData.cusatian == 'nonseds'){
-      setPrice(299)
-    }else{
-      setPrice(249)
-    }
-  }, [formData, checkbox])
+  // useEffect(() => {
+  //   if(formData.cusatian == 'seds'){
+  //     setPrice(299)
+  //   }else if(formData.cusatian == 'nonseds' && checkbox){
+  //     setPrice(359)
+  //   }else if(formData.cusatian == 'nonseds'){
+  //     setPrice(299)
+  //   }else{
+  //     setPrice(299)
+  //   }
+  // }, [formData, checkbox])
   const [isLoading, setIsLoading] = useState(false);
   const [viewSize, setViewSize] = useState(false)
 
@@ -236,6 +236,7 @@ const BuyTshirt = () => {
                 <div className='flex flex-col w-full bg-black bg-opacity-30 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
                   <img src="/tshirt.png" className='mb-10 w-full max-w-[40rem] h-auto m-auto' alt="tshirt1" />
                   <div className='space-y-4'>
+                    <p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
@@ -265,15 +266,15 @@ const BuyTshirt = () => {
                       <option value="seds">SEDS Member</option>
                       <option value="nonseds">Non SEDS Member</option>
                     </select>
-                    {formData.cusatian == 'nonseds' &&
+                    {/* {formData.cusatian == 'nonseds' &&
                     <div className='flex items-center'>
                       <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' />
                       <label htmlFor="" className='text-white exo '>Home delivery required</label>
                     </div>
-                    }
-                    {formData.cusatian == 'nonseds' && checkbox &&
+                    } */}
+                    
                     <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
-                    </textarea>}
+                    </textarea>
                   </div>
                   <button 
                     onClick={handleGPayRedirect} 

@@ -52,6 +52,7 @@ const Register = () => {
     tshirt: '',
     session: '',
     institution: '',
+    cusatian: '',
     class: '',
     food: '',
     file: null,
@@ -61,10 +62,8 @@ const Register = () => {
   useEffect(() => {
     if(formData.tshirt != 'yes'){
       setPrice(349)
-    }else if(formData.tshirt == 'yes' && !checkbox){
-      setPrice(598)
-    }else if(formData.tshirt == 'yes' && checkbox){
-      setPrice(658)
+    }else if(formData.tshirt == 'yes'){
+      setPrice(648)
     }
   }, [formData, checkbox])
 
@@ -157,6 +156,7 @@ const Register = () => {
         timestamp: new Date(),
         address: formData.address,
         session: formData.session,
+        cusatian: formData.cusatian,
         institution: formData.institution,
         class: formData.class,
         food: formData.food,
@@ -281,6 +281,11 @@ const Register = () => {
                       <option value="non-veg">Non-veg</option>
                       <option value="veg">Veg</option>
                     </select>
+                    <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                      <option>Are you a ...?</option>
+                      <option value="seds">SEDS Member</option>
+                      <option value="nonseds">Non SEDS Member</option>
+                    </select>
                     <p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Do you want a T-shirt?</option>
@@ -305,9 +310,11 @@ const Register = () => {
                         {viewSize ? 'Hide Size Chart' : 'View Size Chart'}
                       </button>
                     </div>}
+
                     {viewSize && 
                       <img src="/sizechart.jpg" className='w-full max-w-[20rem] h-auto m-auto mt-4' alt="sizechart" />
                     }
+
                     {/* {formData.cusatian == 'nonseds' && formData.tshirt == 'yes' &&
                     <div className='flex items-center'>
                       <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' />
