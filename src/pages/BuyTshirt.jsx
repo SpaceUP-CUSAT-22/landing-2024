@@ -55,7 +55,7 @@ const BuyTshirt = () => {
   const [checkbox, setCheckBox] = useState(false);
   useEffect(() => {
     if(formData.cusatian == 'seds'){
-      setPrice(249)
+      setPrice(299)
     }else if(formData.cusatian == 'nonseds' && checkbox){
       setPrice(359)
     }else if(formData.cusatian == 'nonseds'){
