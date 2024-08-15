@@ -48,7 +48,7 @@ const BuyTshirt = () => {
     email: '',
     phone: '',
     size: 'Small',
-    sizes: ['Small', 'Small', 'Small', 'Small', 'Small', 'Small', 'Small', 'Small'],
+    sizes: ['XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS'],
     independence: false,
     cusatian: 'Are you a CUSATian',
     address: '',
@@ -164,7 +164,7 @@ const BuyTshirt = () => {
         email: '',
         phone: '',
         size: 'Small',
-        sizes: ['Small', 'Small', 'Small', 'Small', 'Small', 'Small', 'Small', 'Small'],
+        sizes: ['XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS'],
         cusatian: 'Are you a CUSATian',
         file: null,
       });
