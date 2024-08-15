@@ -363,7 +363,7 @@ const BuyTshirt = () => {
                         <>
                           <span className="block text-lg">Independence Day Special!</span>
                           <span className="block text-sm mt-1">8 T-Shirts for ₹1947</span>
-                          <span className="block text-xs mt-1">(₹278 per person)</span>
+                          {/* <span className="block text-xs mt-1">(₹278 per person)</span> */}
                         </>
                       )}
                     </button>
