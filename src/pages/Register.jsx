@@ -62,9 +62,9 @@ const Register = () => {
   const [independenceOffer, setIndependenceOffer] = useState(false);
 
   useEffect(() => {
-    if(formData.tshirt != 'yes'){
+    if(formData.tshirt != 'yes' && !independenceOffer){
       setPrice(349)
-    }else if(formData.tshirt == 'yes'){
+    }else if(formData.tshirt == 'yes' && !independenceOffer){
       setPrice(648)
     }
   }, [formData, checkbox])
@@ -228,12 +228,12 @@ const Register = () => {
       ...prevState,
       independence: true
     }));
+    setPrice(1947);
     setToast({
       value: true,
       color: 'green',
       message: '* Independence Day Offer applied: 7 tickets for ₹1947'
     })
-    setPrice(1947);
   };
 
   
@@ -390,10 +390,10 @@ const Register = () => {
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {independenceOffer ? `1947` : price}
+                    Pay ₹ {price}
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {independenceOffer ? `1947` : price} to{' '}
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price} to{' '}
                   <span
                     onClick={handleCopy}
                     style={{ cursor: 'pointer' }}
