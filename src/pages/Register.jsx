@@ -52,12 +52,14 @@ const Register = () => {
     tshirt: '',
     session: '',
     institution: '',
+    independence: false,
     cusatian: '',
     class: '',
     food: '',
     file: null,
   });
   const [checkbox, setCheckBox] = useState(false);
+  const [independenceOffer, setIndependenceOffer] = useState(false);
 
   useEffect(() => {
     if(formData.tshirt != 'yes'){
@@ -145,6 +147,9 @@ const Register = () => {
       // Generate token
       const token = generateToken();
 
+
+      
+
       // Add data to Firestore
       await addDoc(collection(db, "registrations"), {
         name: formData.name,
@@ -160,7 +165,8 @@ const Register = () => {
         institution: formData.institution,
         class: formData.class,
         food: formData.food,
-        price: price,
+        independence: independenceOffer,
+        price: independenceOffer ? 1947 : price,
         token: token,
       });
 
@@ -185,6 +191,7 @@ const Register = () => {
         session: '',
         institution: '',
         food: '',
+        independence: false,
         class: '',
         file: null,
       });
@@ -201,45 +208,73 @@ const Register = () => {
     }
   };
 
+  const handleIndependenceOffer = () => {
+    if(independenceOffer){
+      setIndependenceOffer(false);
+      setFormData(prevState => ({
+        ...prevState,
+        independence: false
+      }));
+      setToast({
+        value: true,
+        color: 'red',
+        message: 'Independence Day Offer removed'
+      })
+      setPrice(349);
+      return;
+    }
+    setIndependenceOffer(true);
+    setFormData(prevState => ({
+      ...prevState,
+      independence: true
+    }));
+    setToast({
+      value: true,
+      color: 'green',
+      message: '* Independence Day Offer applied: 7 tickets for ₹1947'
+    })
+    setPrice(1947);
+  };
+
   
-    const handleGPayRedirect = () => {
-      if(window.innerWidth >= 768){
-        setToast({
-          value: true,
-          color: 'red',
-          message: 'Sorry! This feature is only available on mobile devices. Please scan the QR code'
-        })
-      }
-      const receiverUPI = 'pjayasurya@fbl';
-      const note = 'Payment for Tshirt';
-      const name = 'SEDS';
+  const handleGPayRedirect = () => {
+    if(window.innerWidth >= 768){
+      setToast({
+        value: true,
+        color: 'red',
+        message: 'Sorry! This feature is only available on mobile devices. Please scan the QR code'
+      })
+    }
+    const receiverUPI = 'pjayasurya@fbl';
+    const note = 'Payment for Tshirt';
+    const name = 'SEDS';
 
-      const upiUrl = `upi://pay?pa=${receiverUPI}&pn=${encodeURIComponent(name)}&am=${price}&cu=INR&tn=${encodeURIComponent(note)}`;
+    const upiUrl = `upi://pay?pa=${receiverUPI}&pn=${encodeURIComponent(name)}&am=${price}&cu=INR&tn=${encodeURIComponent(note)}`;
 
-      console.log(upiUrl);
+    console.log(upiUrl);
 
-      window.location.href = upiUrl;
-    };
+    window.location.href = upiUrl;
+  };
 
-    const upiid = 'pjayasurya@fbl'
+  const upiid = 'pjayasurya@fbl'
 
-    const handleCopy = () => {
-      navigator.clipboard.writeText(upiid).then(() => {
-        console.log('Email copied to clipboard!');
-        setToast({
-          value: true,
-          color: 'green',
-          message: 'UPI ID copied to clipboard!'
-        })
-      }, (err) => {
-        console.error('Could not copy text: ', err);
-      });
-    };
+  const handleCopy = () => {
+    navigator.clipboard.writeText(upiid).then(() => {
+      console.log('Email copied to clipboard!');
+      setToast({
+        value: true,
+        color: 'green',
+        message: 'UPI ID copied to clipboard!'
+      })
+    }, (err) => {
+      console.error('Could not copy text: ', err);
+    });
+  };
 
-    const handleCheckboxChange = (e) => {
-      const { name, checked } = e.target;
-      setCheckBox(checked)
-    };
+  const handleCheckboxChange = (e) => {
+    const { name, checked } = e.target;
+    setCheckBox(checked)
+  };
 
   return (
     <>
@@ -287,13 +322,13 @@ const Register = () => {
                       <option value="seds">SEDS Member</option>
                       <option value="nonseds">Non SEDS Member</option>
                     </select>
-                    <p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
+                    {!independenceOffer && <><p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Do you want a T-shirt?</option>
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
-                    </select>
-                    {formData.tshirt == 'yes' && <div className='flex justify-between'>
+                    </select></>}
+                    {!independenceOffer && formData.tshirt == 'yes' && <div className='flex justify-between'>
                       <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-[80%]' required>
                         <option value="" selected>Size</option>
                         <option value="XS">XS</option>
@@ -323,18 +358,42 @@ const Register = () => {
                     </div>
                     }*/}
                     
-                    <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' >
-                    </textarea>
+                    {!independenceOffer && formData.tshirt == 'yes' && <textarea value={formData.address} name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' >
+                    </textarea>}
+                  </div>
+                  <div className="mt-6">
+                    <button 
+                      type="button"
+                      onClick={handleIndependenceOffer}
+                      className={`w-full py-3 px-4 font-bold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 ${
+                        independenceOffer 
+                          ? 'bg-[#138808] hover:bg-[#0F6606] border-[#FF9933] text-white' 
+                          : 'bg-[#FF9933] hover:bg-[#FF8C00] border-[#138808] text-white'
+                      }`}
+                    >
+                      {independenceOffer ? (
+                        <>
+                          <span className="block text-lg">Independence Day Offer Applied!</span>
+                          <span className="block text-sm mt-1">Click to remove offer</span>
+                        </>
+                      ) : (
+                        <>
+                          <span className="block text-lg">Independence Day Special!</span>
+                          <span className="block text-sm mt-1">8 T-Shirts for ₹1947</span>
+                          <span className="block text-xs mt-1">(₹278 per person)</span>
+                        </>
+                      )}
+                    </button>
                   </div>
                   <button 
                     onClick={handleGPayRedirect} 
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {price}
+                    Pay ₹ {independenceOffer ? `1947` : price}
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price} to{' '}
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {independenceOffer ? `1947` : price} to{' '}
                   <span
                     onClick={handleCopy}
                     style={{ cursor: 'pointer' }}

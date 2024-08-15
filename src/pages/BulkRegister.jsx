@@ -142,7 +142,6 @@ const BulkRegister = () => {
         email: formData.email,
         phone: formData.phone,
         size: formData.size,
-        paymentScreenshot: fileUrl,
         tshirt: formData.tshirt,
         timestamp: new Date(),
         address: formData.address,
