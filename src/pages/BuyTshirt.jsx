@@ -48,14 +48,11 @@ const BuyTshirt = () => {
     email: '',
     phone: '',
     size: 'Small',
-    sizes: ['XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS'],
-    independence: false,
     cusatian: 'Are you a CUSATian',
     address: '',
     file: null,
   });
   const [checkbox, setCheckBox] = useState(false);
-  const [independenceOffer, setIndependenceOffer] = useState(false);
 
   // useEffect(() => {
   //   if(formData.cusatian == 'seds'){
@@ -142,10 +139,8 @@ const BuyTshirt = () => {
         cusatian: formData.cusatian,
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
-        sizes: independenceOffer ? formData.sizes : [formData.size],
         address: formData.address,
-        independence: independenceOffer,
-        price: independenceOffer ? 1947 : price,
+        price,
         token: token,
       });
 
@@ -164,7 +159,6 @@ const BuyTshirt = () => {
         email: '',
         phone: '',
         size: 'Small',
-        sizes: ['XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS', 'XS'],
         cusatian: 'Are you a CUSATian',
         file: null,
       });
@@ -179,44 +173,6 @@ const BuyTshirt = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleIndependenceOffer = () => {
-    if(independenceOffer){
-      setIndependenceOffer(false);
-      setFormData(prevState => ({
-        ...prevState,
-        independence: false,
-        sizes: ['Small', 'Small', 'Small', 'Small', 'Small', 'Small', 'Small', 'Small']
-      }));
-      setToast({
-        value: true,
-        color: 'green',
-        message: 'Independence Day Offer removed. Please select a size for the T-shirt.'
-      })
-      setPrice(299);
-      return
-    }
-    setIndependenceOffer(true);
-    setFormData(prevState => ({
-      ...prevState,
-      independence: true,
-
-    }));
-    setToast({
-      value: true,
-      color: 'green',
-      message: '* Independence Day Offer applied: 8 T-Shirts for ₹1947. Please select sizes for all 8 T-shirts.'
-    })
-    setPrice(1947);
-  };
-
-  const handleSizeChange = (index, size) => {
-    setFormData(prevState => {
-      const newSizes = [...prevState.sizes];
-      newSizes[index] = size;
-      return { ...prevState, sizes: newSizes };
-    });
   };
 
   
@@ -285,47 +241,25 @@ const BuyTshirt = () => {
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
-                    {independenceOffer ? (
-                      <div className="space-y-2">
-                        <p className="text-white exo">Select sizes for 8 T-shirts:</p>
-                        {formData.sizes.map((size, index) => (
-                          <div key={index} className="flex items-center">
-                            <span className="text-white exo mr-2">T-shirt {index + 1}:</span>
-                            <select
-                              value={size}
-                              onChange={(e) => handleSizeChange(index, e.target.value)}
-                              className="exo text-white bg-[#050B17] p-2 rounded-lg flex-grow"
-                            >
-                              <option value="XS">XS</option>
-                              <option value="S">S</option>
-                              <option value="M">M</option>
-                              <option value="L">L</option>
-                              <option value="XL">XL</option>
-                              <option value="XXL">XXL</option>
-                            </select>
-                          </div>
-                        ))}
-                      </div>
-                    ) : (
-                      <div className='flex justify-between'>
-                        <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-[80%]' required>
-                          <option>Size</option>
-                          <option value="XS">XS</option>
-                          <option value="S">S</option>
-                          <option value="M">M</option>
-                          <option value="L">L</option>
-                          <option value="XL">XL</option>
-                          <option value="XXL">XXL</option>
-                        </select>
-                        <button 
-                          type="button" 
-                          onClick={() => setViewSize(prevState => !prevState)} 
-                          className='exo text-white bg-blue-500 p-2 rounded-lg'
-                        >
-                          {viewSize ? 'Hide Size Chart' : 'View Size Chart'}
-                        </button>
-                      </div>
-                    )}
+                    
+                    <div className='flex justify-between'>
+                      <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-[80%]' required>
+                        <option>Size</option>
+                        <option value="XS">XS</option>
+                        <option value="S">S</option>
+                        <option value="M">M</option>
+                        <option value="L">L</option>
+                        <option value="XL">XL</option>
+                        <option value="XXL">XXL</option>
+                      </select>
+                      <button 
+                        type="button" 
+                        onClick={() => setViewSize(prevState => !prevState)} 
+                        className='exo text-white bg-blue-500 p-2 rounded-lg'
+                      >
+                        {viewSize ? 'Hide Size Chart' : 'View Size Chart'}
+                      </button>
+                    </div>
                     {viewSize && 
                       <img src="/sizechart.jpg" className='w-full max-w-[20rem] h-auto m-auto mt-4' alt="sizechart" />
                     }
@@ -344,39 +278,15 @@ const BuyTshirt = () => {
                     <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
                     </textarea>
                   </div>
-                  <div className="mt-6">
-                    <button 
-                      type="button"
-                      onClick={handleIndependenceOffer}
-                      className={`w-full py-3 px-4 font-bold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 ${
-                        independenceOffer 
-                          ? 'bg-[#138808] hover:bg-[#0F6606] border-[#FF9933] text-white' 
-                          : 'bg-[#FF9933] hover:bg-[#FF8C00] border-[#138808] text-white'
-                      }`}
-                    >
-                      {independenceOffer ? (
-                        <>
-                          <span className="block text-lg">Independence Day Offer Applied!</span>
-                          <span className="block text-sm mt-1">Click to remove offer</span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="block text-lg">Independence Day Special!</span>
-                          <span className="block text-sm mt-1">8 T-Shirts for ₹1947</span>
-                          {/* <span className="block text-xs mt-1">(₹278 per person)</span> */}
-                        </>
-                      )}
-                    </button>
-                  </div>
                   <button 
                     onClick={handleGPayRedirect} 
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {price != 359 ? price : independenceOffer ? 1947 : "299    +    ₹ 60 (delivery charge)"}
+                    Pay ₹ {price != 359 ? price : "299    +    ₹ 60 (delivery charge)"}
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price != 359 ? price : independenceOffer ? 1947 : "299    +    ₹ 60 (delivery charge)"} to{' '}
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price != 359 ? price : "299    +    ₹ 60 (delivery charge)"} to{' '}
                   <span
                     onClick={handleCopy}
                     style={{ cursor: 'pointer' }}

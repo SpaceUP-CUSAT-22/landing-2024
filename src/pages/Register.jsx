@@ -52,19 +52,17 @@ const Register = () => {
     tshirt: '',
     session: '',
     institution: '',
-    independence: false,
     cusatian: '',
     class: '',
     food: '',
     file: null,
   });
   const [checkbox, setCheckBox] = useState(false);
-  const [independenceOffer, setIndependenceOffer] = useState(false);
 
   useEffect(() => {
-    if(formData.tshirt != 'yes' && !independenceOffer){
+    if(formData.tshirt != 'yes'){
       setPrice(349)
-    }else if(formData.tshirt == 'yes' && !independenceOffer){
+    }else if(formData.tshirt == 'yes'){
       setPrice(648)
     }
   }, [formData, checkbox])
@@ -165,8 +163,7 @@ const Register = () => {
         institution: formData.institution,
         class: formData.class,
         food: formData.food,
-        independence: independenceOffer,
-        price: independenceOffer ? 1947 : price,
+        price,
         token: token,
       });
 
@@ -191,7 +188,6 @@ const Register = () => {
         session: '',
         institution: '',
         food: '',
-        independence: false,
         class: '',
         file: null,
       });
@@ -206,34 +202,6 @@ const Register = () => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  const handleIndependenceOffer = () => {
-    if(independenceOffer){
-      setIndependenceOffer(false);
-      setFormData(prevState => ({
-        ...prevState,
-        independence: false
-      }));
-      setToast({
-        value: true,
-        color: 'red',
-        message: 'Independence Day Offer removed'
-      })
-      setPrice(349);
-      return;
-    }
-    setIndependenceOffer(true);
-    setFormData(prevState => ({
-      ...prevState,
-      independence: true
-    }));
-    setPrice(1947);
-    setToast({
-      value: true,
-      color: 'green',
-      message: '* Independence Day Offer applied: 7 tickets for ₹1947'
-    })
   };
 
   
@@ -322,13 +290,13 @@ const Register = () => {
                       <option value="seds">SEDS Member</option>
                       <option value="nonseds">Non SEDS Member</option>
                     </select>
-                    {!independenceOffer && <><p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
+                    {<><p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
                     <select name="tshirt" value={formData.tshirt} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Do you want a T-shirt?</option>
                       <option value="yes">Yes</option>
                       <option value="no">No</option>
                     </select></>}
-                    {!independenceOffer && formData.tshirt == 'yes' && <div className='flex justify-between'>
+                    {formData.tshirt == 'yes' && <div className='flex justify-between'>
                       <select name="size" value={formData.size} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-[80%]' required>
                         <option value="" selected>Size</option>
                         <option value="XS">XS</option>
@@ -358,32 +326,8 @@ const Register = () => {
                     </div>
                     }*/}
                     
-                    {!independenceOffer && formData.tshirt == 'yes' && <textarea value={formData.address} name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' >
+                    {formData.tshirt == 'yes' && <textarea value={formData.address} name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' >
                     </textarea>}
-                  </div>
-                  <div className="mt-6">
-                    <button 
-                      type="button"
-                      onClick={handleIndependenceOffer}
-                      className={`w-full py-3 px-4 font-bold rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 border-2 ${
-                        independenceOffer 
-                          ? 'bg-[#138808] hover:bg-[#0F6606] border-[#FF9933] text-white' 
-                          : 'bg-[#FF9933] hover:bg-[#FF8C00] border-[#138808] text-white'
-                      }`}
-                    >
-                      {independenceOffer ? (
-                        <>
-                          <span className="block text-lg">Independence Day Offer Applied!</span>
-                          <span className="block text-sm mt-1">Click to remove offer</span>
-                        </>
-                      ) : (
-                        <>
-                          <span className="block text-lg">Independence Day Special!</span>
-                          <span className="block text-sm mt-1">7 tickets for ₹1947</span>
-                          {/* <span className="block text-xs mt-1">(₹278 per person)</span> */}
-                        </>
-                      )}
-                    </button>
                   </div>
                   <button 
                     onClick={handleGPayRedirect} 
