@@ -123,7 +123,7 @@ const BulkRegister = () => {
       const sessionQuery = query(collection(db, "bulkregistrations"), where("session", "==", formData.session));
       const sessionQuerySnapshot = await getDocs(sessionQuery);
 
-      if (sessionQuerySnapshot.size >= 50) {
+      if (sessionQuerySnapshot.size >= 150) {
         setToast({
           value: true,
           color: 'red',
