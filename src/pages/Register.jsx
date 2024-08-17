@@ -124,7 +124,23 @@ const Register = () => {
       const sessionQuery = query(collection(db, "registrations"), where("session", "==", formData.session));
       const sessionQuerySnapshot = await getDocs(sessionQuery);
 
-      if (sessionQuerySnapshot.size >= 50) {
+      if(formData.session == "jithin" && sessionQuerySnapshot.size >= 150){
+        setToast({
+          value: true,
+          color: 'red',
+          message: 'This session is already full. Please choose another session.'
+        });
+        setIsLoading(false);
+        return;
+      }else if(formData.session == "ajison"  && sessionQuerySnapshot.size >= 90){
+        setToast({
+          value: true,
+          color: 'red',
+          message: 'This session is already full. Please choose another session.'
+        });
+        setIsLoading(false);
+        return;
+      }else if(formData.session == "varun"  && sessionQuerySnapshot.size >= 50){
         setToast({
           value: true,
           color: 'red',
