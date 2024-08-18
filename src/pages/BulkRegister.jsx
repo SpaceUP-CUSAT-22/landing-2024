@@ -268,7 +268,7 @@ const BulkRegister = () => {
                     </select>
                     <select name="session" value={formData.session} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option value="" selected>Which among the parallel session do you want to register?</option>
-                      <option value="jithin">AI-Powered Space Exploration: Uncovering the Secrets of Life in the Universe - by Mr. Jithin Raj</option>
+                      {/* <option value="jithin">AI-Powered Space Exploration: Uncovering the Secrets of Life in the Universe - by Mr. Jithin Raj</option> */}
                       <option value="varun">Unveiling Earth: Insights from Space - by Mr. Varun K</option>
                       {/* <option value="surendran">On the Celestial Shores of the Milky Way - by Mr. Surendran Punnaherry</option> */}
                       {/* <option value="paulose">Alien Hoaxes: Fact, Fiction, and the Fine Line Between - by Mr. Paulose Thomas</option> */}
