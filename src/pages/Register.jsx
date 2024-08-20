@@ -62,13 +62,13 @@ const Register = () => {
     if(formData.cusatian == 'seds' && formData.tshirt != 'yes'){
       setPrice(349)
     }else if(formData.cusatian == 'nonseds' && formData.tshirt != 'yes'){
-      setPrice(399)
+      setPrice(349)
     }else if(formData.cusatian == 'seds' && formData.tshirt == 'yes'){
       setPrice(598)
     }else if(formData.cusatian == 'nonseds' && formData.tshirt == 'yes' && !checkbox){
-      setPrice(698)
+      setPrice(598)
     }else if(formData.cusatian == 'nonseds' && formData.tshirt == 'yes' && checkbox){
-      setPrice(758)
+      setPrice(658)
     }
   }, [formData, checkbox])
 
