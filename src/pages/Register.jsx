@@ -339,7 +339,7 @@ const Register = () => {
                     {upiid}
                     <i class="fa-solid fa-copy ml-3"></i>
                   </span></span>
-                  <img src={qrCodes[formData.cusatian] || '/qrcode2.jpeg'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
+                  <img src={qrCodes[formData.cusatian] || '/qrcode.png'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
                   <label className='exo text-white mt-6'>Upload screenshot of payment</label>
                   <input 
                     type="file" 
