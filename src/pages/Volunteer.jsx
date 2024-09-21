@@ -129,7 +129,7 @@ const Volunteer = () => {
                       <option value="outreach">Outreach</option>
                       <option value="sponsorship">Sponsorship</option>
                       <option value="human resources">Human Resources</option>
-                      <option value="content">Content</option>
+                      <option value="ambience">Ambience</option>
                       <option value="food committee">Food Committee</option>
                       <option value="operations">Operations</option>
                       <option value="production">Production</option>
