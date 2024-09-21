@@ -7,6 +7,7 @@ import gsap from 'gsap'
 import BuyTshirt from './pages/BuyTshirt'
 import BulkRegister from './pages/BulkRegister'
 import Offer from './pages/Offer'
+import Volunteer from './pages/Volunteer'
 
 function App() {
   React.useEffect(() => {
@@ -23,6 +24,7 @@ function App() {
           <Route path="/buymerch" element={<BuyTshirt />} />
           <Route path="/buytshirt" element={<BuyTshirt />} />
           <Route path="/offer" element={<Offer />} />
+          <Route path="/volunteer" element={<Volunteer />} />
         </Routes>
       </BrowserRouter>
     </>

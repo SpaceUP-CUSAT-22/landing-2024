@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className='relative z-[101] bg-black px-20 py-10'>
       <div className='grid grid-cols-1 md:grid-cols-4 items-center'>
-        <img src="/logo.png" className='md:w-[20rem] w-[10rem] m-auto md:m-0 mb-20' alt="logo" />
+        {/* <img src="/logo.png" className='md:w-[20rem] w-[10rem] m-auto md:m-0 mb-20' alt="logo" /> */}
         <div className='cursor-pointer flex flex-col m-auto md:m-0 mb-20'>
           <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center my-2'>Cochin University of Science & Technology, Kalamassery, Kochi, 682022</p>
           <p className='hover:text-red-500 text-white exo text-lg md:text-left text-center my-2'>+91 9633276748</p>
