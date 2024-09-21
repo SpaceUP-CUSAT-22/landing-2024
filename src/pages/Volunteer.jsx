@@ -110,11 +110,11 @@ const Volunteer = () => {
         <div className='max-w-4xl mx-auto'>
           <div className='flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center w-full'>
-              <img 
+              {/* <img 
                 src="/logo.png" 
                 className="w-80 mb-8" 
                 alt="logo" 
-              />
+              /> */}
               <form onSubmit={handleSubmit} className='w-full'>
                 <div className='flex flex-col w-full bg-black bg-opacity-30 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
                   <div className='space-y-4'>
