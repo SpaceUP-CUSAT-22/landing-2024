@@ -110,11 +110,11 @@ const Volunteer = () => {
         <div className='max-w-4xl mx-auto'>
           <div className='flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center w-full'>
-              {/* <img 
+              <img 
                 src="/logo.png" 
                 className="w-80 mb-8" 
                 alt="logo" 
-              /> */}
+              />
               <form onSubmit={handleSubmit} className='w-full'>
                 <div className='flex flex-col w-full bg-black bg-opacity-30 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
                   <div className='space-y-4'>
@@ -173,6 +173,13 @@ const Volunteer = () => {
                   </button>   
                 </div>
               </form>
+              
+              {/* Add contact information here */}
+              <div className='mt-8 text-white exo text-center'>
+                <h3 className='text-xl mb-2'>For more enquiries, please contact:</h3>
+                <p>Athul: <a href="tel:+918078026362" className='text-blue-400'>+91 8078026362</a></p>
+                <p>Nandana Dev: <a href="tel:+917012736631" className='text-blue-400'>+91 7012736631</a></p>
+              </div>
             </div>
           </div>
         </div>
