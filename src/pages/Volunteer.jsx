@@ -110,11 +110,12 @@ const Volunteer = () => {
         <div className='max-w-4xl mx-auto'>
           <div className='flex justify-center items-center'>
             <div className='flex flex-col justify-center items-center w-full'>
-              {/* <img 
-                src="/logo.png" 
-                className="w-80 mb-8" 
-                alt="logo" 
-              /> */}
+              {/* Add a note about CUSAT students only */}
+              <div className='mb-6 text-white exo text-center'>
+                <h2 className='text-2xl font-bold'>Volunteer Application</h2>
+                <p className='text-lg text-yellow-400'>Note: This application is for CUSAT students only.</p>
+              </div>
+              
               <form onSubmit={handleSubmit} className='w-full'>
                 <div className='flex flex-col w-full bg-black bg-opacity-30 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
                   <div className='space-y-4'>
