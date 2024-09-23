@@ -135,6 +135,7 @@ const Volunteer = () => {
                       <option value="operations">Operations</option>
                       <option value="production">Production</option>
                       <option value="curation">Curation</option>
+                      <option value="tech">Tech Team</option>
                     </select>
                     <textarea name="reason" placeholder="Why do you think you are fit for the preferred team?" value={formData.reason} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required></textarea>
                     {formData.preferredTeam === 'production' && (
