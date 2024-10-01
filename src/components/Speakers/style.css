@@ -1,6 +1,0 @@
-.panel2:nth-child(odd) {
-    background-color: red;
-}
-.panel2:nth-child(even) {
-    background-color: black;
-}

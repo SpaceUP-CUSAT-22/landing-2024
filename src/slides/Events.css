@@ -1,7 +1,0 @@
-.cards .card {
-  aspect-ratio: 1/1;
-}
-
-.panel1 .cards {
-  flex-basis: calc(50% - 2rem + 1rem);
-}
