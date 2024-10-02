@@ -1,0 +1,72 @@
+/* Alternox Light */
+@font-face {
+  font-family: 'Alternox Light';
+  src: url('./assets/fonts/Alternox Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+/* Alternox Regular */
+@font-face {
+  font-family: 'Alternox Regular';
+  src: url('./assets/fonts/Alternox Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Alternox Semi Bold */
+@font-face {
+  font-family: 'Alternox Semi Bold';
+  src: url('./assets/fonts/Alternox Semi Bold.otf') format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* Alternox Bold */
+@font-face {
+  font-family: 'Alternox Bold';
+  src: url('./assets/fonts/Alternox Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+/* Alternox Extra Bold */
+@font-face {
+  font-family: 'Alternox Extra Bold';
+  src: url('./assets/fonts/Alternox Extra Bold.otf') format('opentype');
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* Alternox Extra Light */
+@font-face {
+  font-family: 'Alternox Extra Light';
+  src: url('./assets/fonts/Alternox Extra Light.otf') format('opentype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+/* Classes to apply the fonts */
+.font-alternox-light {
+  font-family: 'Alternox Light', sans-serif;
+}
+
+.font-alternox-regular {
+  font-family: 'Alternox Regular', sans-serif;
+}
+
+.font-alternox-semibold {
+  font-family: 'Alternox Semi Bold', sans-serif;
+}
+
+.font-alternox-bold {
+  font-family: 'Alternox Bold', sans-serif;
+}
+
+.font-alternox-extrabold {
+  font-family: 'Alternox Extra Bold', sans-serif;
+}
+
+.font-alternox-extralight {
+  font-family: 'Alternox Extra Light', sans-serif;
+}
