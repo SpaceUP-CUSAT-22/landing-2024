@@ -17,7 +17,7 @@ const Hero = () => {
       </div>
       
       <img 
-        src="/Astronaut.png" 
+        src="/Astronaut1.png" 
         alt="Space" 
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 sm:w-2/3 md:w-1/2 max-w-md z-20 floating-astronaut"
       />
