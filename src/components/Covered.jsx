@@ -16,7 +16,7 @@ const Covered = () => {
   }, []);
 
   return (
-    <div className="fixed top-20 left-5 md:left-20 w-1 h-[80%] bg-zinc-800 rounded-[50px] flex flex-col justify-between items-center">
+    <div className="fixed top-20 left-5 md:left-20 w-1 h-[80%] bg-zinc-800 rounded-[50px] flex flex-col justify-between items-center z-50">
       <div 
         className="w-full bg-white rounded-[50px] absolute top-0"
         style={{ height: `${scrollPercentage}%` }}
