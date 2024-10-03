@@ -55,6 +55,7 @@ const BuyMerch = () => {
     cusatian: 'Are you a CUSATian',
     address: '',
     file: null,
+    color: 'white',
   });
   const [checkbox, setCheckBox] = useState(false);
 
@@ -295,10 +296,24 @@ const BuyMerch = () => {
 
         <form onSubmit={handleSubmit} className='w-full'>
           <div className='flex flex-col w-full bg-black bg-opacity-50 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
-            <img src="/tshirt.png" className='mb-10 w-full max-w-[40rem] h-auto m-auto' alt="tshirt1" />
+          <img 
+            src={formData.color === 'green' ? "/black.png" : "/white.png"} 
+            className='mb-10 w-full max-w-[40rem] h-auto m-auto' 
+            alt="tshirt" 
+          />
             
                   <div className='space-y-4'>
                     <p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
+                    <select 
+                      name="color" 
+                      value={formData.color} 
+                      onChange={handleInputChange} 
+                      className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' 
+                      required
+                    >
+                      <option value="white">White T-shirt</option>
+                      <option value="green">Green T-shirt</option>
+                    </select>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
