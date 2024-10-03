@@ -1,9 +1,10 @@
 import React from 'react';
 import './css/Hero.css';
+
 const Hero = () => {
   return (
     <div className="h-screen bg-black flex flex-col justify-center items-center overflow-hidden relative">
-      <div className='relative z-30'>
+      <div className='relative z-10'>
         <h1
           className="text-9xl text-white text-center font-bold mb-4 tracking-wider font-alternox-regular"
           style={{ 
@@ -21,7 +22,7 @@ const Hero = () => {
         className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-1/2 max-w-md z-20 floating-astronaut"
       />
 
-      <div className='relative z-40'>
+      <div className='relative z-30'>
         <h2
           className="text-5xl text-white text-center font-semibold tracking-widest font-alternox-regular"
         >
@@ -29,11 +30,11 @@ const Hero = () => {
         </h2>
     </div>
 
-      <img 
+      {/* <img 
         src="/planet.png" 
         alt="Planet" 
-        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/3 w-full max-w-3xl z-10"
-      />
+        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-3xl z-10"
+      /> */}
     </div>
   );
 };
