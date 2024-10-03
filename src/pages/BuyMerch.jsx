@@ -70,15 +70,18 @@ const BuyMerch = () => {
   //   }
   // }, [formData, checkbox])
   useEffect(() => {
-    let newPrice = 299; // Base price
-    if (formData.cusatian === 'nonseds' && checkbox) {
-      newPrice = 359;
-    }
+    let newPrice = 349; // Default price
+  
     if (isValidReferral) {
-      newPrice -= 50;
+      newPrice = 299; // Apply discount if referral code is verified
     }
+  
+    if (checkbox) { // Assuming checkbox represents the home delivery option
+      newPrice += 60; // Add delivery charge
+    }
+  
     setPrice(newPrice);
-  }, [formData.cusatian, checkbox, isValidReferral]);
+  }, [isValidReferral, checkbox]);
   const [isLoading, setIsLoading] = useState(false);
   const [viewSize, setViewSize] = useState(false)
 
@@ -244,7 +247,7 @@ const BuyMerch = () => {
   };
 
   const handleCheckboxChange = (e) => {
-    const { name, checked } = e.target;
+    const { checked } = e.target;
     setCheckBox(checked)
   };
 
@@ -326,12 +329,12 @@ const BuyMerch = () => {
                       <option value="seds">SEDS Member</option>
                       <option value="nonseds">Non SEDS Member</option>
                     </select>
-                    {/* {formData.cusatian == 'nonseds' &&
+                    {/* {formData.cusatian == 'nonseds' && */}
                     <div className='flex items-center'>
                       <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' />
                       <label htmlFor="" className='text-white exo '>Home delivery required</label>
                     </div>
-                    } */}
+                    {/* } */}
                     
                     <textarea name="address" onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' placeholder='Please enter your address' required>
                     </textarea>
@@ -362,10 +365,10 @@ const BuyMerch = () => {
                     type="button" 
                     className='exo text-white bg-red-500 p-2 rounded-lg mt-6'
                   >
-                    Pay ₹ {price != 359 ? price : "299    +    ₹ 60 (delivery charge)"}
+                    Pay ₹ {price}
                   </button>
                   <span className='exo text-white text-center mt-4'>OR</span>
-                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price != 359 ? price : "299    +    ₹ 60 (delivery charge)"} to{' '}
+                  <span className='exo text-white text-center mt-4'>Scan the QR code below and pay ₹ {price} to{' '}
                   <span
                     onClick={handleCopy}
                     style={{ cursor: 'pointer' }}
