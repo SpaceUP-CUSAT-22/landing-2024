@@ -59,7 +59,7 @@ const TimeSchedule = () => {
   const venueRefs = useRef([]);
 
   useEffect(() => {
-    const duration = 1;
+    const duration = 0;
     const pauseDuration = 3;
     const lineHeight = 50;
     const totalItems = venueSchedules[0].length;
@@ -118,7 +118,7 @@ const TimeSchedule = () => {
   const sunPosition = calculateSunPosition(progress);
 
   return (
-    <div className='bg-black min-h-screen p-4 md:p-8'>
+    <div className='bg-black h-screen p-4 md:p-8'>
       <div className="time-schedule relative overflow-hidden">
         {stars.map((star) => (
           <div

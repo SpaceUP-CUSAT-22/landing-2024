@@ -13,3 +13,9 @@
 .floating-astronaut {
   animation: float 6s ease-in-out infinite;
 }
+
+@media (max-width: 640px) {
+  .floating-astronaut {
+    max-width: 80%;
+  }
+}
