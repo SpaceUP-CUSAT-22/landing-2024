@@ -152,7 +152,7 @@ const BuyMerch = () => {
 
     try {
       // Check for duplicate entries
-      const q = query(collection(db, "orders"), where("email", "==", formData.email));
+      const q = query(collection(db, "merchorders"), where("email", "==", formData.email));
       const querySnapshot = await getDocs(q);
 
       if (!querySnapshot.empty) {
@@ -178,7 +178,7 @@ const BuyMerch = () => {
       const token = generateToken();
 
       // Add data to Firestore
-      await addDoc(collection(db, "orders"), {
+      await addDoc(collection(db, "merchorders"), {
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -267,7 +267,7 @@ const BuyMerch = () => {
     <div className="min-h-screen bg-black flex flex-col justify-center items-center overflow-hidden relative py-20">
       {/* Toast Notification */}
       <div className={`fixed z-[101] top-10 transition ease-in duration-300 left-1/2 -translate-x-1/2 ${toast.value ? 'opacity-100' : 'opacity-0'}`}>
-        <div className={`bg-${toast.color}-500 px-10 py-5 rounded`}>
+        <div className={`bg-orange-500 px-10 py-5 rounded`}>
           <p className='text-white exo text-center'>{toast.message}</p>
         </div>
       </div>
