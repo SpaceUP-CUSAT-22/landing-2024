@@ -1,9 +1,17 @@
 import React from 'react';
 import './css/Hero.css';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
     <div className="h-screen bg-black flex flex-col justify-center items-center overflow-hidden relative">
+      <Link to="/buymerch" className="merch-banner">
+        <div className="merch-banner-content">
+          <span className="merch-icon">🚀</span>
+          <span className="merch-text">Get Your SpaceUp Merch Now!</span>
+          <span className="merch-cta">Shop Now</span>
+        </div>
+      </Link>
       <div className='relative z-10 px-4'>
         <h1
           className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-white text-center font-bold mb-4 tracking-wider font-alternox-regular"
