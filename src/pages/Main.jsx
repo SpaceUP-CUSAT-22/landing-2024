@@ -1,5 +1,4 @@
 import React from 'react'
-import Navbar from '../components/Home/Navbar'
 import Hero from '../components/Home/Hero'
 import Events from '../components/Home/Events'
 import About from '../components/Home/About'
@@ -12,13 +11,12 @@ const Main = () => {
   return (
     <>
       <Covered />
-      {/* <Navbar /> */}
       <Hero />
-      <About />
+      {/* <About />
       <Events />
       <TimeSchedule />
       <Speakers />
-      <PrevImages />
+      <PrevImages /> */}
     </>
   )
 }
