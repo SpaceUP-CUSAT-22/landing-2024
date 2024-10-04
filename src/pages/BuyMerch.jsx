@@ -14,11 +14,11 @@ const firebaseConfig = {
   measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENTID
 };
 
-const qrCodes = {
-  'cusatian': '/qrcode.png',
-  'noncusatian': '/qrcode.png',
-  'seds': '/qrcode.png'
-}
+// const qrCodes = {
+//   'cusatian': '/qrcode.png',
+//   'noncusatian': '/qrcode.png',
+//   'seds': '/qrcode.png'
+// }
 
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
@@ -52,10 +52,11 @@ const BuyMerch = () => {
     email: '',
     phone: '',
     size: 'Small',
-    cusatian: 'Are you a CUSATian',
+    // cusatian: 'Are you a CUSATian',
     address: '',
     file: null,
-    color: 'white',
+    whiteShirt: false,
+    orangeShirt: false,
   });
   const [checkbox, setCheckBox] = useState(false);
 
@@ -71,26 +72,30 @@ const BuyMerch = () => {
   //   }
   // }, [formData, checkbox])
   useEffect(() => {
-    let newPrice = 349; // Default price
+    let basePrice = 0;
+    if (formData.whiteShirt) basePrice += 349;
+    if (formData.orangeShirt) basePrice += 349;
+
+    let newPrice = basePrice;
   
     if (isValidReferral) {
-      newPrice = 299; // Apply discount if referral code is verified
+      newPrice = basePrice * 0.9; // Apply 10% discount if referral code is verified
     }
   
-    if (checkbox) { // Assuming checkbox represents the home delivery option
+    if (checkbox) {
       newPrice += 60; // Add delivery charge
     }
   
-    setPrice(newPrice);
-  }, [isValidReferral, checkbox]);
+    setPrice(Math.round(newPrice)); // Round to nearest integer
+  }, [formData.whiteShirt, formData.orangeShirt, isValidReferral, checkbox]);
   const [isLoading, setIsLoading] = useState(false);
   const [viewSize, setViewSize] = useState(false)
 
   const handleInputChange = (e) => {
-    const { name, value, files } = e.target;
+    const { name, value, type, checked } = e.target;
     setFormData(prevState => ({
       ...prevState,
-      [name]: files ? files[0] : value,
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -187,13 +192,15 @@ const BuyMerch = () => {
         email: formData.email,
         phone: formData.phone,
         size: formData.size,
-        cusatian: formData.cusatian,
+        // cusatian: formData.cusatian,
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
         address: formData.address,
         referralCode: isValidReferral ? referralCode : null,
         price,
         token: token,
+        whiteShirt: formData.whiteShirt,
+        orangeShirt: formData.orangeShirt
       });
 
       // Send email
@@ -211,8 +218,10 @@ const BuyMerch = () => {
         email: '',
         phone: '',
         size: 'Small',
-        cusatian: 'Are you a CUSATian',
+        // cusatian: 'Are you a CUSATian',
         file: null,
+        whiteShirt: false,
+        orangeShirt: false
       });
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -285,7 +294,7 @@ const BuyMerch = () => {
         />
         
         <h1 
-          className="text-5xl sm:text-6xl md:text-7xl text-white text-center font-bold mb-8 tracking-wider font-alternox-regular"
+          className="text-4xl sm:text-4xl md:text-7xl text-white text-center font-bold mb-8 tracking-wider font-alternox-regular"
           style={{ 
             textShadow: '0 0 15px #800080, 0 0 25px #800080, 0 0 35px #800080',
             transform: 'scaleX(1.2)' 
@@ -296,24 +305,44 @@ const BuyMerch = () => {
 
         <form onSubmit={handleSubmit} className='w-full'>
           <div className='flex flex-col w-full bg-black bg-opacity-50 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
-          <img 
-            src={formData.color === 'green' ? "/black.png" : "/white.png"} 
-            className='mb-10 w-full max-w-[40rem] h-auto m-auto' 
-            alt="tshirt" 
-          />
+            <div className='flex md:flex-row flex-col'>
+
+              {formData.orangeShirt && <img 
+                src='/black.png'
+                className='mb-10 w-[350px] max-w-[40rem] h-auto' 
+                alt="tshirt" 
+              />}
+              {formData.whiteShirt && <img 
+                src='/white.png'
+                className='mb-10 w-[350px] max-w-[40rem] h-auto' 
+                alt="tshirt" 
+              />}
+            </div>
             
                   <div className='space-y-4'>
                     <p className='text-green-400 text-sm'>* Please note: T-shirts may not be available on the event day and could be delivered to your address instead. </p>
-                    <select 
-                      name="color" 
-                      value={formData.color} 
-                      onChange={handleInputChange} 
-                      className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' 
-                      required
-                    >
-                      <option value="white">White T-shirt</option>
-                      <option value="green">Green T-shirt</option>
-                    </select>
+                    <div className='flex items-center space-x-4'>
+                      <label className='text-white exo'>
+                        <input 
+                          type="checkbox" 
+                          name="whiteShirt" 
+                          checked={formData.whiteShirt} 
+                          onChange={handleInputChange} 
+                          className='mr-2'
+                        />
+                        White T-shirt
+                      </label>
+                      <label className='text-white exo'>
+                        <input 
+                          type="checkbox" 
+                          name="orangeShirt" 
+                          checked={formData.orangeShirt} 
+                          onChange={handleInputChange} 
+                          className='mr-2'
+                        />
+                        Green T-shirt
+                      </label>
+                    </div>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
@@ -339,11 +368,11 @@ const BuyMerch = () => {
                     {viewSize && 
                       <img src="/sizechart.jpg" className='w-full max-w-[20rem] h-auto m-auto mt-4' alt="sizechart" />
                     }
-                    <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
+                    {/* <select name="cusatian" value={formData.cusatian} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required>
                       <option>Are you a ...?</option>
                       <option value="seds">SEDS Member</option>
                       <option value="nonseds">Non SEDS Member</option>
-                    </select>
+                    </select> */}
                     {/* {formData.cusatian == 'nonseds' && */}
                     <div className='flex items-center'>
                       <input onChange={handleCheckboxChange} type="checkbox" name="delivery" value="delivery" className='exo text-white bg-[#050B17] p-2 rounded-lg mr-5 p-5' />
@@ -393,7 +422,7 @@ const BuyMerch = () => {
                     {upiid}
                     <i class="fa-solid fa-copy ml-3"></i>
                   </span></span>
-                  <img src={qrCodes[formData.cusatian] || '/qrcode.png'} className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
+                  <img src='/qrcode.png' className='w-full max-w-[20rem] h-auto m-auto mt-4 cursor-pointer' alt="gpay" />
                   <label className='exo text-white mt-6'>Upload screenshot of payment</label>
                   <input 
                     type="file" 
