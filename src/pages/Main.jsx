@@ -14,11 +14,11 @@ const Main = () => {
       <Covered />
       {/* <Navbar /> */}
       <Hero />
-      {/* <About />
+      <About />
       <Events />
       <TimeSchedule />
       <Speakers />
-      <PrevImages /> */}
+      <PrevImages />
     </>
   )
 }

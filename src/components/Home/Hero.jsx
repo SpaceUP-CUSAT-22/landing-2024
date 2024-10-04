@@ -37,10 +37,6 @@ const Hero = () => {
           C U S A T
         </h2>
       </div>
-      <div className="coming-soon-container">
-        <p className="coming-soon-text">Coming Soon</p>
-      </div>
-      
     </div>
   );
 };
