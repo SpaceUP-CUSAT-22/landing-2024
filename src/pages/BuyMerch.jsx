@@ -307,16 +307,16 @@ const BuyMerch = () => {
           <div className='flex flex-col w-full bg-black bg-opacity-50 px-4 sm:px-6 md:px-8 pt-5 py-10 rounded-lg'>
             <div className='flex md:flex-row flex-col'>
 
-              {formData.orangeShirt && <img 
+              <img 
                 src='/black.png'
                 className='mb-10 w-[350px] max-w-[40rem] h-auto' 
                 alt="tshirt" 
-              />}
-              {formData.whiteShirt && <img 
+              />
+              <img 
                 src='/white.png'
                 className='mb-10 w-[350px] max-w-[40rem] h-auto' 
                 alt="tshirt" 
-              />}
+              />
             </div>
             
                   <div className='space-y-4'>
@@ -340,7 +340,7 @@ const BuyMerch = () => {
                           onChange={handleInputChange} 
                           className='mr-2'
                         />
-                        Green T-shirt
+                        Black T-shirt
                       </label>
                     </div>
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
