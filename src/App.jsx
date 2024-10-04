@@ -4,9 +4,6 @@ import Main from "./pages/Main"
 import BuyMerch from './pages/BuyMerch'
 
 function App() {
-  React.useEffect(() => {
-    
-  }, [])
   return (
     <>
       <BrowserRouter>
