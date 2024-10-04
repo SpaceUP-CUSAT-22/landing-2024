@@ -140,8 +140,8 @@ const TimeSchedule = () => {
             <div className="text-lg md:text-xl">SUNDAY</div>
           </div>
 
-          <div className="time-schedules-header font-alternox-regular text-white text-center mb-8">
-            <h2 className="text-3xl md:text-4xl mb-2">TIME SCHEDULES</h2>
+          <div className="time-schedules-header font-alternox-regular text-white text-center mb-8 justfiy-center">
+            <h2 className="text-3xl md:text-4xl mb-2 text-center">TIME SCHEDULES</h2>
             <hr className="border-t border-white w-3/4 mx-auto mb-2" />
             <div className="time-slider" style={{ height: '50px', overflow: 'hidden' }}>
               <ul ref={timeRef} style={{ transform: `translateY(${listPosition}px)` }}>

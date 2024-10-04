@@ -150,6 +150,11 @@
     flex-direction: column;
   }
 
+  .content{
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
   .venue-label {
     width: 100%;
     margin-bottom: 0.5rem;

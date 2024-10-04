@@ -51,9 +51,10 @@ const About = () => {
       <img 
         src="/planet.png" 
         alt="Planet Bottom" 
-        className="absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl z-0 transition-transform duration-300 ease-out"
+        className="absolute top-[10%] md:top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1300px] z-0 transition-transform duration-300 ease-out"
         style={planetStyle}
       />
+
       <div className="flex flex-col lg:flex-row h-fit p-6 md:p-12 md:pb-0 pb-0 justify-between items-center lg:items-end bg-[#9B3CCA] rounded-md bg-opacity-[25%] backdrop-filter backdrop-blur-sm relative z-10">
           <div className="w-full flex flex-col pb-6 md:pb-12">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-alternox-bold font-bold">
