@@ -17,8 +17,9 @@ const Main = () => {
       {/* <About />
       <Events />
       <TimeSchedule />
-      <Speakers />
+      
       <PrevImages /> */}
+      <Speakers />
     </>
   )
 }
