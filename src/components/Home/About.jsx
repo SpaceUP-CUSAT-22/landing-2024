@@ -47,7 +47,7 @@ const About = () => {
   };
 
   return (
-    <div className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 lg:min-h-screen text-white relative z-10">
+    <div className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-20">
       <img 
         src="/planet.png" 
         alt="Planet Bottom" 
