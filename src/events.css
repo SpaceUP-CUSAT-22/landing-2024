@@ -51,7 +51,7 @@ h2 {
   gap: 2rem;
 }
 
-.events-scroll::-webkit-scrollbar { 
+.events-scroll::-webkit-scrollbar {
   display: none;
 }
 
@@ -76,7 +76,7 @@ h2 {
   left: 1.5rem;
   color: #fff;
   font-size: 1.4rem;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   max-width: 90%;
   /* white-space: nowrap;
   overflow: hidden;

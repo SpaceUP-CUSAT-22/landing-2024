@@ -1,9 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const PrevImages = () => {
-  return (
-    <div className='bg-black h-screen text-white'>PrevImages</div>
-  )
-}
+  return <div className="h-screen bg-black text-white">PrevImages</div>;
+};
 
-export default PrevImages
+export default PrevImages;

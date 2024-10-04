@@ -1,11 +1,7 @@
-import React from 'react'
+import React from "react";
 
 const Events = () => {
-  return (
-    <div className='bg-black h-screen text-white'>
-      Events
-    </div>
-  )
-}
+  return <div className="h-screen bg-black text-white">Events</div>;
+};
 
-export default Events
+export default Events;

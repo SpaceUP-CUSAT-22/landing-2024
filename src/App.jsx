@@ -1,12 +1,10 @@
-import React from 'react'
-import { BrowserRouter, Routes, Route } from "react-router-dom"
-import Main from "./pages/Main"
-import BuyMerch from './pages/BuyMerch'
-import Events from './events'
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Main from "./pages/Main";
+import BuyMerch from "./pages/BuyMerch";
+import Events from "./events";
 function App() {
-  React.useEffect(() => {
-    
-  }, [])
+  React.useEffect(() => {}, []);
   return (
     <>
       <BrowserRouter>
@@ -17,7 +15,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </>
-  )
+  );
 }
 
-export default App
+export default App;

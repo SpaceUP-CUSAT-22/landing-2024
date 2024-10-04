@@ -443,7 +443,7 @@ const BuyMerch = () => {
                   type="checkbox"
                   name="delivery"
                   value="delivery"
-                  className="exo mr-5 rounded-lg bg-[#050B17] p-2 p-5 text-white"
+                  className="exo mr-5 rounded-lg bg-[#050B17] p-5 text-white"
                 />
                 <label htmlFor="" className="exo text-white">
                   Home delivery required

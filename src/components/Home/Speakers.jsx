@@ -116,7 +116,7 @@ const ScientistsDashboard = () => {
   const [featuredScientist, setFeaturedScientist] = useState(scientists[0]);
 
   return (
-    <div className="py-20 flex flex-col bg-black text-white md:pl-10 md:pr-10 lg:min-h-screen lg:flex-row">
+    <div className="flex flex-col bg-black py-20 text-white md:pl-10 md:pr-10 lg:min-h-screen lg:flex-row">
       {/* Rotated Title */}
       <RotatedTitle />
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../../fonts.css"
+import "../../fonts.css";
 
 const About = () => {
   const [scrollPosition, setScrollPosition] = useState(0);
@@ -42,52 +42,56 @@ const About = () => {
 
   const planetStyle = {
     transform: `translate(-50%, calc(-50% + ${calculateTranslateY()}px)) rotate(${calculateRotation()}deg)`,
-    transformOrigin: 'center center',
-    transition: 'transform 0.3s ease-out',
+    transformOrigin: "center center",
+    transition: "transform 0.3s ease-out",
   };
 
   return (
-    <div className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 lg:min-h-screen text-white relative z-10">
-      <img 
-        src="/planet.png" 
-        alt="Planet Bottom" 
-        className="absolute top-[10%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full max-w-3xl z-0 transition-transform duration-300 ease-out"
+    <div className="relative z-10 pl-10 pr-4 text-white md:pl-40 md:pr-16 lg:min-h-screen lg:pl-36 lg:pr-20">
+      <img
+        src="/planet.png"
+        alt="Planet Bottom"
+        className="absolute left-1/2 top-[10%] z-0 w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 transform transition-transform duration-300 ease-out"
         style={planetStyle}
       />
-      <div className="flex flex-col lg:flex-row h-fit p-6 md:p-12 md:pb-0 pb-0 justify-between items-center lg:items-end bg-[#9B3CCA] rounded-md bg-opacity-[25%] backdrop-filter backdrop-blur-sm relative z-10">
-          <div className="w-full flex flex-col pb-6 md:pb-12">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-alternox-bold font-bold">
-              <span
-                className="text-transparent"
-                style={{
-                  WebkitTextFillColor: "transparent",
-                  WebkitTextStroke: "0.5px white",
-                }}
-              >
-                ABOUT
-              </span>{" "}
-              <span className="text-white"> SPACEUP</span>
-            </h2>
-            <div className="my-8 md:my-12 bg-white h-[1px] w-full font-alternox-regular"></div>
-            <p>
-              SpaceUp isn't your typical conference; it's a global phenomenon
-              that empowers you to shape the future of space networking. Since
-              its groundbreaking debut in 2010, SpaceUp has transcended borders,
-              becoming a worldwide sensation. Our mission? To revolutionize
-              networking in the space industry. At SpaceUp, we believe that
-              everyone with a space passion deserves a platform to shine. That's
-              why we let YOU decide the agenda. No pre-set topics or schedules -
-              you're in control! Picture this: Attendees collaboratively build
-              the event in real-time. They propose topics, lead discussions, and
-              form the audience on the spot. There are no spectators, only
-              participants! SpaceUp is the ultimate melting pot, uniting diverse
-              space communities, fostering careers, and sparking fresh ideas for
-              space startups. Join us, and be part of the space revolution!
-            </p>
-          </div>
-          <img src="/Astronaut2.png" alt="astronaut image" className="aspect-square size-auto md:size-[80%] lg:size-auto"/>
+      <div className="relative z-10 flex h-fit flex-col items-center justify-between rounded-md bg-[#9B3CCA] bg-opacity-[25%] p-6 pb-0 backdrop-blur-sm backdrop-filter md:p-12 md:pb-0 lg:flex-row lg:items-end">
+        <div className="flex w-full flex-col pb-6 md:pb-12">
+          <h2 className="font-alternox-bold text-4xl font-bold md:text-5xl lg:text-6xl">
+            <span
+              className="text-transparent"
+              style={{
+                WebkitTextFillColor: "transparent",
+                WebkitTextStroke: "0.5px white",
+              }}
+            >
+              ABOUT
+            </span>{" "}
+            <span className="text-white"> SPACEUP</span>
+          </h2>
+          <div className="font-alternox-regular my-8 h-[1px] w-full bg-white md:my-12"></div>
+          <p>
+            SpaceUp isn't your typical conference; it's a global phenomenon that
+            empowers you to shape the future of space networking. Since its
+            groundbreaking debut in 2010, SpaceUp has transcended borders,
+            becoming a worldwide sensation. Our mission? To revolutionize
+            networking in the space industry. At SpaceUp, we believe that
+            everyone with a space passion deserves a platform to shine. That's
+            why we let YOU decide the agenda. No pre-set topics or schedules -
+            you're in control! Picture this: Attendees collaboratively build the
+            event in real-time. They propose topics, lead discussions, and form
+            the audience on the spot. There are no spectators, only
+            participants! SpaceUp is the ultimate melting pot, uniting diverse
+            space communities, fostering careers, and sparking fresh ideas for
+            space startups. Join us, and be part of the space revolution!
+          </p>
         </div>
+        <img
+          src="/Astronaut2.png"
+          alt="astronaut image"
+          className="aspect-square size-auto md:size-[80%] lg:size-auto"
+        />
       </div>
+    </div>
   );
 };
 
