@@ -47,13 +47,14 @@ const About = () => {
   };
 
   return (
-    <div className="relative z-10 pl-10 pr-4 text-white md:pl-40 md:pr-16 lg:min-h-screen lg:pl-36 lg:pr-20">
-      <img
-        src="/planet.png"
-        alt="Planet Bottom"
-        className="absolute left-1/2 top-[10%] z-0 w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 transform transition-transform duration-300 ease-out"
+    <div className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-20">
+      <img 
+        src="/planet.png" 
+        alt="Planet Bottom" 
+        className="absolute top-[10%] md:top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1300px] z-0 transition-transform duration-300 ease-out"
         style={planetStyle}
       />
+
       <div className="relative z-10 flex h-fit flex-col items-center justify-between rounded-md bg-[#9B3CCA] bg-opacity-[25%] p-6 pb-0 backdrop-blur-sm backdrop-filter md:p-12 md:pb-0 lg:flex-row lg:items-end">
         <div className="flex w-full flex-col pb-6 md:pb-12">
           <h2 className="font-alternox-bold text-4xl font-bold md:text-5xl lg:text-6xl">

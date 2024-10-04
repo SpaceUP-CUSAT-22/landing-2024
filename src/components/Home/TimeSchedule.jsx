@@ -142,17 +142,11 @@ const TimeSchedule = () => {
             <div className="text-lg md:text-xl">SUNDAY</div>
           </div>
 
-          <div className="time-schedules-header font-alternox-regular mb-8 text-center text-white">
-            <h2 className="mb-2 text-3xl md:text-4xl">TIME SCHEDULES</h2>
-            <hr className="mx-auto mb-2 w-3/4 border-t border-white" />
-            <div
-              className="time-slider"
-              style={{ height: "50px", overflow: "hidden" }}
-            >
-              <ul
-                ref={timeRef}
-                style={{ transform: `translateY(${listPosition}px)` }}
-              >
+          <div className="time-schedules-header font-alternox-regular text-white text-center mb-8 justfiy-center">
+            <h2 className="text-3xl md:text-4xl mb-2 text-center">TIME SCHEDULES</h2>
+            <hr className="border-t border-white w-3/4 mx-auto mb-2" />
+            <div className="time-slider" style={{ height: '50px', overflow: 'hidden' }}>
+              <ul ref={timeRef} style={{ transform: `translateY(${listPosition}px)` }}>
                 {venueSchedules[0].map((schedule, index) => (
                   <li
                     key={index}
