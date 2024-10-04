@@ -118,7 +118,7 @@ const TimeSchedule = () => {
   const sunPosition = calculateSunPosition(progress);
 
   return (
-    <div className='bg-black h-screen p-4 md:p-8'>
+    <div className='bg-black lg:h-screen p-4 md:p-8'>
       <div className="time-schedule relative overflow-hidden">
         {stars.map((star) => (
           <div
