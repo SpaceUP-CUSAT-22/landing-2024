@@ -12,13 +12,13 @@ const Main = () => {
   return (
     <>
       <Covered />
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
-      {/* <About />
+      <About />
       <Events />
       <TimeSchedule />
       <Speakers />
-      <PrevImages /> */}
+      <PrevImages />
     </>
   )
 }
