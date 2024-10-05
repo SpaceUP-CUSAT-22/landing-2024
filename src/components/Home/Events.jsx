@@ -22,7 +22,7 @@ const CustomScrollbar = ({ scrollPercentage }) => {
   return (
     <div className="w-full h-[0.2vh] bg-white/30 relative mt-[2vh]">
       <div
-        className="absolute h-[1vh] bg-white rounded-full -top-[0.4vh]"
+        className="absolute h-[1.5vh] bg-white rounded-full -top-[0.5vh]"
         style={{
           width: '15vw',
           left: `${scrollPercentage}%`,
@@ -69,7 +69,7 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="bg-black min-h-screen text-white p-[4vh] sm:px-[5vw] md:px-[8vw] lg:px-[10vw] font-alternox overflow-x-hidden">
+    <div className="bg-black text-white p-[4vh] sm:px-[5vw] md:px-[8vw] lg:px-[10vw] font-alternox overflow-x-hidden">
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-[2vh] font-alternox-bold">
         <span className="text-white">SPACEUP</span>
         <span 

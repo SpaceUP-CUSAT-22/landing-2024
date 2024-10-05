@@ -7,10 +7,11 @@ import TimeSchedule from "../components/Home/TimeSchedule";
 import Speakers from "../components/Home/Speakers";
 import Covered from "../components/Covered";
 import PrevImages from "../components/Home/PrevImages";
+import { ScrollProvider } from "../ScrollContext";
 
 const Main = () => {
   return (
-    <>
+    <ScrollProvider>
       <Covered />
       <Hero />
       <About />
@@ -18,7 +19,7 @@ const Main = () => {
       <Speakers />
       <TimeSchedule />
       <PrevImages />
-    </>
+    </ScrollProvider>
   );
 };
 

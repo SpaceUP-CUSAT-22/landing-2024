@@ -1,58 +1,68 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import "../../fonts.css";
+import './css/About.css'
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const About = () => {
-  const [scrollPosition, setScrollPosition] = useState(0);
+  const planetRef = useRef(null);
+  const sectionRef = useRef(null);
+
+  // In About.jsx
+
   useEffect(() => {
-    const handleScroll = () => {
-      const position = window.pageYOffset;
-      setScrollPosition(position);
+    const planet = planetRef.current;
+    const section = sectionRef.current;
+
+    // Initial upward movement without rotation
+    const tl = gsap.timeline({
+      paused: true,
+    });
+
+    tl.fromTo(planet, 
+      { y: window.innerHeight, rotation: 0 },
+      {
+        y: 0,
+        duration: 1,
+        ease: "power2.out",
+      }
+    );
+
+    // Listen for the custom event from Hero component
+    const startInitialAnimation = () => {
+      tl.play();
     };
 
-    window.addEventListener("scroll", handleScroll);
+    document.addEventListener('heroAnimationComplete', startInitialAnimation);
+
+    // Rotation and further upward movement
+    gsap.to(planet, {
+      rotation: -90,
+      y: -500,
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      }
+    });
+
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener('heroAnimationComplete', startInitialAnimation);
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
-  const calculateRotation = () => {
-    const startScroll = 300;
-    const endScroll = 1000;
-    const maxRotation = -90; // Reduced maximum rotation to 90 degrees
 
-    if (scrollPosition < startScroll) return 0;
-    if (scrollPosition > endScroll) return maxRotation;
-
-    const scrollRange = endScroll - startScroll;
-    const scrollProgress = (scrollPosition - startScroll) / scrollRange;
-    return maxRotation * scrollProgress;
-  };
-
-  const calculateTranslateY = () => {
-    const startScroll = 300;
-    const endScroll = 1000;
-    const maxTranslate = -500; // Increased upward movement to 200 pixels
-
-    if (scrollPosition < startScroll) return 0;
-    if (scrollPosition > endScroll) return maxTranslate;
-
-    const scrollRange = endScroll - startScroll;
-    const scrollProgress = (scrollPosition - startScroll) / scrollRange;
-    return maxTranslate * scrollProgress;
-  };
-
-  const planetStyle = {
-    transform: `translate(-50%, calc(-50% + ${calculateTranslateY()}px)) rotate(${calculateRotation()}deg)`,
-    transformOrigin: "center center",
-    transition: "transform 0.3s ease-out",
-  };
 
   return (
-    <div className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-20">
+    <div ref={sectionRef} className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-60">
       <img 
+        ref={planetRef}
         src="/planet.png" 
         alt="Planet Bottom" 
-        className="absolute top-[10%] md:top-[40%] left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1300px] z-0 transition-transform duration-300 ease-out"
-        style={planetStyle}
+        className='absolute left-1/2 transform -translate-x-1/2 w-[1300px] z-0'
       />
 
       <div className="relative z-10 flex h-fit flex-col items-center justify-between rounded-md bg-[#9B3CCA] bg-opacity-[25%] p-6 pb-0 backdrop-blur-sm backdrop-filter md:p-12 md:pb-0 lg:flex-row lg:items-end">

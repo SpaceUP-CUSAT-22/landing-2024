@@ -58,7 +58,6 @@ const ScientistCard = ({ scientist, setFeatured, isActive }) => {
 const FeatureScientist = ({ scientist }) => (
   <div
     className="my-5 flex flex-col items-center transition-all duration-500 ease-in-out md:items-start"
-    id="featured"
   >
     <img
       src={scientist.image}
@@ -84,27 +83,27 @@ const FeatureScientist = ({ scientist }) => (
 
 const RotatedTitle = () => (
   <div className="relative flex items-center justify-center md:pl-10 lg:w-1/4">
-    {/* Primary Text */}
+  {/* Overlay Text (Purple) */}
     <h1
       className="absolute text-7xl text-transparent md:text-8xl lg:-rotate-90 lg:text-[120px]"
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 700,
-        WebkitTextStroke: "0.5px white",
-        textShadow:
-          "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black", // Outline effect
+      WebkitTextStroke: "0.7px #9B3CCA",
       }}
     >
       SPEAKERS
     </h1>
 
-    {/* Overlay Text */}
+  {/* Primary Text (White) */}
     <h1
-      className="absolute -translate-x-[6px] translate-y-3 text-7xl text-transparent md:text-8xl lg:translate-x-5 lg:translate-y-0 lg:-rotate-90 lg:text-[120px]"
+    className="absolute -translate-x-[6px] -translate-y-3 text-7xl text-transparent md:text-8xl lg:-translate-x-5 lg:translate-y-0 lg:-rotate-90 lg:text-[120px]"
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 700,
-        WebkitTextStroke: "0.7px #9B3CCA",
+      WebkitTextStroke: "0.5px white",
+      textShadow:
+        "1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black, -1px 1px 0 black", // Outline effect
       }}
     >
       SPEAKERS
@@ -116,7 +115,9 @@ const ScientistsDashboard = () => {
   const [featuredScientist, setFeaturedScientist] = useState(scientists[0]);
 
   return (
-    <div className="flex flex-col bg-black py-20 text-white md:pl-10 md:pr-10 lg:min-h-screen lg:flex-row">
+    <div
+    id="featured"
+     className="flex flex-col bg-black py-20 text-white md:pl-10 md:pr-10 lg:min-h-screen lg:flex-row">
       {/* Rotated Title */}
       <RotatedTitle />
 
