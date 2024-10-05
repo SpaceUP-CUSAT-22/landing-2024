@@ -89,13 +89,23 @@ const Hero = () => {
     });
   
     function startFloatingAnimation() {
-      gsap.to(astronaut, {
-        y: "+=20",
-        duration: 2,
+      const floatTimeline = gsap.timeline({
         repeat: -1,
+        yoyo: true,
         ease: "power1.inOut"
       });
+    
+      floatTimeline
+        .to(astronaut, {
+          y: "+=20",
+          duration: 2
+        })
+        .to(astronaut, {
+          y: "-=20",
+          duration: 2
+        });
     }
+    
   
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
