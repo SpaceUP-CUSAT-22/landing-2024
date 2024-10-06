@@ -28,7 +28,7 @@ const Hero = () => {
     gsap.set(cusatText, { opacity: 0, y: 20 });
     gsap.set(merchBanner, { opacity: 0, y: -20 });
     gsap.set(astronaut, { y: "-100%", opacity: 0 });
-    gsap.set(planet, { y: "100vh", rotation: 0 });
+    gsap.set(planet, { y: "120vh", rotation: 0 });
   
     // Timeline 1
     const tl1 = gsap.timeline({
@@ -52,7 +52,7 @@ const Hero = () => {
       duration: 1.5,
       ease: "power2.out",
       onComplete: startFloatingAnimation
-    }, "<")
+    }, "<+=1")
     .to(planet, {
       y: "60vh", // Animate to midpoint
       duration: 1,
@@ -160,7 +160,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <div ref={aboutSectionRef} className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-60">
+      <div ref={aboutSectionRef} className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-40">
         <div className="relative z-10 flex h-fit flex-col items-center justify-between rounded-md bg-[#9B3CCA] bg-opacity-[25%] p-6 pb-0 backdrop-blur-sm backdrop-filter md:p-12 md:pb-0 lg:flex-row lg:items-end">
           <div className="flex w-full flex-col pb-6 md:pb-12">
             <h2 className="font-alternox-bold text-4xl font-bold md:text-5xl lg:text-6xl">

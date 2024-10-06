@@ -21,44 +21,45 @@ const PrevImages = () => {
       <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-5 p-5">
         {/* Left Section */}
         <div className="lg:w-1/2 flex flex-col">
-          <div className="mb-5">
-            <p className="mb-5">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text ever
-              since the 1500s, when an unknown printer took a galley of type and
-              scrambled it to make a type specimen book. It has survived not only
-              five centuries, but also the leap into electronic typesetting, remaining
-              essentially unchanged. It was popularised in the 1960s with the release
-              of Letraset sheets containing Lorem Ipsum passages, and more recently
-              with desktop publishing software like Aldus PageMaker including
-              versions of Lorem Ipsum.
-            </p>
-            <button className="bg-[#9B3CCA] text-white py-2 px-4 rounded hover:bg-opacity-80 transition duration-300 max-w-[200px]">
-              Get Tickets
-            </button>
-          </div>
+        <div className="mb-5 flex flex-col items-center">
+          <p className="mb-5 font-alternox-regular">
+            Lorem Ipsum is simply dummy text of the printing and typesetting
+            industry. Lorem Ipsum has been the industry's standard dummy text ever
+            since the 1500s, when an unknown printer took a galley of type and
+            scrambled it to make a type specimen book. It has survived not only
+            five centuries, but also the leap into electronic typesetting, remaining
+            essentially unchanged. It was popularised in the 1960s with the release
+            of Letraset sheets containing Lorem Ipsum passages, and more recently
+            with desktop publishing software like Aldus PageMaker including
+            versions of Lorem Ipsum.
+          </p>
+          <button className="font-alternox-bold bg-[#9B3CCA] text-white py-4 px-6 rounded hover:bg-opacity-80 transition duration-300 max-w-[200px]">
+            Get Tickets
+          </button>
+        </div>
 
           {/* Connect Us Card */}
-          <div className="bg-gray-800 p-5 rounded-lg relative mb-5">
-            <h3 className="text-lg font-bold mb-3 underline">CONNECT US</h3>
+          <div className="bg-[#1C1C1C] p-5 rounded-lg relative mb-5">
+            <h3 className="text-2xl font-bold mb-3 font-alternox-bold">CONNECT US</h3>
+            <hr className="my-5" />
             <div className="mb-3">
-              <p className="text-[#9B3CCA]">Name Here</p>
-              <p>+91 9876 123 456</p>
+              <p className="text-[#9B3CCA] font-alternox-regular">Name Here</p>
+              <p className="font-alternox-regular">+91 9876 123 456</p>
             </div>
             <div className="mb-3">
-              <p className="text-[#9B3CCA]">Name Here</p>
-              <p>+91 9876 123 456</p>
+              <p className="text-[#9B3CCA] font-alternox-regular">Name Here</p>
+              <p className="font-alternox-regular">+91 9876 123 456</p>
             </div>
 
             {/* Social Media Icons */}
             <div className="flex justify-end mt-4">
-              <a href="https://linkedin.com" className="ml-3 text-xl hover:text-[#9B3CCA]">
+              <a href="https://linkedin.com" className="ml-5 text-4xl hover:text-[#9B3CCA]">
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a href="https://instagram.com" className="ml-3 text-xl hover:text-[#9B3CCA]">
+              <a href="https://instagram.com" className="ml-5 text-4xl hover:text-[#9B3CCA]">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="https://twitter.com" className="ml-3 text-xl hover:text-[#9B3CCA]">
+              <a href="https://twitter.com" className="ml-5 text-4xl hover:text-[#9B3CCA]">
                 <i className="fab fa-twitter"></i>
               </a>
             </div>
@@ -71,7 +72,7 @@ const PrevImages = () => {
 
         {/* Right Section (Scrolling Image Columns) */}
         <div className="lg:w-1/2 flex justify-center items-center">
-          <div className="flex w-full h-[80vh] overflow-hidden">
+          <div className="flex w-full h-[80vh] overflow-hidden gap-3">
             {/* Left Column (Scrolling Down) */}
             <div className="flex-1 overflow-hidden">
               <div className="animate-scroll-down flex flex-col">
@@ -87,7 +88,7 @@ const PrevImages = () => {
             </div>
 
             {/* Right Column (Scrolling Up) */}
-            <div className="flex-1 overflow-hidden">
+            <div className="flex-1 overflow-hidden ml-3">
               <div className="animate-scroll-up flex flex-col">
                 {[...rightColumnImages, ...rightColumnImages].map((path, index) => (
                   <img
