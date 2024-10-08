@@ -69,7 +69,7 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white p-[4vh] sm:px-[5vw] md:px-[8vw] lg:px-[10vw] font-alternox overflow-x-hidden">
+    <div className="bg-black text-white p-[4vh] sm:px-[5vw] md:pl-28 md:px-[8vw] lg:px-[10vw] font-alternox overflow-x-hidden">
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-[2vh] font-alternox-bold">
         <span className="text-white">SPACEUP</span>
         <span 

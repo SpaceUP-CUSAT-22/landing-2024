@@ -17,49 +17,61 @@ const PrevImages = () => {
   const rightColumnImages = imagePaths.slice(4);
 
   return (
-    <div className="bg-black text-white font-sans min-h-screen flex justify-center">
-      <div className="w-full max-w-7xl flex flex-col lg:flex-row gap-5 p-5">
+    <div className="flex min-h-screen justify-center bg-black font-sans text-white">
+      <div className="flex w-full max-w-7xl flex-col gap-5 p-5 pl-10 lg:flex-row lg:pl-0 md:pl-28">
         {/* Left Section */}
-        <div className="lg:w-1/2 flex flex-col">
-        <div className="mb-5 flex flex-col items-center">
-          <p className="mb-5 font-alternox-regular">
-            Lorem Ipsum is simply dummy text of the printing and typesetting
-            industry. Lorem Ipsum has been the industry's standard dummy text ever
-            since the 1500s, when an unknown printer took a galley of type and
-            scrambled it to make a type specimen book. It has survived not only
-            five centuries, but also the leap into electronic typesetting, remaining
-            essentially unchanged. It was popularised in the 1960s with the release
-            of Letraset sheets containing Lorem Ipsum passages, and more recently
-            with desktop publishing software like Aldus PageMaker including
-            versions of Lorem Ipsum.
-          </p>
-          <button className="font-alternox-bold bg-[#9B3CCA] text-white py-4 px-6 rounded hover:bg-opacity-80 transition duration-300 max-w-[200px]">
-            Get Tickets
-          </button>
-        </div>
+        <div className="flex flex-col lg:w-1/2">
+          <div className="mb-5 flex flex-col items-center">
+            <p className="font-alternox-regular mb-5">
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </p>
+            <button className="font-alternox-bold max-w-[200px] rounded bg-[#9B3CCA] px-6 py-4 text-white transition duration-300 hover:bg-opacity-80">
+              Get Tickets
+            </button>
+          </div>
 
           {/* Connect Us Card */}
-          <div className="bg-[#1C1C1C] p-5 rounded-lg relative mb-5">
-            <h3 className="text-2xl font-bold mb-3 font-alternox-bold">CONNECT US</h3>
+          <div className="relative mb-5 rounded-lg bg-[#1C1C1C] p-5">
+            <h3 className="font-alternox-bold mb-3 text-2xl font-bold">
+              CONNECT US
+            </h3>
             <hr className="my-5" />
             <div className="mb-3">
-              <p className="text-[#9B3CCA] font-alternox-regular">Name Here</p>
+              <p className="font-alternox-regular text-[#9B3CCA]">Name Here</p>
               <p className="font-alternox-regular">+91 9876 123 456</p>
             </div>
             <div className="mb-3">
-              <p className="text-[#9B3CCA] font-alternox-regular">Name Here</p>
+              <p className="font-alternox-regular text-[#9B3CCA]">Name Here</p>
               <p className="font-alternox-regular">+91 9876 123 456</p>
             </div>
 
             {/* Social Media Icons */}
-            <div className="flex justify-end mt-4">
-              <a href="https://linkedin.com" className="ml-5 text-4xl hover:text-[#9B3CCA]">
+            <div className="mt-4 flex justify-end">
+              <a
+                href="https://linkedin.com"
+                className="ml-5 text-4xl hover:text-[#9B3CCA]"
+              >
                 <i className="fab fa-linkedin"></i>
               </a>
-              <a href="https://instagram.com" className="ml-5 text-4xl hover:text-[#9B3CCA]">
+              <a
+                href="https://instagram.com"
+                className="ml-5 text-4xl hover:text-[#9B3CCA]"
+              >
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="https://twitter.com" className="ml-5 text-4xl hover:text-[#9B3CCA]">
+              <a
+                href="https://twitter.com"
+                className="ml-5 text-4xl hover:text-[#9B3CCA]"
+              >
                 <i className="fab fa-twitter"></i>
               </a>
             </div>
@@ -71,33 +83,37 @@ const PrevImages = () => {
         </div>
 
         {/* Right Section (Scrolling Image Columns) */}
-        <div className="lg:w-1/2 flex justify-center items-center">
-          <div className="flex w-full h-[80vh] overflow-hidden gap-3">
+        <div className="flex items-center justify-center lg:w-1/2">
+          <div className="flex h-[80vh] w-full gap-3 overflow-hidden">
             {/* Left Column (Scrolling Down) */}
             <div className="flex-1 overflow-hidden">
               <div className="animate-scroll-down flex flex-col">
-                {[...leftColumnImages, ...leftColumnImages].map((path, index) => (
-                  <img
-                    key={`left-${index}`}
-                    src={path}
-                    alt={`Previous Event Image ${index % 4 + 1}`}
-                    className="w-full h-auto object-cover mb-3"
-                  />
-                ))}
+                {[...leftColumnImages, ...leftColumnImages].map(
+                  (path, index) => (
+                    <img
+                      key={`left-${index}`}
+                      src={path}
+                      alt={`Previous Event Image ${(index % 4) + 1}`}
+                      className="mb-3 h-auto w-full object-cover"
+                    />
+                  ),
+                )}
               </div>
             </div>
 
             {/* Right Column (Scrolling Up) */}
-            <div className="flex-1 overflow-hidden ml-3">
+            <div className="ml-3 flex-1 overflow-hidden">
               <div className="animate-scroll-up flex flex-col">
-                {[...rightColumnImages, ...rightColumnImages].map((path, index) => (
-                  <img
-                    key={`right-${index}`}
-                    src={path}
-                    alt={`Previous Event Image ${index % 4 + 5}`}
-                    className="w-full h-auto object-cover mb-3"
-                  />
-                ))}
+                {[...rightColumnImages, ...rightColumnImages].map(
+                  (path, index) => (
+                    <img
+                      key={`right-${index}`}
+                      src={path}
+                      alt={`Previous Event Image ${(index % 4) + 5}`}
+                      className="mb-3 h-auto w-full object-cover"
+                    />
+                  ),
+                )}
               </div>
             </div>
           </div>
@@ -107,18 +123,51 @@ const PrevImages = () => {
       {/* Tailwind CSS animations */}
       <style jsx>{`
         @keyframes scrollDown {
-          0% { transform: translateY(0); }
-          100% { transform: translateY(-50%); }
+          0% {
+            transform: translateY(0);
+          }
+          100% {
+            transform: translateY(-50%);
+          }
         }
         @keyframes scrollUp {
-          0% { transform: translateY(-50%); }
-          100% { transform: translateY(0); }
+          0% {
+            transform: translateY(-50%);
+          }
+          100% {
+            transform: translateY(0);
+          }
         }
+        
+        @keyframes scrollLeft {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+
+        @keyframes scrollRight {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+
         .animate-scroll-down {
           animation: scrollDown 30s linear infinite;
         }
         .animate-scroll-up {
           animation: scrollUp 30s linear infinite;
+        }
+        .animate-scroll-left {
+          animation: scrollLeft 30s linear infinite;
+        }
+        .animate-scroll-right {
+          animation: scrollRight 30s linear infinite;
         }
       `}</style>
     </div>
