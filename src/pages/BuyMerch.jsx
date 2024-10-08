@@ -178,7 +178,7 @@ const BuyMerch = () => {
       // Upload file to Firebase Storage
       let fileUrl = '';
       if (formData.file) {
-        const storageRef = ref(storage, `payment_screenshots/${formData.email}_${formData.file.name}`);
+        const storageRef = ref(storage, `payment_screenshots/${formData.email}_screenshot.png`);
         await uploadBytes(storageRef, formData.file);
         fileUrl = await getDownloadURL(storageRef);
       }
