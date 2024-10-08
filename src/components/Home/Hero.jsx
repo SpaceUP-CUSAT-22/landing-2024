@@ -1,12 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./css/Hero.css";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { FaChevronDown } from "react-icons/fa"
 
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const [showArrow, setShowArrow] = useState(true);
   const sectionRef = useRef(null);
   const spaceupRef = useRef(null);
   const cusatRef = useRef(null);
@@ -16,6 +18,31 @@ const Hero = () => {
   const aboutSectionRef = useRef(null);
 
   useEffect(() => {
+    const handleAutoScroll = () => {
+      setShowArrow(false);
+      const duration = 3000; // Duration of the scroll animation in milliseconds
+      const start = window.pageYOffset;
+      const end = window.innerHeight * 2; // Scroll distance (adjust as needed)
+      const startTime = performance.now();
+
+      function animate(currentTime) {
+        const elapsedTime = currentTime - startTime;
+        const progress = Math.min(elapsedTime / duration, 1);
+        window.scrollTo(0, start + progress * (end - start));
+
+        if (progress < 1) {
+          requestAnimationFrame(animate);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    };
+
+    const arrowElement = document.getElementById("scroll-arrow");
+    if (arrowElement) {
+      arrowElement.addEventListener("click", handleAutoScroll);
+    }
+
     const section = sectionRef.current;
     const spaceupText = spaceupRef.current;
     const cusatText = cusatRef.current;
@@ -109,6 +136,9 @@ const Hero = () => {
   
     return () => {
       ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
+      if (arrowElement) {
+        arrowElement.removeEventListener("click", handleAutoScroll);
+      }
     };
   }, []);
   
@@ -199,6 +229,15 @@ const Hero = () => {
           />
         </div>
       </div>
+      {showArrow && (
+        <div
+          id="scroll-arrow"
+          className="absolute top-20 left-1/2 transform -translate-x-1/2 cursor-pointer text-white animate-bounce"
+          style={{ zIndex: 1000 }}
+        >
+          <FaChevronDown size={32} />
+        </div>
+      )}
     </>
   );
 };
