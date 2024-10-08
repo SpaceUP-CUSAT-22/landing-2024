@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useScroll } from "../ScrollContext";
@@ -10,7 +10,9 @@ const Covered = () => {
   const fillRef = useRef(null);
   const topTextRef = useRef(null);
   const bottomTextRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
   const scrollPosition = useScroll();
+  const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -19,7 +21,7 @@ const Covered = () => {
     const bottomText = bottomTextRef.current;
 
     gsap.set(container, { x: -50, opacity: 0 });
-    gsap.set([topText, bottomText], { opacity: 0, scale: 0.5 });
+    gsap.set([bottomText], { opacity: 0, scale: 0.5 });
 
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -30,44 +32,48 @@ const Covered = () => {
       },
     });
 
+    scrollTriggerRef.current = tl.scrollTrigger;
+
     tl.to(container, {
       x: 0,
       opacity: 1,
       duration: 0.5,
       ease: "power2.out",
     })
-      .to([topText, bottomText], {
+      .to(bottomText, {
         opacity: 1,
         scale: 1,
         duration: 0.3,
-        stagger: 0.1,
         ease: "back.out(1.7)",
-      })
-      .to(fill, {
-        height: "100%",
-        duration: 1,
-        ease: "none",
-      }, "<");
+      });
+
+    const updateScroll = () => {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const newPercentage = Math.round((scrollPosition / docHeight) * 100);
+      setPercentage(newPercentage);
+    };
+
+    const tickerCallback = () => {
+      updateScroll();
+    };
+
+    gsap.ticker.add(tickerCallback);
 
     return () => {
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+      gsap.ticker.remove(tickerCallback);
     };
-  }, []);
+  }, [scrollPosition]);
 
   useEffect(() => {
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollPosition / docHeight) * 100;
     gsap.to(fillRef.current, {
-      height: `${Math.min(scrollPercent, 100)}%`,
-      duration: 0.1,
-      ease: "none",
+      height: `${Math.min(percentage, 100)}%`,
+      duration: 0.3,
+      ease: "power2.out",
     });
-    gsap.to(topTextRef.current, {
-      innerHTML: `${Math.round(scrollPercent)}%`,
-      duration: 0.1,
-      snap: { innerHTML: 1 },
-    });
-  }, [scrollPosition]);
+  }, [percentage]);
 
   return (
     <div
@@ -83,7 +89,7 @@ const Covered = () => {
         ref={topTextRef}
         className="z-10 mt-[-30px] text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
       >
-        0%
+        {percentage}%
       </div>
       <div
         ref={bottomTextRef}
