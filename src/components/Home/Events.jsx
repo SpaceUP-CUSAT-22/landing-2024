@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import './css/Events.css';
 
 const EventCard = ({ title, image }) => (
-  <div className="flex-shrink-0 w-[80vw] sm:w-[45vw] lg:w-[30vw] mr-[4vw] last:mr-0 group">
+  <div className="flex-shrink-0 w-[80vw] sm:w-[45vw] lg:w-[30vw] mr-[4vw] last:mr-0 group hover:cursor-pointer select-none">
     <div className="relative aspect-video rounded-lg overflow-hidden transition-transform duration-300 ease-in-out transform group-hover:scale-105">
       <img src={image} alt={title} className="w-full h-full object-cover" />
       <div className="absolute inset-0 bg-gradient-to-t from-black to-transparent"></div>
@@ -69,7 +69,7 @@ const Events = () => {
   }, []);
 
   return (
-    <div className="bg-black text-white p-[4vh] sm:px-[5vw] md:px-[8vw] lg:px-[10vw] font-alternox overflow-x-hidden">
+    <div className="bg-black text-white p-[4vh] pl-10 sm:px-[5vw] md:pl-28 md:px-[8vw] lg:px-[10vw] font-alternox overflow-x-hidden">
       <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-[2vh] font-alternox-bold">
         <span className="text-white">SPACEUP</span>
         <span 

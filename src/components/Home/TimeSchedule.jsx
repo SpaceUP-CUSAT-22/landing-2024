@@ -120,7 +120,7 @@ const TimeSchedule = () => {
   const sunPosition = calculateSunPosition(progress);
 
   return (
-    <div className="bg-black p-4 md:p-8 lg:h-screen">
+    <div className="bg-black p-4 md:p-8 md:pl-28 lg:h-screen">
       <div className="time-schedule relative overflow-hidden">
         {stars.map((star) => (
           <div
