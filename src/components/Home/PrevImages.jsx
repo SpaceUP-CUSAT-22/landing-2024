@@ -18,7 +18,7 @@ const PrevImages = () => {
 
   return (
     <div className="flex min-h-screen justify-center bg-black font-sans text-white">
-      <div className="flex w-full max-w-7xl flex-col gap-5 p-5 pl-10 lg:flex-row lg:pl-0 md:pl-28">
+      <div className="flex w-full max-w-7xl flex-col gap-5 p-5 pl-10 md:pl-28 lg:flex-row lg:pl-0">
         {/* Left Section */}
         <div className="flex flex-col lg:w-1/2">
           <div className="mb-5 flex flex-col items-center">
@@ -83,34 +83,34 @@ const PrevImages = () => {
         </div>
 
         {/* Right Section (Scrolling Image Columns) */}
-        <div className="flex items-center justify-center lg:w-1/2">
-          <div className="flex h-[80vh] w-full gap-3 overflow-hidden">
-            {/* Left Column (Scrolling Down) */}
+        <div className="flex items-start justify-center lg:w-1/2">
+          <div className="flex h-auto w-full flex-col gap-3 overflow-hidden lg:h-[80vh] lg:flex-row">
+            {/* Top Row (Scrolling Left) for smaller screens */}
             <div className="flex-1 overflow-hidden">
-              <div className="animate-scroll-down flex flex-col">
+              <div className="animate-scroll-1 flex lg:flex-col">
                 {[...leftColumnImages, ...leftColumnImages].map(
                   (path, index) => (
                     <img
                       key={`left-${index}`}
                       src={path}
                       alt={`Previous Event Image ${(index % 4) + 1}`}
-                      className="mb-3 h-auto w-full object-cover"
+                      className={`mb-3 mr-3 h-28 w-auto object-cover lg:h-auto lg:w-full`}
                     />
                   ),
                 )}
               </div>
             </div>
 
-            {/* Right Column (Scrolling Up) */}
-            <div className="ml-3 flex-1 overflow-hidden">
-              <div className="animate-scroll-up flex flex-col">
+            {/* Bottom Row (Scrolling Right) for smaller screens */}
+            <div className="flex-1 overflow-hidden">
+              <div className="animate-scroll-2 flex lg:flex-col">
                 {[...rightColumnImages, ...rightColumnImages].map(
                   (path, index) => (
                     <img
                       key={`right-${index}`}
                       src={path}
                       alt={`Previous Event Image ${(index % 4) + 5}`}
-                      className="mb-3 h-auto w-full object-cover"
+                      className="mb-3 mr-3 h-28 w-auto object-cover lg:h-auto lg:w-full"
                     />
                   ),
                 )}
@@ -138,7 +138,7 @@ const PrevImages = () => {
             transform: translateY(0);
           }
         }
-        
+
         @keyframes scrollLeft {
           0% {
             transform: translateX(0);
@@ -157,17 +157,27 @@ const PrevImages = () => {
           }
         }
 
+        .animate-scroll-1 {
+          animation: scrollLeft 30s linear infinite;
+        }
+        .animate-scroll-2 {
+          animation: scrollRight 30s linear infinite;
+        }
+
         .animate-scroll-down {
           animation: scrollDown 30s linear infinite;
         }
         .animate-scroll-up {
           animation: scrollUp 30s linear infinite;
         }
-        .animate-scroll-left {
-          animation: scrollLeft 30s linear infinite;
-        }
-        .animate-scroll-right {
-          animation: scrollRight 30s linear infinite;
+
+        @media (min-width: 1024px) {
+          .animate-scroll-1 {
+            animation: scrollDown 30s linear infinite;
+          }
+          .animate-scroll-2 {
+            animation: scrollUp 30s linear infinite;
+          }
         }
       `}</style>
     </div>

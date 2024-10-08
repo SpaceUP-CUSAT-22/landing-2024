@@ -62,7 +62,7 @@ const FeatureScientist = ({ scientist }) => (
     <img
       src={scientist.image}
       alt={scientist.name}
-      className="h-72 w-72 rounded-none object-cover md:h-80 lg:size-[28rem]"
+      className="h-72 w-72 rounded-none object-cover md:h-80 lg:h-[26rem] lg:size-[28rem]"
     />
     <div className="rounded-b-lg bg-black bg-opacity-50 p-4">
       <h2 className="font-alternox-regular text-4xl font-bold text-[#9B3CCA]">
@@ -117,7 +117,7 @@ const ScientistsDashboard = () => {
   return (
     <div
     id="featured"
-     className="flex flex-col bg-black py-20 text-white md:pl-10 md:pr-10 lg:min-h-screen lg:flex-row">
+     className="flex flex-col bg-black py-20 text-white md:pl-10 md:pr-10 lg:flex-row">
       {/* Rotated Title */}
       <RotatedTitle />
 
