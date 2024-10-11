@@ -29,6 +29,7 @@ const BuyMerch = () => {
   const [isValidReferral, setIsValidReferral] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
   const [verificationMessage, setVerificationMessage] = useState('');
+  const [tshirtError, setTshirtError] = useState("");
 
   const [toast, setToast] = React.useState({
     value: false,
@@ -158,6 +159,15 @@ const BuyMerch = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    // Check if at least one T-shirt is selected
+    if (!formData.whiteShirt && !formData.orangeShirt) {
+      setTshirtError("Please select at least one T-shirt (White or Black).");
+      setIsLoading(false);
+      return;
+    }
+
+    setTshirtError("");
 
     try {
       // Check for duplicate entries
@@ -343,6 +353,10 @@ const BuyMerch = () => {
                         Black T-shirt
                       </label>
                     </div>
+                    {tshirtError && (
+                      <p className="mt-2 text-sm text-red-500">{tshirtError}</p>
+                    )}
+
                     <input type="text" name="name" placeholder='Name' value={formData.name} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="email" name="email" placeholder='Email' value={formData.email} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
                     <input type="tel" name="phone" placeholder='Phone' value={formData.phone} onChange={handleInputChange} className='exo text-white bg-[#050B17] p-2 rounded-lg w-full' required/>
