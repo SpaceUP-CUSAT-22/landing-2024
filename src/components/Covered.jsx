@@ -78,7 +78,7 @@ const Covered = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed top-20 left-5 md:left-20 z-50 flex h-[80%] w-2 flex-col items-center justify-between rounded-full bg-zinc-800/50 backdrop-blur-sm"
+      className="fixed top-20 left-5 md:left-20 z-50 flex h-[80%] w-1 md:w-2 flex-col items-center justify-between rounded-full bg-zinc-800/50 backdrop-blur-sm"
     >
       <div
         ref={fillRef}
@@ -87,13 +87,13 @@ const Covered = () => {
       />
       <div
         ref={topTextRef}
-        className="z-10 mt-[-30px] text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
+        className="z-10 mt-[-30px] text-xs md:text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
       >
         {percentage}%
       </div>
       <div
         ref={bottomTextRef}
-        className="z-10 mb-[-30px] text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
+        className="z-10 mb-[-30px] text-xs md:text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
       >
         100%
       </div>
