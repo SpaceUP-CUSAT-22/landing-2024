@@ -77,7 +77,7 @@ const PrevImages = () => {
             </div>
           </div>
 
-          <footer className="mt-auto text-center text-gray-500">
+          <footer className="mt-auto text-center text-gray-500 font-semibold">
             <p>copyright &copy; 2024 | spaceupcusat</p>
           </footer>
         </div>

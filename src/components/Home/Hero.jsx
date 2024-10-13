@@ -3,7 +3,6 @@ import "./css/Hero.css";
 import { Link } from "react-router-dom";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { FaChevronDown } from "react-icons/fa"
 
 gsap.registerPlugin(ScrollTrigger);
 
