@@ -82,7 +82,7 @@ const RotatedTitle = () => (
   <div className="relative flex items-center justify-center md:pl-10 lg:w-1/4">
     {/* Overlay Text (Purple) */}
     <h1
-      className="absolute text-7xl text-transparent md:text-8xl lg:-rotate-90 lg:text-[120px]"
+      className="absolute text-6xl text-transparent md:text-8xl lg:-rotate-90 lg:text-[120px]"
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 700,
@@ -94,7 +94,7 @@ const RotatedTitle = () => (
 
     {/* Primary Text (White) */}
     <h1
-      className="absolute -translate-x-[6px] -translate-y-3 text-7xl text-transparent md:text-8xl lg:-translate-x-5 lg:translate-y-0 lg:-rotate-90 lg:text-[120px]"
+      className="absolute -translate-x-[6px] -translate-y-3 text-6xl text-transparent md:text-8xl lg:-translate-x-5 lg:translate-y-0 lg:-rotate-90 lg:text-[120px]"
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 700,
