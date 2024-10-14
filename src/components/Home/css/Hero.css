@@ -133,9 +133,9 @@
   color: white;
 }
 
-@media (min-width: 640px) {
+@media (max-width: 640px) {
   .merch-banner {
-    padding: 12px 24px;
+    padding: 12px 15px;
   }
 
   .merch-banner-content {
@@ -143,15 +143,15 @@
   }
 
   .merch-icon {
-    font-size: 24px;
-  }
-
-  .merch-text {
     font-size: 18px;
   }
 
+  .merch-text {
+    font-size: 10px;
+  }
+
   .merch-cta {
-    font-size: 14px;
+    font-size: 10px;
     padding: 6px 12px;
   }
 }

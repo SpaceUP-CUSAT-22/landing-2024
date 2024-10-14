@@ -78,7 +78,7 @@ const Covered = () => {
   return (
     <div
       ref={containerRef}
-      className="fixed top-20 left-5 md:left-20 z-50 flex h-[80%] w-1 md:w-2 flex-col items-center justify-between rounded-full bg-zinc-800/50 backdrop-blur-sm"
+      className="hidden md:flex fixed top-20 left-5 md:left-10 z-50 flex h-[80%] w-1 md:w-2 flex-col items-center justify-between rounded-full bg-zinc-800/50 backdrop-blur-sm"
     >
       <div
         ref={fillRef}

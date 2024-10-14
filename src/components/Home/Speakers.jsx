@@ -82,7 +82,7 @@ const RotatedTitle = () => (
   <div className="relative flex items-center justify-center md:pl-10 lg:w-1/4">
     {/* Overlay Text (Purple) */}
     <h1
-      className="absolute text-7xl text-transparent md:text-8xl lg:-rotate-90 lg:text-[120px]"
+      className="absolute text-6xl text-transparent md:text-8xl lg:-rotate-90 lg:text-[120px]"
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 700,
@@ -94,7 +94,7 @@ const RotatedTitle = () => (
 
     {/* Primary Text (White) */}
     <h1
-      className="absolute -translate-x-[6px] -translate-y-3 text-7xl text-transparent md:text-8xl lg:-translate-x-5 lg:translate-y-0 lg:-rotate-90 lg:text-[120px]"
+      className="absolute -translate-x-[6px] -translate-y-3 text-6xl text-transparent md:text-8xl lg:-translate-x-5 lg:translate-y-0 lg:-rotate-90 lg:text-[120px]"
       style={{
         fontFamily: "'Roboto', sans-serif",
         fontWeight: 700,
@@ -120,7 +120,7 @@ const ScientistsDashboard = () => {
       <RotatedTitle />
 
       {/* Scientists list and feature */}
-      <div className="mt-10 flex flex-col gap-8 p-8 pl-10 lg:mt-0 lg:w-3/4 lg:flex-row">
+      <div className="mt-10 flex flex-col gap-8 p-8 lg:mt-0 lg:w-3/4 lg:flex-row">
         {/* Scientist Feature Section */}
         <div className="md:px-12 lg:w-2/3 lg:px-0">
           <FeatureScientist scientist={featuredScientist} />

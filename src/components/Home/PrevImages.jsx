@@ -18,7 +18,7 @@ const PrevImages = () => {
 
   return (
     <div className="flex min-h-screen justify-center bg-black font-sans text-white">
-      <div className="flex w-full max-w-7xl flex-col gap-5 p-5 pl-10 md:pl-28 lg:flex-row lg:pl-0">
+      <div className="flex w-full max-w-7xl flex-col gap-5 p-5 pl-5 md:pl-28 lg:flex-row lg:pl-0">
         {/* Left Section */}
         <div className="flex flex-col lg:w-1/2">
           <div className="mb-5 flex flex-col items-center">

@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import "./css/TimeSchedule.css";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 const TimeSchedule = () => {
   const generateStars = (count) => {
@@ -13,7 +18,7 @@ const TimeSchedule = () => {
     }));
   };
 
-  const stars = generateStars(50); // Reduced star count for better performance
+  const stars = generateStars(50);
   const venueSchedules = [
     [
       { time: "07:00 - 08:00", activity: "Spot Registration" },
@@ -50,63 +55,109 @@ const TimeSchedule = () => {
     ],
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentTime, setCurrentTime] = useState(venueSchedules[0][0].time);
-  const [progress, setProgress] = useState(0);
-  const [listPosition, setListPosition] = useState(0);
-
+  const sectionRef = useRef(null);
   const timeRef = useRef(null);
   const venueRefs = useRef([]);
+  const progressRef = useRef(null);
+  const sunRef = useRef(null);
+  const semiCircleRef = useRef(null);
+
 
   useEffect(() => {
-    const duration = 0;
-    const pauseDuration = 3;
-    const lineHeight = 50;
+    const section = sectionRef.current;
+    const timeElement = timeRef.current;
+    const venueElements = venueRefs.current;
+    const progressElement = progressRef.current;
+    // const sunElement = sunRef.current;
+    // const semiCircleElement = semiCircleRef.current;
+
+
+    
+
+    // const semiCircleRect = semiCircleElement.getBoundingClientRect();
+    // const centerX = semiCircleRect.width / 2;
+    // const radius = semiCircleRect.width / 2;
+
+
+    // gsap.set(sunElement, { 
+    //   x: centerX, 
+    //   y: semiCircleRect.height,
+    //   xPercent: -50, 
+    //   yPercent: -50 
+    // });
+
     const totalItems = venueSchedules[0].length;
-    const initialPosition = 200;
+    const lineHeight = 50;
 
-    // Set initial position to show the first item
-    setListPosition(0);
+    gsap.set(timeElement, { y: 0 });
+    venueElements.forEach((el) => gsap.set(el, { y: 200 }));
+    
 
-    const timeTimeline = gsap.timeline({ repeat: -1 });
-    const venueTimelines = venueSchedules.map(() =>
-      gsap.timeline({ repeat: -1 }),
-    );
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: `+=${totalItems * lineHeight * 4}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+      },
+    });
 
     for (let i = 0; i < totalItems; i++) {
-      const newPosition = -i * lineHeight;
-      const newPosition2 = initialPosition - i * lineHeight;
-
-      timeTimeline.to(timeRef.current, {
-        y: newPosition,
-        ease: "elastic.out(1, 0.4)",
-        duration: duration,
-        onStart: () => {
-          setCurrentIndex(i);
-          setCurrentTime(venueSchedules[0][i].time);
-          setProgress((i / (totalItems - 1)) * 100);
-          setListPosition(newPosition);
+      const progress = i / (totalItems - 1);
+      tl.to(
+        timeElement,
+        {
+          y: -i * lineHeight,
+          duration: 2,
         },
+        i * 2
+      );
+
+      venueElements.forEach((el) => {
+        tl.to(
+          el,
+          {
+            y: 200 - i * lineHeight,
+            duration: 2,
+          },
+          i * 2
+        );
       });
 
-      timeTimeline.to({}, { duration: pauseDuration });
+      tl.to(
+        progressElement,
+        {
+          width: `${progress * 100}%`,
+          duration: 2,
+        },
+        i * 2
+      );
 
-      venueTimelines.forEach((timeline, venueIndex) => {
-        timeline.to(venueRefs.current[venueIndex], {
-          y: newPosition2,
-          ease: "elastic.out(1, 0.4)",
-          duration: duration,
-        });
-        timeline.to({}, { duration: pauseDuration });
-      });
+      // tl.to(
+      //   sunElement,
+      //   {
+      //     motionPath: {
+      //       path: [
+      //         { x: centerX, y: semiCircleRect.height },
+      //         { x: centerX + radius, y: semiCircleRect.height / 2 },
+      //         { x: centerX + radius * 2, y: semiCircleRect.height }
+      //       ],
+      //       curviness: 1,
+      //       type: "cubic"
+      //     },
+      //     duration: 2,
+      //     onUpdate: () => console.log("Sun position:", sunElement.getBoundingClientRect()),
+      //   },
+      //   i * 2
+      // );
+  
     }
 
-    timeTimeline.play();
-    venueTimelines.forEach((timeline) => timeline.play());
-
     return () => {
-      timeTimeline.kill();
-      venueTimelines.forEach((timeline) => timeline.kill());
+      tl.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -117,10 +168,8 @@ const TimeSchedule = () => {
     return { x, y };
   };
 
-  const sunPosition = calculateSunPosition(progress);
-
   return (
-    <div className="bg-black p-4 md:p-8 md:pl-28 lg:h-screen">
+    <div ref={sectionRef} className="bg-black p-4 md:p-8 md:pl-28 h-screen">
       <div className="time-schedule relative overflow-hidden">
         {stars.map((star) => (
           <div
@@ -135,22 +184,29 @@ const TimeSchedule = () => {
             }}
           />
         ))}
-        <div className="content flex flex-col">
+        <div className="content flex flex-col mb-0">
           <div className="date-display font-alternox-regular mb-8 leading-tight text-white md:mb-12">
             <div className="text-lg md:text-xl">ON</div>
             <div className="text-3xl md:text-4xl">20 OCT 2024</div>
             <div className="text-lg md:text-xl">SUNDAY</div>
           </div>
 
+          {/* <div className="semi-circle-container" style={{ width: '300px', height: '150px' }}>
+            <div ref={semiCircleRef} className="semi-circle"></div>
+            <div ref={sunRef} className="sun"></div>
+          </div> */}
+
+
+
           <div className="time-schedules-header font-alternox-regular text-white text-center mb-8 justfiy-center">
-            <h2 className="text-3xl md:text-4xl mb-2 text-center">TIME SCHEDULES</h2>
+            <h2 className="text-2xl md:text-4xl mb-2 text-center">TIME SCHEDULES</h2>
             <hr className="border-t border-white w-3/4 mx-auto mb-2" />
             <div className="time-slider" style={{ height: '50px', overflow: 'hidden' }}>
-              <ul ref={timeRef} style={{ transform: `translateY(${listPosition}px)` }}>
+              <ul ref={timeRef}>
                 {venueSchedules[0].map((schedule, index) => (
                   <li
                     key={index}
-                    className="text-xl md:text-2xl"
+                    className="text-lg md:text-2xl"
                     style={{ height: "50px", lineHeight: "50px" }}
                   >
                     {schedule.time}
@@ -176,10 +232,7 @@ const TimeSchedule = () => {
                     className="venue-details flex flex-1 items-center justify-center overflow-hidden px-2 text-center md:px-4"
                     style={{ height: "50px" }}
                   >
-                    <ul
-                      ref={(el) => (venueRefs.current[venueIndex] = el)}
-                      style={{ transform: `translateY(${listPosition}px)` }}
-                    >
+                    <ul ref={(el) => (venueRefs.current[venueIndex] = el)}>
                       {venueSchedules[venueIndex].map((schedule, index) => (
                         <li
                           key={index}
@@ -195,6 +248,16 @@ const TimeSchedule = () => {
                 <hr className="absolute bottom-0 left-40 right-0 hidden border-t border-white md:block" />
               </div>
             ))}
+          </div>
+
+          <div className="progress-bar mt-8">
+            <div className="bg-gray-700 h-2 rounded-full">
+              <div
+                ref={progressRef}
+                className="bg-white h-2 rounded-full"
+                style={{ width: "0%" }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>

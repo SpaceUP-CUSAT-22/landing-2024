@@ -50,87 +50,133 @@ const Hero = () => {
     const planet = planetRef.current;
   
     // Initial setup
-    gsap.set(spaceupText, { fontSize: "clamp(5rem, 15vw, 10rem)" });
-    gsap.set(cusatText, { opacity: 0, y: 20 });
-    gsap.set(merchBanner, { opacity: 0, y: -20 });
-    gsap.set(astronaut, { y: "-100%", opacity: 0 });
-    gsap.set(planet, { y: "120vh", rotation: 0 });
-  
-    // Timeline 1
-    const tl1 = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "+=100%",
-        pin: true,
-        scrub: 1,
-      },
-    });
-  
-    tl1.to(spaceupText, {
-      fontSize: "clamp(4rem, 12vw, 8rem)",
-      duration: 1,
-      ease: "power2.inOut"
-    })
-    .to(astronaut, {
-      y: "0%",
-      opacity: 1,
-      duration: 1.5,
-      ease: "power2.out",
-      onComplete: startFloatingAnimation
-    }, "<+=1")
-    .to(planet, {
-      y: "60vh", // Animate to midpoint
-      duration: 1,
-      ease: "power2.in",
-    }, "<")
-    .to(cusatText, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power2.inOut"
-    }, "<+=0.5")
-    .to(merchBanner, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power2.inOut",
-    }, "<");
-  
-    // Timeline 2 for planet rotation
-    const tl2 = gsap.timeline({
-      scrollTrigger: {
-        trigger: section,
-        start: "center center",
-        end: "+=200%", // Extend this to allow for more rotation
-        scrub: 1,
-      },
-    });
-  
-    tl2.to(planet, {
-      rotation: -120,
-      y: "0vh",
-      duration: 1.5,
-      ease: "power1.inOut",
-    });
-  
-    function startFloatingAnimation() {
-      const floatTimeline = gsap.timeline({
-        repeat: -1,
-        yoyo: true,
-        ease: "power1.inOut"
+    if(window.innerWidth >= 768){
+
+      gsap.set(spaceupText, { fontSize: "clamp(5rem, 15vw, 10rem)" });
+      gsap.set(cusatText, { opacity: 0, y: 20 });
+      gsap.set(merchBanner, { opacity: 0, y: -20 });
+      gsap.set(astronaut, { y: "-100%", opacity: 0 });
+      gsap.set(planet, { y: "120vh", rotation: 0 });
+      // Timeline 1
+      const tl1 = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "top top",
+          end: "+=100%",
+          pin: true,
+          scrub: 1,
+        },
       });
     
-      floatTimeline
-        .to(astronaut, {
-          y: "+=20",
-          duration: 2
-        })
-        .to(astronaut, {
-          y: "-=20",
-          duration: 2
+      tl1.to(spaceupText, {
+        fontSize: "clamp(4rem, 12vw, 8rem)",
+        duration: 1,
+        ease: "power2.inOut"
+      })
+      .to(astronaut, {
+        y: "0%",
+        opacity: 1,
+        duration: 1.5,
+        ease: "power2.out",
+        onComplete: startFloatingAnimation
+      }, "<+=1")
+      .to(planet, {
+        y: "60vh", // Animate to midpoint
+        duration: 1,
+        ease: "power2.in",
+      }, "<")
+      .to(cusatText, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.inOut"
+      }, "<+=0.5")
+      .to(merchBanner, {
+        opacity: 1,
+        y: 0,
+        duration: 1,
+        ease: "power2.inOut",
+      }, "<");
+    
+      // Timeline 2 for planet rotation
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "center center",
+          end: "+=200%", // Extend this to allow for more rotation
+          scrub: 1,
+        },
+      });
+    
+      tl2.to(planet, {
+        rotation: -120,
+        y: "0vh",
+        duration: 1.5,
+        ease: "power1.inOut",
+      });
+    
+      function startFloatingAnimation() {
+        const floatTimeline = gsap.timeline({
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut"
         });
+      
+        floatTimeline
+          .to(astronaut, {
+            y: "+=20",
+            duration: 2
+          })
+          .to(astronaut, {
+            y: "-=20",
+            duration: 2
+          });
+      }
+    }else{
+      gsap.set(spaceupText, { fontSize: "clamp(3rem, 15vw, 5rem)" });
+      gsap.set(cusatText, { opacity: 1, y: 20 });
+      gsap.set(merchBanner, { opacity: 1, y: -20 });
+      gsap.set(astronaut, { y: "0%", opacity: 1 });
+      gsap.set(planet, { y: "60vh", rotation: 1 });
+
+      startFloatingAnimation()
+    
+      // Timeline 2 for planet rotation
+      const tl2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: "center center",
+          end: "+=200%", // Extend this to allow for more rotation
+          scrub: 1,
+        },
+      });
+    
+      tl2.to(planet, {
+        rotation: -120,
+        y: "0vh",
+        duration: 1.5,
+        ease: "power1.inOut",
+      });
+    
+      function startFloatingAnimation() {
+        const floatTimeline = gsap.timeline({
+          repeat: -1,
+          yoyo: true,
+          ease: "power1.inOut"
+        });
+      
+        floatTimeline
+          .to(astronaut, {
+            y: "+=20",
+            duration: 2
+          })
+          .to(astronaut, {
+            y: "-=20",
+            duration: 2
+          });
+      }
     }
+  
     
   
     return () => {
@@ -149,7 +195,7 @@ const Hero = () => {
         <div className="relative flex h-full flex-col items-center justify-center">
           <Link
             to="/buymerch"
-            className="merch-banner absolute top-5 w-11/12 sm:w-auto"
+            className="merch-banner absolute top-10 md:top-5 w-11/12 sm:w-auto"
             ref={merchBannerRef}
           >
             <div className="merch-banner-content">
@@ -176,7 +222,7 @@ const Hero = () => {
           />
           <h2
             ref={cusatRef}
-            className="font-alternox-regular text-center text-3xl font-semibold tracking-widest text-white sm:text-4xl md:text-5xl z-30 mt-4 sm:mt-8"
+            className="font-alternox-regular text-center text-2xl md:text-3xl font-semibold tracking-widest text-white sm:text-4xl md:text-5xl z-30 mt-4 sm:mt-8"
           >
             C U S A T
           </h2>
@@ -189,7 +235,7 @@ const Hero = () => {
         </div>
       </section>
 
-      <div ref={aboutSectionRef} className="pl-10 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-40">
+      <div ref={aboutSectionRef} className="pl-3 pr-4 md:pl-40 md:pr-16 lg:pl-36 lg:pr-20 text-white relative z-10 mb-20 md:mb-40">
         <div className="relative z-10 flex h-fit flex-col items-center justify-between rounded-md bg-[#9B3CCA] bg-opacity-[25%] p-6 pb-0 backdrop-blur-sm backdrop-filter md:p-12 md:pb-0 lg:flex-row lg:items-end">
           <div className="flex w-full flex-col pb-6 md:pb-12">
             <h2 className="font-alternox-bold text-4xl font-bold md:text-5xl lg:text-6xl">
@@ -205,7 +251,7 @@ const Hero = () => {
               <span className="text-white"> SPACEUP</span>
             </h2>
             <div className="font-alternox-regular my-8 h-[1px] w-full bg-white md:my-12"></div>
-            <p>
+            <p className="md:text-md text-sm">
               SpaceUp isn't your typical conference; it's a global phenomenon that
               empowers you to shape the future of space networking. Since its
               groundbreaking debut in 2010, SpaceUp has transcended borders,
