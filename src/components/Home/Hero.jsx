@@ -135,9 +135,9 @@ const Hero = () => {
     }else{
       gsap.set(spaceupText, { fontSize: "clamp(3rem, 15vw, 5rem)" });
       gsap.set(cusatText, { opacity: 1, y: 20 });
-      gsap.set(merchBanner, { opacity: 1, y: -20 });
-      gsap.set(astronaut, { y: "0%", opacity: 1 });
-      gsap.set(planet, { y: "60vh", rotation: 1 });
+      gsap.set(merchBanner, { opacity: 1, y: 10 });
+      gsap.set(astronaut, { y: "35%", opacity: 1 });
+      gsap.set(planet, { y: "50vh", rotation: 1 });
 
       startFloatingAnimation()
     
@@ -195,7 +195,7 @@ const Hero = () => {
         <div className="relative flex h-full flex-col items-center justify-center">
           <Link
             to="/buymerch"
-            className="merch-banner absolute top-10 md:top-5 w-11/12 sm:w-auto"
+            className="merch-banner absolute top-0 md:top-5 w-11/12 sm:w-auto"
             ref={merchBannerRef}
           >
             <div className="merch-banner-content">
