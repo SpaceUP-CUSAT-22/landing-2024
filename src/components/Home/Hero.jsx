@@ -193,8 +193,8 @@ const Hero = () => {
     <>
       <section ref={sectionRef} className="hero-section h-screen bg-black">
         <div className="relative flex h-full flex-col items-center justify-center">
-          <Link
-            to="/buymerch"
+          <button
+            onClick={() => window.location.replace('/buymerch')}
             className="merch-banner absolute top-0 md:top-5 w-11/12 sm:w-auto"
             ref={merchBannerRef}
           >
@@ -203,7 +203,7 @@ const Hero = () => {
               <span className="merch-text">Get Your SpaceUp Merch Now!</span>
               <span className="merch-cta">Shop Now</span>
             </div>
-          </Link>
+          </button>
           <h1
             ref={spaceupRef}
             className="font-alternox-regular mb-4 text-center font-bold tracking-wider text-white z-10"
