@@ -72,7 +72,7 @@ const BuyMerch = () => {
     let basePrice = 0;
     basePrice += formData.whiteShirt * 349;
     basePrice += formData.orangeShirt * 349;
-    basePrice += formData.hoodie * 749;
+    basePrice += formData.hoodie * 759;
 
     let newPrice = basePrice;
 
@@ -395,7 +395,7 @@ const BuyMerch = () => {
                 setFormData((prev) => ({ ...prev, [name]: value }))
               }
               label="Hoodie"
-              price={749}
+              price={759}
             />
             
             {/* Rest of your form fields */}
@@ -528,7 +528,7 @@ const BuyMerch = () => {
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
     label="Hoodie"
-    price={749}
+    price={759}
   />
               </div>
               <input
