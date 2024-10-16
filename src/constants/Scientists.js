@@ -3,7 +3,7 @@ const scientists = [
         name: "Dr. Remilia Murthy",
         title: "Director General, Aeronautical Systems, DRDO",
         location: "Kerala, India",
-        image: "/speakers/speaker1.jpeg",
+        image: "/speakers/speaker1.png",
         description: "Dr. Remilia Murthy serves as the project head of the remarkable Gaganyaan mission. With a diverse 25-year career in technical, business, and management fields, his contributions to aerospace have been truly inspiring for students. His ability to excel in multiple areas simultaneously stands as a great motivation for aspiring college students."
     },
     {

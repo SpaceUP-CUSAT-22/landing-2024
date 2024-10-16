@@ -384,7 +384,7 @@ const BuyMerch = () => {
               onChange={(name, value) =>
                 setFormData((prev) => ({ ...prev, [name]: value }))
               }
-              label="Green T-shirt"
+              label="Orange T-shirt"
               price={349}
             />
             
@@ -450,7 +450,7 @@ const BuyMerch = () => {
 
       {/* Main Content */}
       <div className="relative z-10 mx-auto w-full max-w-4xl px-4 sm:px-6 md:px-8 lg:px-10">
-        <img src="/logo.png" className="mx-auto mb-8 w-80" alt="logo" />
+        <img src="/logo.svg" className="mx-auto mb-8 w-80" alt="logo" />
 
         <h1
           className="font-alternox-regular mb-8 text-center text-4xl font-bold tracking-wider text-white sm:text-4xl md:text-7xl"
@@ -517,7 +517,7 @@ const BuyMerch = () => {
     onChange={(name, value) =>
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
-    label="Green T-shirt"
+    label="Orange T-shirt"
     price={349}
   />
   

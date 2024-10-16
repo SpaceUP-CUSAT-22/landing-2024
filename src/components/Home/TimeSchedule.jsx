@@ -35,7 +35,7 @@ const TimeSchedule = () => {
       { time: "10:30 AM - 11:30 AM", activity: "" },
       { time: "12:00 PM - 01:00 PM", activity: "" },
       { time: "01:00 PM - 02:30 PM", activity: "" },
-      { time: "02:30 PM - 03:30 PM", activity: "Workshop on Aerodyamics and Flight Control by Team Marutsakha" },
+      { time: "02:30 PM - 03:30 PM", activity: "Workshop - Team Marutsakha" },
       { time: "03:30 PM - 04:00 PM", activity: "Tea Break" },
       { time: "04:00 PM - 05:00 PM", activity: "" },
       { time: "05:00 PM - 06:00 PM", activity: "" },
@@ -45,7 +45,7 @@ const TimeSchedule = () => {
       { time: "10:30 AM - 11:30 AM", activity: "" },
       { time: "12:00 PM - 01:00 PM", activity: "" },
       { time: "01:00 PM - 02:30 PM", activity: "" },
-      { time: "02:30 PM - 03:30 PM", activity: "Workshop on importance of R&D start ups by Dr. Yadhu Krishna" },
+      { time: "02:30 PM - 03:30 PM", activity: "Workshop - Dr. Yadhu Krishna" },
       { time: "03:30 PM - 04:00 PM", activity: "Tea Break" },
       { time: "04:00 PM - 05:00 PM", activity: "" },
       { time: "05:00 PM - 06:00 PM", activity: "" },
@@ -87,7 +87,7 @@ const TimeSchedule = () => {
     const lineHeight = 50;
 
     gsap.set(timeElement, { y: 0 });
-    venueElements.forEach((el) => gsap.set(el, { y: 200 }));
+    venueElements.forEach((el) => gsap.set(el, { y: 180 }));
     
 
     const tl = gsap.timeline({
@@ -116,7 +116,7 @@ const TimeSchedule = () => {
         tl.to(
           el,
           {
-            y: 200 - i * lineHeight,
+            y: 180 - i * lineHeight,
             duration: 2,
           },
           i * 2

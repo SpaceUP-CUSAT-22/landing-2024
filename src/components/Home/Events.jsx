@@ -6,7 +6,7 @@ import { gsap } from 'gsap';
 const EventCard = ({ title, image, description, onClick }) => (
   <div 
     className="flex-shrink-0 w-[80vw] sm:w-[45vw] lg:w-[30vw] mr-[4vw] last:mr-0 group hover:cursor-pointer select-none"
-    // onClick={onClick}
+    onClick={onClick}
   >
     <div className="relative aspect-video rounded-lg overflow-hidden transition-transform duration-300 ease-in-out transform group-hover:scale-105">
       <img src={image} alt={title} className="w-full h-full object-cover" />
@@ -127,34 +127,34 @@ const Events = () => {
 
   const events = [
     { 
-      title: "COMING SOON", 
+      title: "QUIZ", 
       image: "/img1.jpg",
-      description: "We are delighted to announce that Space on Wheels, the mobile space exhibition by the Vikram Sarabhai Space Centre (VSSC), will be a captivating highlight of SpaceUp CUSAT 2023. This extraordinary exhibition offers a comprehensive glimpse into the realm of space exploration, featuring an impressive array of models showcasing not only satellites but also rockets and various space-related technologies. From the towering rockets that have propelled India into space to intricate satellite models, Space on Wheels provides an immersive and educational experience for all ages. Attendees will have the unique opportunity to interact with these space artifacts, gaining a deeper understanding of India's remarkable contributions to space science and technology. Join us in exploring the wonders of the cosmos at SpaceUp CUSAT on October 14, 2023, where Space on Wheels promises to inspire and awe."
+      description: "A brainstorming aerospace quiz with twists and turns will be there, featuring an exciting prize pool of 50k."
     },
     { 
-      title: "COMING SOON", 
+      title: "GAMES", 
       image: "/img2.jpg",
-      description: "Learn how to design, build, and launch your own miniature satellite. Our CanSat workshop provides hands-on experience in space technology and engineering."
+      description: "The session will feature an engaging gaming experience, complemented by insightful knowledge-sharing segments. Participants can also expect light-hearted interactions, creating a well-rounded event that balances both learning and entertainment."
     },
     { 
       title: "COMING SOON", 
       image: "/img3.jpg",
-      description: "Explore the boundaries of space exploration in our annual conference. Horizon brings together experts, enthusiasts, and innovators to discuss the future of space travel and technology."
+      description: "Coming Soon!"
     },
     { 
       title: "COMING SOON", 
       image: "/img4.jpg",
-      description: "Join our Women in Engineering Satellite project. WESAT encourages and empowers women to take leading roles in satellite design and space engineering."
+      description: "Coming Soon!"
     },
     { 
       title: "COMING SOON", 
       image: "/img5.jpg",
-      description: "Test your knowledge of astronomy and space science in our competitive quiz event. The Astro Challenge is perfect for space enthusiasts of all ages."
+      description: "Coming Soon!"
     },
     { 
       title: "COMING SOON", 
       image: "/img6.jpg",
-      description: "Put your engineering skills to the test by building the strongest bridge using only popsicle sticks. This fun, hands-on challenge introduces basic concepts of structural engineering."
+      description: "Coming Soon!"
     },
   ];
 
