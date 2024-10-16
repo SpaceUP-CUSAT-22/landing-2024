@@ -289,7 +289,7 @@ const BuyMerch = () => {
     setCheckBox(checked);
   };
 
-  const upiid = "sedscusat@oksbi";
+  const upiid = "pjayasurya@fbl";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(
