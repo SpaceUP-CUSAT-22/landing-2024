@@ -252,19 +252,7 @@ const Hero = () => {
             </h2>
             <div className="font-alternox-regular my-8 h-[1px] w-full bg-white md:my-12"></div>
             <p className="md:text-md text-sm">
-              SpaceUp isn't your typical conference; it's a global phenomenon that
-              empowers you to shape the future of space networking. Since its
-              groundbreaking debut in 2010, SpaceUp has transcended borders,
-              becoming a worldwide sensation. Our mission? To revolutionize
-              networking in the space industry. At SpaceUp, we believe that
-              everyone with a space passion deserves a platform to shine. That's
-              why we let YOU decide the agenda. No pre-set topics or schedules -
-              you're in control! Picture this: Attendees collaboratively build the
-              event in real-time. They propose topics, lead discussions, and form
-              the audience on the spot. There are no spectators, only
-              participants! SpaceUp is the ultimate melting pot, uniting diverse
-              space communities, fostering careers, and sparking fresh ideas for
-              space startups. Join us, and be part of the space revolution!
+            Space is a captivating mystery waiting to be explored, and if you're into that, check out SpaceUP, the annual space unconference! This exciting event brings together space enthusiasts from all backgrounds to engage in a variety of activities. You can look forward to expert-led talks covering a wide range of topics in the field of space exploration and science, as well as hands-on workshops that provide practical experience and skills. There will also be project exhibitions showcasing innovative ideas and projects from participants. It's an incredible opportunity to connect with fellow space lovers, share your passion, and dive deeper into the wonders of the universe. Whether you're a seasoned space enthusiast or just starting your journey, SpaceUP has something for everyone. Don’t miss out on this chance to fuel your inner cosmic soul and discover the limitless possibilities of space!
             </p>
           </div>
           <img
