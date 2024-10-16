@@ -464,7 +464,7 @@ const BuyMerch = () => {
 
         <form onSubmit={handleSubmit} className="w-full">
           <div className="flex w-full flex-col rounded-lg bg-black bg-opacity-50 px-4 py-10 pt-5 sm:px-6 md:px-8">
-            <div className="flex flex-col md:flex-row">
+            <div className="flex flex-col md:flex-row flex-wrap">
               {formData.orangeShirt > 0 && (
                 <img
                   src="/black.png"
@@ -480,11 +480,18 @@ const BuyMerch = () => {
                 />
               )}
               {formData.hoodie > 0 && (
-                <img
-                  src="/hoodie.png"
-                  className="mb-10 h-auto w-[350px] max-w-[40rem]"
-                  alt="hoodie"
-                />
+                <>
+                  <img
+                    src="/hoodie.png"
+                    className="mb-10 h-auto w-[350px] max-w-[40rem]"
+                    alt="hoodie"
+                  />
+                  <img
+                    src="/hoodie2.png"
+                    className="mb-10 h-auto w-[350px] max-w-[40rem]"
+                    alt="hoodie"
+                  />
+                </>
               )}
             </div>
 
