@@ -26,7 +26,7 @@ const PrevImages = () => {
             Purchasing a ticket to SpaceUP offers numerous benefits for space enthusiasts and curious minds alike. Attendees gain access to expert-led talks that provide valuable insights into current trends and advancements in space exploration. The hands-on workshops allow participants to engage directly with space concepts, enhancing their understanding and skills. Additionally, project exhibitions showcase innovative ideas and foster collaboration among attendees. Networking opportunities abound, enabling participants to connect with like-minded individuals and industry professionals. Overall, a ticket to SpaceUP is an investment in knowledge, inspiration, and community.
             </p>
             <button className="font-alternox-bold max-w-[200px] rounded bg-[#9B3CCA] px-6 py-4 text-white transition duration-300 hover:bg-opacity-80">
-              Get Tickets
+              Get Tickets (coming soon)
             </button>
           </div>
 
@@ -37,34 +37,34 @@ const PrevImages = () => {
             </h3>
             <hr className="my-5" />
             <div className="mb-3">
-              <p className="font-alternox-regular text-[#9B3CCA]">Name Here</p>
-              <p className="font-alternox-regular">+91 9876 123 456</p>
+              <p className="font-alternox-regular text-[#9B3CCA]">Adithya kurup</p>
+              <p className="font-alternox-regular">+91 95536 85246</p>
             </div>
             <div className="mb-3">
-              <p className="font-alternox-regular text-[#9B3CCA]">Name Here</p>
-              <p className="font-alternox-regular">+91 9876 123 456</p>
+              <p className="font-alternox-regular text-[#9B3CCA]">Jithin</p>
+              <p className="font-alternox-regular">+91 96334 52202</p>
             </div>
 
             {/* Social Media Icons */}
             <div className="mt-4 flex justify-end">
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/company/sedscusat/posts/?feedView=all"
                 className="ml-5 text-4xl hover:text-[#9B3CCA]"
               >
                 <i className="fab fa-linkedin"></i>
               </a>
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/spaceupcusat/"
                 className="ml-5 text-4xl hover:text-[#9B3CCA]"
               >
                 <i className="fab fa-instagram"></i>
               </a>
-              <a
+              {/* <a
                 href="https://twitter.com"
                 className="ml-5 text-4xl hover:text-[#9B3CCA]"
               >
                 <i className="fab fa-twitter"></i>
-              </a>
+              </a> */}
             </div>
           </div>
 
