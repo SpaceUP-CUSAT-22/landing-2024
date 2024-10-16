@@ -77,7 +77,7 @@ const BuyMerch = () => {
     let newPrice = basePrice;
 
     if (isValidReferral) {
-      newPrice = basePrice * 0.9; // Apply 10% discount if referral code is verified
+      newPrice = basePrice * 0.95; // Apply 10% discount if referral code is verified
     }
 
     if (checkbox) {
