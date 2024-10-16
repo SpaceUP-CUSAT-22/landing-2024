@@ -1,6 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
-import './css/TimeSchedule.css';
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "./css/TimeSchedule.css";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
+
+
+gsap.registerPlugin(ScrollTrigger, MotionPathPlugin);
 
 const TimeSchedule = () => {
   const generateStars = (count) => {
@@ -9,102 +14,147 @@ const TimeSchedule = () => {
       left: `${Math.random() * 100}%`,
       top: `${Math.random() * 100}%`,
       size: `${Math.random() * 2 + 1}px`,
-      animationDelay: `${Math.random() * 5}s`
+      animationDelay: `${Math.random() * 5}s`,
     }));
   };
 
-  const stars = generateStars(50); // Reduced star count for better performance
+  const stars = generateStars(50);
   const venueSchedules = [
     [
-      { time: '07:00 - 08:00', activity: 'Spot Registration' },
-      { time: '08:00 - 09:00', activity: 'Opening Ceremony' },
-      { time: '09:00 - 10:30', activity: 'Keynote Speech' },
-      { time: '10:30 - 11:30', activity: 'Panel Discussion' },
-      { time: '11:30 - 12:30', activity: 'Workshop Session 1' },
-      { time: '12:30 - 13:30', activity: 'Lunch Break' },
-      { time: '13:30 - 15:00', activity: 'Technical Presentations' },
-      { time: '15:00 - 16:30', activity: 'Interactive Demo' },
-      { time: '16:30 - 17:30', activity: 'Closing Remarks' },
+      { time: "09:00 AM - 10:00 AM", activity: "Innauguration" },
+      { time: "10:30 AM - 11:30 AM", activity: "Talk Session - Dr. Murthy Remilla" },
+      { time: "12:00 PM - 01:00 PM", activity: "Talk Session - Dr. Satish R Thampi" },
+      { time: "01:00 PM - 02:30 PM", activity: "Lunch Break" },
+      { time: "02:30 PM - 03:30 PM", activity: "Workshop on Sunspotting by Astrokerala" },
+      { time: "03:30 PM - 04:00 PM", activity: "Tea Break" },
+      { time: "04:00 PM - 05:00 PM", activity: "Talk Session - Ms. Nikitha Chadde" },
+      { time: "05:00 PM - 06:00 PM", activity: "Talk Session - Dr. Jagadeep" },
     ],
     [
-      { time: '07:00 - 08:00', activity: 'Spot Registration' },
-      { time: '08:00 - 09:00', activity: 'Opening Ceremony' },
-      { time: '09:00 - 10:30', activity: 'Keynote Speech' },
-      { time: '10:30 - 11:30', activity: 'Panel Discussion' },
-      { time: '11:30 - 12:30', activity: 'Workshop Session 1' },
-      { time: '12:30 - 13:30', activity: 'Lunch Break' },
-      { time: '13:30 - 15:00', activity: 'Technical Presentations' },
-      { time: '15:00 - 16:30', activity: 'Interactive Demo' },
-      { time: '16:30 - 17:30', activity: 'Closing Remarks' },
+      { time: "09:00 AM - 10:00 AM", activity: "" },
+      { time: "10:30 AM - 11:30 AM", activity: "" },
+      { time: "12:00 PM - 01:00 PM", activity: "" },
+      { time: "01:00 PM - 02:30 PM", activity: "" },
+      { time: "02:30 PM - 03:30 PM", activity: "Workshop on Aerodyamics and Flight Control by Team Marutsakha" },
+      { time: "03:30 PM - 04:00 PM", activity: "Tea Break" },
+      { time: "04:00 PM - 05:00 PM", activity: "" },
+      { time: "05:00 PM - 06:00 PM", activity: "" },
     ],
     [
-      { time: '07:00 - 08:00', activity: 'Spot Registration' },
-      { time: '08:00 - 09:00', activity: 'Opening Ceremony' },
-      { time: '09:00 - 10:30', activity: 'Keynote Speech' },
-      { time: '10:30 - 11:30', activity: 'Panel Discussion' },
-      { time: '11:30 - 12:30', activity: 'Workshop Session 1' },
-      { time: '12:30 - 13:30', activity: 'Lunch Break' },
-      { time: '13:30 - 15:00', activity: 'Technical Presentations' },
-      { time: '15:00 - 16:30', activity: 'Interactive Demo' },
-      { time: '16:30 - 17:30', activity: 'Closing Remarks' },
-    ],
+      { time: "09:00 AM - 10:00 AM", activity: "" },
+      { time: "10:30 AM - 11:30 AM", activity: "" },
+      { time: "12:00 PM - 01:00 PM", activity: "" },
+      { time: "01:00 PM - 02:30 PM", activity: "" },
+      { time: "02:30 PM - 03:30 PM", activity: "Workshop on importance of R&D start ups by Dr. Yadhu Krishna" },
+      { time: "03:30 PM - 04:00 PM", activity: "Tea Break" },
+      { time: "04:00 PM - 05:00 PM", activity: "" },
+      { time: "05:00 PM - 06:00 PM", activity: "" },
+    ]
   ];
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [currentTime, setCurrentTime] = useState(venueSchedules[0][0].time);
-  const [progress, setProgress] = useState(0);
-  const [listPosition, setListPosition] = useState(0);
-
+  const sectionRef = useRef(null);
   const timeRef = useRef(null);
   const venueRefs = useRef([]);
+  const progressRef = useRef(null);
+  const sunRef = useRef(null);
+  const semiCircleRef = useRef(null);
+
 
   useEffect(() => {
-    const duration = 0;
-    const pauseDuration = 3;
-    const lineHeight = 50;
+    const section = sectionRef.current;
+    const timeElement = timeRef.current;
+    const venueElements = venueRefs.current;
+    const progressElement = progressRef.current;
+    // const sunElement = sunRef.current;
+    // const semiCircleElement = semiCircleRef.current;
+
+
+    
+
+    // const semiCircleRect = semiCircleElement.getBoundingClientRect();
+    // const centerX = semiCircleRect.width / 2;
+    // const radius = semiCircleRect.width / 2;
+
+
+    // gsap.set(sunElement, { 
+    //   x: centerX, 
+    //   y: semiCircleRect.height,
+    //   xPercent: -50, 
+    //   yPercent: -50 
+    // });
+
     const totalItems = venueSchedules[0].length;
-    const initialPosition = 200;
+    const lineHeight = 50;
 
-    // Set initial position to show the first item
-    setListPosition(0);
+    gsap.set(timeElement, { y: 0 });
+    venueElements.forEach((el) => gsap.set(el, { y: 200 }));
+    
 
-    const timeTimeline = gsap.timeline({ repeat: -1 });
-    const venueTimelines = venueSchedules.map(() => gsap.timeline({ repeat: -1 }));
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: section,
+        start: "top top",
+        end: `+=${totalItems * lineHeight * 4}`,
+        scrub: 1,
+        pin: true,
+        anticipatePin: 1,
+      },
+    });
 
     for (let i = 0; i < totalItems; i++) {
-      const newPosition = -i * lineHeight;
-      const newPosition2 = initialPosition - i * lineHeight;
-
-      timeTimeline.to(timeRef.current, {
-        y: newPosition,
-        ease: "elastic.out(1, 0.4)",
-        duration: duration,
-        onStart: () => {
-          setCurrentIndex(i);
-          setCurrentTime(venueSchedules[0][i].time);
-          setProgress((i / (totalItems - 1)) * 100);
-          setListPosition(newPosition);
+      const progress = i / (totalItems - 1);
+      tl.to(
+        timeElement,
+        {
+          y: -i * lineHeight,
+          duration: 2,
         },
+        i * 2
+      );
+
+      venueElements.forEach((el) => {
+        tl.to(
+          el,
+          {
+            y: 200 - i * lineHeight,
+            duration: 2,
+          },
+          i * 2
+        );
       });
 
-      timeTimeline.to({}, { duration: pauseDuration });
+      tl.to(
+        progressElement,
+        {
+          width: `${progress * 100}%`,
+          duration: 2,
+        },
+        i * 2
+      );
 
-      venueTimelines.forEach((timeline, venueIndex) => {
-        timeline.to(venueRefs.current[venueIndex], {
-          y: newPosition2,
-          ease: "elastic.out(1, 0.4)",
-          duration: duration,
-        });
-        timeline.to({}, { duration: pauseDuration });
-      });
+      // tl.to(
+      //   sunElement,
+      //   {
+      //     motionPath: {
+      //       path: [
+      //         { x: centerX, y: semiCircleRect.height },
+      //         { x: centerX + radius, y: semiCircleRect.height / 2 },
+      //         { x: centerX + radius * 2, y: semiCircleRect.height }
+      //       ],
+      //       curviness: 1,
+      //       type: "cubic"
+      //     },
+      //     duration: 2,
+      //     onUpdate: () => console.log("Sun position:", sunElement.getBoundingClientRect()),
+      //   },
+      //   i * 2
+      // );
+  
     }
 
-    timeTimeline.play();
-    venueTimelines.forEach(timeline => timeline.play());
-
     return () => {
-      timeTimeline.kill();
-      venueTimelines.forEach(timeline => timeline.kill());
+      tl.kill();
+      ScrollTrigger.getAll().forEach((trigger) => trigger.kill());
     };
   }, []);
 
@@ -115,10 +165,8 @@ const TimeSchedule = () => {
     return { x, y };
   };
 
-  const sunPosition = calculateSunPosition(progress);
-
   return (
-    <div className='bg-black h-screen p-4 md:p-8'>
+    <div ref={sectionRef} className="bg-black p-4 md:p-8 md:pl-28 h-screen">
       <div className="time-schedule relative overflow-hidden">
         {stars.map((star) => (
           <div
@@ -129,49 +177,84 @@ const TimeSchedule = () => {
               top: star.top,
               width: star.size,
               height: star.size,
-              animationDelay: star.animationDelay
+              animationDelay: star.animationDelay,
             }}
           />
         ))}
-        <div className="content flex flex-col">
-          <div className="date-display font-alternox-regular text-white leading-tight mb-8 md:mb-12">
+        <div className="content flex flex-col mb-0">
+          <div className="date-display font-alternox-regular mb-8 leading-tight text-white md:mb-12">
             <div className="text-lg md:text-xl">ON</div>
             <div className="text-3xl md:text-4xl">20 OCT 2024</div>
             <div className="text-lg md:text-xl">SUNDAY</div>
           </div>
 
-          <div className="time-schedules-header font-alternox-regular text-white text-center mb-8">
-            <h2 className="text-3xl md:text-4xl mb-2">TIME SCHEDULES</h2>
+          {/* <div className="semi-circle-container" style={{ width: '300px', height: '150px' }}>
+            <div ref={semiCircleRef} className="semi-circle"></div>
+            <div ref={sunRef} className="sun"></div>
+          </div> */}
+
+
+
+          <div className="time-schedules-header font-alternox-regular text-white text-center mb-8 justfiy-center">
+            <h2 className="text-2xl md:text-4xl mb-2 text-center">TIME SCHEDULES</h2>
             <hr className="border-t border-white w-3/4 mx-auto mb-2" />
             <div className="time-slider" style={{ height: '50px', overflow: 'hidden' }}>
-              <ul ref={timeRef} style={{ transform: `translateY(${listPosition}px)` }}>
+              <ul ref={timeRef}>
                 {venueSchedules[0].map((schedule, index) => (
-                  <li key={index} className="text-xl md:text-2xl" style={{ height: '50px', lineHeight: '50px' }}>{schedule.time}</li>
+                  <li
+                    key={index}
+                    className="text-lg md:text-2xl"
+                    style={{ height: "50px", lineHeight: "50px" }}
+                  >
+                    {schedule.time}
+                  </li>
                 ))}
               </ul>
             </div>
-            <hr className="border-t border-white w-3/4 mx-auto mt-2" />
+            <hr className="mx-auto mt-2 w-3/4 border-t border-white" />
           </div>
-          
-          <div className="venue-info flex flex-col m-auto w-full text-white font-alternox-regular">
-            {['VENUE 1', 'VENUE 2', 'VENUE 3'].map((venue, venueIndex) => (
-              <div key={venueIndex} className="venue-row flex flex-col md:flex-row items-stretch mb-4 relative">
-                <div className="venue-label bg-[#3E1851] text-white px-3 py-2 md:px-5 md:py-5 rounded-md w-full md:w-32 text-center mb-2 md:mb-0">
+
+          <div className="venue-info font-alternox-regular m-auto flex w-full flex-col text-white">
+            {["MAIN HALL", "SEMINAR HALL", "EXECUTIVE HALL"].map((venue, venueIndex) => (
+              <div
+                key={venueIndex}
+                className="venue-row relative mb-4 flex flex-col items-stretch md:flex-row"
+              >
+                <div className="venue-label mb-2 w-full rounded-md bg-[#3E1851] px-3 py-2 text-center text-white md:mb-0 md:w-32 md:px-5 md:py-5">
                   {venue}
                 </div>
-                <hr className="hidden md:block absolute top-0 left-40 right-0 border-t border-white" />
-                <div className="venue-details-container ml-0 md:ml-4 flex-1 flex items-stretch relative">
-                  <div className="venue-details flex-1 flex items-center justify-center px-2 md:px-4 text-center overflow-hidden" style={{ height: '50px' }}>
-                    <ul ref={el => venueRefs.current[venueIndex] = el} style={{ transform: `translateY(${listPosition}px)` }}>
+                <hr className="absolute left-40 right-0 top-0 hidden border-t border-white md:block" />
+                <div className="venue-details-container relative ml-0 flex flex-1 items-stretch md:ml-4">
+                  <div
+                    className="venue-details flex flex-1 items-center justify-center overflow-hidden px-2 text-center md:px-4"
+                    style={{ height: "50px" }}
+                  >
+                    <ul ref={(el) => (venueRefs.current[venueIndex] = el)}>
                       {venueSchedules[venueIndex].map((schedule, index) => (
-                        <li key={index} className="text-sm md:text-base" style={{ height: '50px', lineHeight: '50px' }}>{schedule.activity}</li>
+                        <li
+                          key={index}
+                          className="text-sm md:text-base"
+                          style={{ height: "50px", lineHeight: "50px" }}
+                        >
+                          {schedule.activity}
+                        </li>
                       ))}
                     </ul>
                   </div>
                 </div>
-                <hr className="hidden md:block absolute bottom-0 left-40 right-0 border-t border-white" />
+                <hr className="absolute bottom-0 left-40 right-0 hidden border-t border-white md:block" />
               </div>
             ))}
+          </div>
+
+          <div className="progress-bar mt-8">
+            <div className="bg-gray-700 h-2 rounded-full">
+              <div
+                ref={progressRef}
+                className="bg-white h-2 rounded-full"
+                style={{ width: "0%" }}
+              ></div>
+            </div>
           </div>
         </div>
       </div>

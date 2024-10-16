@@ -1,30 +1,100 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useScroll } from "../ScrollContext";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Covered = () => {
-  const [scrollPercentage, setScrollPercentage] = useState(0);
+  const containerRef = useRef(null);
+  const fillRef = useRef(null);
+  const topTextRef = useRef(null);
+  const bottomTextRef = useRef(null);
+  const scrollTriggerRef = useRef(null);
+  const scrollPosition = useScroll();
+  const [percentage, setPercentage] = useState(0);
 
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.scrollY;
+    const container = containerRef.current;
+    const fill = fillRef.current;
+    const topText = topTextRef.current;
+    const bottomText = bottomTextRef.current;
+
+    gsap.set(container, { x: -50, opacity: 0 });
+    gsap.set([bottomText], { opacity: 0, scale: 0.5 });
+
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: "body",
+        start: "top top",
+        end: "bottom bottom",
+        scrub: 0.5,
+      },
+    });
+
+    scrollTriggerRef.current = tl.scrollTrigger;
+
+    tl.to(container, {
+      x: 0,
+      opacity: 1,
+      duration: 0.5,
+      ease: "power2.out",
+    })
+      .to(bottomText, {
+        opacity: 1,
+        scale: 1,
+        duration: 0.3,
+        ease: "back.out(1.7)",
+      });
+
+    const updateScroll = () => {
       const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      const scrollPercent = (scrollTop / docHeight) * 100;
-      setScrollPercentage(Math.min(scrollPercent, 100));
+      const newPercentage = Math.round((scrollPosition / docHeight) * 100);
+      setPercentage(newPercentage);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const tickerCallback = () => {
+      updateScroll();
+    };
+
+    gsap.ticker.add(tickerCallback);
+
+    return () => {
+      if (scrollTriggerRef.current) {
+        scrollTriggerRef.current.kill();
+      }
+      gsap.ticker.remove(tickerCallback);
+    };
+  }, [scrollPosition]);
+
+  useEffect(() => {
+    gsap.to(fillRef.current, {
+      height: `${Math.min(percentage, 100)}%`,
+      duration: 0.3,
+      ease: "power2.out",
+    });
+  }, [percentage]);
 
   return (
-    <div className="fixed top-20 left-5 md:left-20 w-1 h-[80%] bg-zinc-800 rounded-[50px] flex flex-col justify-between items-center z-50">
-      <div 
-        className="w-full bg-white rounded-[50px] absolute top-0"
-        style={{ height: `${scrollPercentage}%` }}
+    <div
+      ref={containerRef}
+      className="hidden md:flex fixed top-20 left-5 md:left-10 z-50 flex h-[80%] w-1 md:w-2 flex-col items-center justify-between rounded-full bg-zinc-800/50 backdrop-blur-sm"
+    >
+      <div
+        ref={fillRef}
+        className="absolute top-0 w-full rounded-full bg-gradient-to-b from-purple-500 to-blue-500"
+        style={{ height: "0%" }}
       />
-      <div className="text-xs font-bold text-white z-10 mt-[-25px]">
-        {Math.round(scrollPercentage)}%
+      <div
+        ref={topTextRef}
+        className="z-10 mt-[-30px] text-xs md:text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
+      >
+        {percentage}%
       </div>
-      <div className="text-xs font-bold text-white z-10 mb-[-25px]">
+      <div
+        ref={bottomTextRef}
+        className="z-10 mb-[-30px] text-xs md:text-sm font-bold text-white bg-zinc-800/70 rounded-full px-2 py-1"
+      >
         100%
       </div>
     </div>

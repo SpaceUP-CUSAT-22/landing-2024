@@ -1,3 +1,9 @@
+.sticky {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
 .time-schedule {
   position: relative;
   width: 100%;
@@ -12,10 +18,17 @@
   animation: twinkle 5s infinite;
 }
 
+
 @keyframes twinkle {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 .content {
@@ -36,6 +49,32 @@
   font-size: 2.5rem;
 }
 
+.semi-circle-container {
+  position: relative;
+  width: 300px;
+  height: 150px;
+  margin: 0 auto;
+}
+
+.semi-circle {
+  width: 100%;
+  height: 100%;
+  border: 2px solid white;
+  border-bottom: none;
+  border-radius: 150px 150px 0 0;
+}
+
+.sun {
+  width: 30px;
+  height: 30px;
+  background-color: #FFD700;
+  border-radius: 50%;
+  position: absolute;
+  box-shadow: 0 0 20px #FFD700;
+  z-index: 10; /* Ensure it's above other elements */
+}
+
+
 .venue-info {
   text-align: left;
 }
@@ -46,7 +85,7 @@
 
 .venue-label {
   font-size: 0.9rem;
-  background-color: #3E1851;
+  background-color: #3e1851;
   color: white;
   padding: 0.25rem 1rem;
   border-radius: 0.25rem;
@@ -55,12 +94,14 @@
   margin-right: 1rem;
 }
 
-.time-slider, .venue-details {
+.time-slider,
+.venue-details {
   height: 50px;
   overflow: hidden;
 }
 
-.time-slider ul, .venue-details ul {
+.time-slider ul,
+.venue-details ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -74,7 +115,8 @@
   transition: transform 0.5s ease;
 }
 
-.time-slider li, .venue-details li {
+.time-slider li,
+.venue-details li {
   height: 50px;
   line-height: 50px;
 }
@@ -94,50 +136,6 @@
 .time-schedules-header p {
   margin: 0.5rem 0;
 }
-.semi-circle-progress-bar {
-  width: 300px;
-  height: 150px;
-  margin: 0 auto 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.semi-circle {
-  width: 300px;
-  height: 300px;
-  border: 3px solid white;
-  border-radius: 50%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  overflow: hidden;
-}
-
-.sun {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  transition: all 0.5s ease-out;
-}
-
-.sun img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.inner-circle {
-  width: 160px;
-  height: 160px;
-  background: black;
-  border-radius: 50%;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
 .progress-text {
   color: white;
@@ -148,6 +146,12 @@
 @media (max-width: 768px) {
   .venue-row {
     flex-direction: column;
+  }
+
+  .content {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 20px;
   }
 
   .venue-label {

@@ -4,8 +4,8 @@ import App from './App.jsx'
 import './index.css'
 import './fonts.css'
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />    
+    <App />
   </React.StrictMode>,
-)
+);

@@ -1,23 +1,38 @@
-@keyframes float {
-  0% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-20px);
-  }
-  100% {
-    transform: translate(-50%, -50%) translateY(0px);
-  }
+.spaceup-text {
+  transition: all 1s ease-in-out;
 }
 
-.floating-astronaut {
-  animation: float 6s ease-in-out infinite;
+.spaceup-text.initial {
+  font-size: 10rem;
 }
 
-@media (max-width: 640px) {
-  .floating-astronaut {
-    max-width: 80%;
-  }
+.spaceup-text.shrinking {
+  font-size: 9.5rem;
+}
+
+.spaceup-text.final {
+  font-size: 9rem;
+}
+
+/* .cusat-hidden {
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.cusat-visible {
+  opacity: 1;
+} */
+
+.cusat-hidden {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+.cusat-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 1s ease-in-out, transform 1s ease-in-out;
 }
 
 .coming-soon-container {
@@ -39,10 +54,24 @@
 
 @keyframes glow {
   from {
-    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #800080, 0 0 20px #800080, 0 0 35px #800080, 0 0 40px #800080, 0 0 50px #800080;
+    text-shadow:
+      0 0 5px #fff,
+      0 0 10px #fff,
+      0 0 15px #800080,
+      0 0 20px #800080,
+      0 0 35px #800080,
+      0 0 40px #800080,
+      0 0 50px #800080;
   }
   to {
-    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #800080, 0 0 40px #800080, 0 0 70px #800080, 0 0 80px #800080, 0 0 100px #800080;
+    text-shadow:
+      0 0 10px #fff,
+      0 0 20px #fff,
+      0 0 30px #800080,
+      0 0 40px #800080,
+      0 0 70px #800080,
+      0 0 80px #800080,
+      0 0 100px #800080;
   }
 }
 
@@ -52,15 +81,17 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: linear-gradient(90deg, #800080, #4B0082);
+  background: linear-gradient(90deg, #800080, #4b0082);
   border-radius: 50px;
-  padding: 12px 24px;
+  padding: 8px 16px;
   display: flex;
   align-items: center;
+  justify-content: center;
   text-decoration: none;
   transition: all 0.3s ease;
   box-shadow: 0 0 15px rgba(128, 0, 128, 0.5);
   z-index: 50;
+  max-width: 90%;
 }
 
 .merch-banner:hover {
@@ -71,26 +102,29 @@
 .merch-banner-content {
   display: flex;
   align-items: center;
-  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
 .merch-icon {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 .merch-text {
   color: white;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 14px;
+  text-align: center;
 }
 
 .merch-cta {
   background-color: white;
   color: #800080;
-  padding: 6px 12px;
+  padding: 4px 8px;
   border-radius: 20px;
   font-weight: bold;
-  font-size: 14px;
+  font-size: 12px;
   transition: all 0.3s ease;
 }
 
@@ -101,15 +135,23 @@
 
 @media (max-width: 640px) {
   .merch-banner {
-    padding: 8px 16px;
+    padding: 12px 15px;
+  }
+
+  .merch-banner-content {
+    gap: 12px;
+  }
+
+  .merch-icon {
+    font-size: 18px;
   }
 
   .merch-text {
-    font-size: 14px;
+    font-size: 10px;
   }
 
   .merch-cta {
-    font-size: 12px;
-    padding: 4px 8px;
+    font-size: 10px;
+    padding: 6px 12px;
   }
 }
