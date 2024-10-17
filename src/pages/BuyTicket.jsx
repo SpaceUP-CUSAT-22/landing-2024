@@ -356,6 +356,7 @@ const BuyTicket = () => {
         timestamp: new Date(),
         referralCode: isValidReferral ? referralCode : null,
         token: token,
+        price
       };
 
       if (formData.workshop === 'Quiz') {
