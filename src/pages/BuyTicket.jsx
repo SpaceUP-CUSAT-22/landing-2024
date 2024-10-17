@@ -47,6 +47,13 @@ const BuyTicket = () => {
     file: null,
   });
 
+  const [workshopLimits, setWorkshopLimits] = useState({
+    "Dr. Yedu Krishna": 400,
+    "TEAM MARUTSAKA": 80,
+    "AMAL SREE AJITH": 120,
+    "Quiz": 16
+  });
+
   const [referralCode, setReferralCode] = useState("");
   const [isValidReferral, setIsValidReferral] = useState(false);
   const [isVerifying, setIsVerifying] = useState(false);
@@ -125,6 +132,31 @@ const BuyTicket = () => {
       setPrice(399); // Regular price
     }
   }, [isValidReferral]);
+
+  const checkWorkshopAvailability = async (workshop) => {
+    const workshopRef = doc(db, 'workshopCounts', workshop);
+    const workshopDoc = await getDoc(workshopRef);
+    
+    if (workshopDoc.exists()) {
+      const currentCount = workshopDoc.data().count;
+      return currentCount < workshopLimits[workshop];
+    }
+    return true; // If document doesn't exist, assume it's available
+  };
+
+  const updateWorkshopCount = async (workshop) => {
+    const workshopRef = doc(db, 'workshopCounts', workshop);
+    const workshopDoc = await getDoc(workshopRef);
+    
+    if (workshopDoc.exists()) {
+      await updateDoc(workshopRef, {
+        count: workshopDoc.data().count + 1
+      });
+    } else {
+      await setDoc(workshopRef, { count: 1 });
+    }
+  };
+
 
   const handleInputChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -317,6 +349,18 @@ const BuyTicket = () => {
 
     try {
       // Check for duplicate entries
+      const isWorkshopAvailable = await checkWorkshopAvailability(formData.workshop);
+      if (!isWorkshopAvailable) {
+        setToast({
+          value: true,
+          color: "red",
+          message: "Sorry, this workshop is full. Please choose another.",
+        });
+        setIsLoading(false);
+        return;
+      }
+
+
       const q = query(
         collection(db, "ticketorders"),
         where("email", "==", formData.email),
@@ -367,6 +411,10 @@ const BuyTicket = () => {
       }
 
       await addDoc(collection(db, "ticketorders"), ticketData);
+
+      await updateWorkshopCount(formData.workshop);
+
+
 
 
 
