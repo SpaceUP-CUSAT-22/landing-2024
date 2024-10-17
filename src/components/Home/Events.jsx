@@ -5,7 +5,7 @@ import { gsap } from 'gsap';
 
 const EventCard = ({ title, image, description, onClick }) => (
   <div 
-    className="flex-shrink-0 w-[80vw] sm:w-[45vw] lg:w-[30vw] mr-[4vw] last:mr-0 group hover:cursor-pointer select-none"
+    className="flex-shrink-0 h-full w-[80vw] sm:w-[45vw] lg:w-[30vw] mr-[4vw] last:mr-0 group hover:cursor-pointer select-none"
     onClick={onClick}
   >
     <div className="relative aspect-video rounded-lg overflow-hidden transition-transform duration-300 ease-in-out transform group-hover:scale-105">
@@ -137,24 +137,19 @@ const Events = () => {
       description: "The session will feature an engaging gaming experience, complemented by insightful knowledge-sharing segments. Participants can also expect light-hearted interactions, creating a well-rounded event that balances both learning and entertainment."
     },
     { 
-      title: "COMING SOON", 
+      title: "ASTROPHOTOGRAPHY", 
       image: "/img3.jpg",
-      description: "Coming Soon!"
+      description: "Amal Sree Ajith is a passionate astrophotographer, a member of the director board at Shasthrasnehi, and a project assistant at C-SIS."
     },
     { 
-      title: "COMING SOON", 
+      title: "Team \nMarutsakha", 
       image: "/img4.jpg",
-      description: "Coming Soon!"
+      description: "Team Marutsaka is a group of enthusiastic engineering students with strong design skills. They will be conducting a design session during SpaceUp."
     },
     { 
-      title: "COMING SOON", 
-      image: "/img5.jpg",
-      description: "Coming Soon!"
-    },
-    { 
-      title: "COMING SOON", 
-      image: "/img6.jpg",
-      description: "Coming Soon!"
+      title: "Dr. Yedu \nKrishna", 
+      image: "/speakers/speaker5.png",
+      description: "Dr. Yedu Krishna is the founder of Specrule Scientific Pvt. Ltd., a researcher-turned-entrepreneur with expertise in laser applications and spectroscopic techniques for diagnosing high-speed flows and combustion. He holds a Doctor of Philosophy (Ph.D.) in Aerospace Engineering and a Master of Science (M.Sc) in Photonics, bringing a strong research background to his innovative work in these fields."
     },
   ];
 

@@ -26,13 +26,6 @@ const scientists = [
         location: "Bangalore, India",
         image: "/speakers/speaker4.jpeg",
         description: "Nikhitha Chadde,co-founder and COO of Genex Space, is a dynamic leader in space education. She has developed educational content for ISRO and promotes academic exchanges between India and France. An advocate for STEM, she has inspired global youth through workshops in over eight countries, earning accolades like the KWAA Youth Icon Award for her dedication to space and STEM education."
-    },
-    {
-        name: "Dr. Yedu Krishna",
-        title: "Founder, Specrule Scientific Pvt. Ltd",
-        location: "Kerala, India",
-        image: "/speakers/speaker5.png",
-        description: "Dr. Yedu Krishna is the founder of Specrule Scientific Pvt. Ltd., a researcher-turned-entrepreneur with expertise in laser applications and spectroscopic techniques for diagnosing high-speed flows and combustion. He holds a Doctor of Philosophy (Ph.D.) in Aerospace Engineering and a Master of Science (M.Sc) in Photonics, bringing a strong research background to his innovative work in these fields."
     }
 ];
 
