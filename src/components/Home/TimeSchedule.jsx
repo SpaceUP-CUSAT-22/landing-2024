@@ -185,7 +185,7 @@ const TimeSchedule = () => {
           <div className="date-display font-alternox-regular mb-8 leading-tight text-white md:mb-12">
             <div className="text-lg md:text-xl">ON</div>
             <div className="text-3xl md:text-4xl">26 OCT 2024</div>
-            <div className="text-lg md:text-xl">SUNDAY</div>
+            <div className="text-lg md:text-xl">SATURDAY</div>
           </div>
 
           {/* <div className="semi-circle-container" style={{ width: '300px', height: '150px' }}>
