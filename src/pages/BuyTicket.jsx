@@ -168,7 +168,7 @@ const BuyTicket = () => {
       );
       const data = await response.json();
       setIsValidReferral(data.isValid);
-      setVerificationMessage("10% discount applied!");
+      setVerificationMessage(data.message);
     } catch (error) {
       console.error("Error verifying referral code:", error);
       setVerificationMessage("Error verifying code. Please try again.");
