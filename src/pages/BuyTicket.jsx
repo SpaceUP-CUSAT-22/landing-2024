@@ -263,8 +263,10 @@ const BuyTicket = () => {
       const token = generateToken();
 
       // Add data to Firestore
+      console.log(formData, fileUrl, new Date(), isValidReferral, referralCode, token)
       await addDoc(collection(db, "ticketorders"), {
         ...formData,
+        file: null,
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
         referralCode: isValidReferral ? referralCode : null,
@@ -306,7 +308,7 @@ const BuyTicket = () => {
     <div className="bg-black text-white min-h-screen flex flex-col">
       {/* Toast Notification */}
       <div
-        className={`fixed top-10 left-1/2 transform -translate-x-1/2 z-[101] transition duration-300 ease-in ${
+        className={`fixed bg-orange-500 top-10 left-1/2 transform -translate-x-1/2 z-[101] transition duration-300 ease-in ${
           toast.value ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -405,13 +407,6 @@ const BuyTicket = () => {
                 {verificationMessage}
               </p>
             )}
-            <input
-              type="file"
-              name="file"
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
             <button
               onClick={handleGPayRedirect}
               type="button"
