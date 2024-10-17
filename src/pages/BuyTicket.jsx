@@ -8,6 +8,10 @@ import {
   query,
   where,
   getDocs,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import emailjs from "@emailjs/browser";
@@ -53,6 +57,11 @@ const BuyTicket = () => {
     color: "green",
     message: "Ticket booked successfully! Check your email for the token.",
   });
+  const [showTeamOptions, setShowTeamOptions] = useState(false);
+  const [teamAction, setTeamAction] = useState(''); // 'create' or 'join'
+  const [teamName, setTeamName] = useState('');
+  const [teamMessage, setTeamMessage] = useState('');
+
 
   useEffect(() => {
     const spaceupText = spaceupRef.current;
@@ -123,6 +132,13 @@ const BuyTicket = () => {
       ...prevState,
       [name]: type === "file" ? files[0] : value,
     }));
+
+    if (name === 'workshop') {
+      setShowTeamOptions(value === 'Quiz');
+      setTeamAction('');
+      setTeamName('');
+      setTeamMessage('');
+    }
   };
 
   const handleReferralCodeChange = (e) => {
@@ -226,6 +242,75 @@ const BuyTicket = () => {
       );
   };
 
+  const handleTeamAction = (action) => {
+    setTeamAction(action);
+    setTeamName('');
+    setTeamMessage('');
+  };
+
+  const handleTeamNameChange = (e) => {
+    setTeamName(e.target.value);
+  };
+
+  const handleCreateTeam = async () => {
+    if (!teamName.trim()) {
+      setTeamMessage('Please enter a team name.');
+      return;
+    }
+
+    try {
+      const teamRef = doc(db, 'quizTeams', teamName);
+      const teamDoc = await getDoc(teamRef);
+
+      if (teamDoc.exists()) {
+        setTeamMessage('This team name already exists. Please choose another.');
+        return;
+      }
+
+      await setDoc(teamRef, {
+        leader: formData.name,
+        members: [],
+      });
+
+      setTeamMessage(`Team "${teamName}" created successfully. Share this team name with your team members.`);
+    } catch (error) {
+      console.error('Error creating team:', error);
+      setTeamMessage('An error occurred while creating the team. Please try again.');
+    }
+  };
+
+  const handleJoinTeam = async () => {
+    if (!teamName.trim()) {
+      setTeamMessage('Please enter a team name.');
+      return;
+    }
+
+    try {
+      const teamRef = doc(db, 'quizTeams', teamName);
+      const teamDoc = await getDoc(teamRef);
+
+      if (!teamDoc.exists()) {
+        setTeamMessage('This team does not exist. Please check the team name and try again.');
+        return;
+      }
+
+      const teamData = teamDoc.data();
+      if (teamData.members.includes(formData.name) || teamData.leader === formData.name) {
+        setTeamMessage('You are already a member of this team.');
+        return;
+      }
+
+      await updateDoc(teamRef, {
+        members: [...teamData.members, formData.name],
+      });
+
+      setTeamMessage(`You've successfully joined the team "${teamName}".`);
+    } catch (error) {
+      console.error('Error joining team:', error);
+      setTeamMessage('An error occurred while joining the team. Please try again.');
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -264,14 +349,25 @@ const BuyTicket = () => {
 
       // Add data to Firestore
       console.log(formData, fileUrl, new Date(), isValidReferral, referralCode, token)
-      await addDoc(collection(db, "ticketorders"), {
+      const ticketData = {
         ...formData,
         file: null,
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
         referralCode: isValidReferral ? referralCode : null,
         token: token,
-      });
+      };
+
+      if (formData.workshop === 'Quiz') {
+        ticketData.quizTeam = {
+          action: teamAction,
+          teamName: teamName,
+        };
+      }
+
+      await addDoc(collection(db, "ticketorders"), ticketData);
+
+
 
       // Send email
       // sendEmail(formData.email, formData.name, token);
@@ -292,6 +388,11 @@ const BuyTicket = () => {
       });
       setReferralCode("");
       setIsValidReferral(false);
+      setShowTeamOptions(false);
+      setTeamAction('');
+      setTeamName('');
+      setTeamMessage('');
+
     } catch (error) {
       console.error("Error adding document: ", error);
       setToast({
@@ -385,7 +486,49 @@ const BuyTicket = () => {
               <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option>
               <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option>
               <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option>
+              <option value="Quiz">Quiz</option>
             </select>
+            {showTeamOptions && (
+              <div className="space-y-3">
+                <div className="flex space-x-3">
+                  <button
+                    type="button"
+                    onClick={() => handleTeamAction('create')}
+                    className={`flex-1 py-2 rounded ${teamAction === 'create' ? 'bg-purple-600 text-white' : 'bg-gray-600 text-gray-200'}`}
+                  >
+                    Create Team
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleTeamAction('join')}
+                    className={`flex-1 py-2 rounded ${teamAction === 'join' ? 'bg-purple-600 text-white' : 'bg-gray-600 text-gray-200'}`}
+                  >
+                    Join Team
+                  </button>
+                </div>
+                {teamAction && (
+                  <div className="space-y-3">
+                    <input
+                      type="text"
+                      placeholder={teamAction === 'create' ? "Enter new team name" : "Enter team name to join"}
+                      value={teamName}
+                      onChange={handleTeamNameChange}
+                      className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                    />
+                    <button
+                      type="button"
+                      onClick={teamAction === 'create' ? handleCreateTeam : handleJoinTeam}
+                      className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
+                    >
+                      {teamAction === 'create' ? 'Create Team' : 'Join Team'}
+                    </button>
+                    {teamMessage && (
+                      <p className="text-sm text-yellow-400">{teamMessage}</p>
+                    )}
+                  </div>
+                )}
+                </div>
+                )}
             <input
               type="text"
               name="referralCode"
