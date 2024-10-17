@@ -375,7 +375,7 @@ const BuyTicket = () => {
       setToast({
         value: true,
         color: "green",
-        message: "Ticket booked successfully! Check your email for the token.",
+        message: "Ticket booked successfully! You will receive an email with your ticket 2 days before the event",
       });
       setFormData({
         name: "",
