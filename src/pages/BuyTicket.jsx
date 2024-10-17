@@ -274,7 +274,7 @@ const BuyTicket = () => {
       });
 
       // Send email
-      sendEmail(formData.email, formData.name, token);
+      // sendEmail(formData.email, formData.name, token);
 
       setToast({
         value: true,
