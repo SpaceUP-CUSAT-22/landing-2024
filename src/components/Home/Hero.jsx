@@ -59,7 +59,7 @@ const Hero = () => {
       gsap.set(logo, { opacity: 0, y: -100 });
       gsap.set(spaceupText, { fontSize: "clamp(5rem, 15vw, 10rem)" });
       gsap.set(cusatText, { opacity: 0, y: 20 });
-      gsap.set(merchBanner, { opacity: 0, y: -20 });
+      // gsap.set(merchBanner, { opacity: 0, y: -20 });
       gsap.set(astronaut, { y: "-100%", opacity: 0 });
       gsap.set(planet, { y: "120vh", rotation: 0 });
       // Timeline 1
@@ -102,12 +102,12 @@ const Hero = () => {
         duration: 1,
         ease: "power2.inOut"
       }, "<+=0.5")
-      .to(merchBanner, {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.inOut",
-      }, "<");
+      // .to(merchBanner, {
+      //   opacity: 1,
+      //   y: 0,
+      //   duration: 1,
+      //   ease: "power2.inOut",
+      // }, "<");
     
       // Timeline 2 for planet rotation
       const tl2 = gsap.timeline({
@@ -206,22 +206,22 @@ const Hero = () => {
       <section ref={sectionRef} className="hero-section h-screen bg-black">
         <div className="relative flex h-full flex-col items-center justify-center">
           <button
-            onClick={() => window.location.replace('/buymerch')}
-            className="merch-banner absolute top-0 md:top-5 w-11/12 sm:w-auto"
+            onClick={() => window.location.replace('/buyticket')}
+            className="merch-banner fixed top-0 md:top-5 w-11/12 sm:w-auto"
             ref={merchBannerRef}
           >
             <div className="merch-banner-content">
               <span className="merch-icon">🚀</span>
-              <span className="merch-text">Get Your SpaceUp Merch Now!</span>
-              <span className="merch-cta">Shop Now</span>
+              <span className="merch-text">Get Your SpaceUp Tickets Now!</span>
+              <span className="merch-cta">Buy Ticket</span>
             </div>
           </button>
-          <img
+          {/* <img
             ref={logoRef}
             src="/logo.svg"
             alt="SpaceUp Logo"
             className="w-24 md:w-32 lg:w-40 mb-4 z-30"
-          />
+          /> */}
           <h1
             ref={spaceupRef}
             className="font-alternox-regular mb-4 text-center font-bold tracking-wider text-white z-10"
