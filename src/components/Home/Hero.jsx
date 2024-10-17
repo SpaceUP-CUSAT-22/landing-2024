@@ -16,7 +16,11 @@ const Hero = () => {
   const planetRef = useRef(null);
   const aboutSectionRef = useRef(null);
 
+  const logoRef = useRef(null);
+
   useEffect(() => {
+    const logo = logoRef.current;
+
     const handleAutoScroll = () => {
       setShowArrow(false);
       const duration = 3000; // Duration of the scroll animation in milliseconds
@@ -52,6 +56,7 @@ const Hero = () => {
     // Initial setup
     if(window.innerWidth >= 768){
 
+      gsap.set(logo, { opacity: 0, y: -100 });
       gsap.set(spaceupText, { fontSize: "clamp(5rem, 15vw, 10rem)" });
       gsap.set(cusatText, { opacity: 0, y: 20 });
       gsap.set(merchBanner, { opacity: 0, y: -20 });
@@ -70,6 +75,12 @@ const Hero = () => {
     
       tl1.to(spaceupText, {
         fontSize: "clamp(4rem, 12vw, 8rem)",
+        duration: 1,
+        ease: "power2.inOut"
+      })
+      .to(logo, {
+        opacity: 1,
+        y: -100,
         duration: 1,
         ease: "power2.inOut"
       })
@@ -133,6 +144,7 @@ const Hero = () => {
           });
       }
     }else{
+      gsap.set(logo, { opacity: 1, y: 0 });
       gsap.set(spaceupText, { fontSize: "clamp(3rem, 15vw, 5rem)" });
       gsap.set(cusatText, { opacity: 1, y: 20 });
       gsap.set(merchBanner, { opacity: 1, y: 10 });
@@ -204,6 +216,12 @@ const Hero = () => {
               <span className="merch-cta">Shop Now</span>
             </div>
           </button>
+          <img
+            ref={logoRef}
+            src="/logo.svg"
+            alt="SpaceUp Logo"
+            className="w-24 md:w-32 lg:w-40 mb-4 z-30"
+          />
           <h1
             ref={spaceupRef}
             className="font-alternox-regular mb-4 text-center font-bold tracking-wider text-white z-10"
