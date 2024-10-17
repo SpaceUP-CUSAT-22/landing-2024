@@ -315,7 +315,13 @@ const BuyTicket = () => {
         </div>
       </div>
 
+      <img
+        src="/logo.svg"
+        alt="Space"
+        className="w-[350px] m-3 max-w-md"
+      />
       <h1 className="text-xl p-6">Get Your Ticket Here</h1>
+      
       
       <div className="flex-grow flex flex-col lg:flex-row justify-between items-start p-6 sm:px-12">
         {/* Form Column */}
@@ -471,7 +477,8 @@ const BuyTicket = () => {
             alt="Space"
             className="hidden w-3/4 max-w-md z-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           />
-                    <h2
+          
+          <h2
             ref={cusatRef}
             className="hidden font-alternox-regular text-center text-2xl font-semibold tracking-widest text-white z-30 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 translate-y-1/2"
           >
