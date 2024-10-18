@@ -522,7 +522,7 @@ const BuyTicket = () => {
                 <option value="">Select Workshop</option>
                 <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option>
                 {/* <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option> */}
-                <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option>
+                {/* <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option> */}
                 <option value="Quiz">Quiz</option>
               </select>
     
