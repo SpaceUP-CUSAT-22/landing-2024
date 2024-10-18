@@ -273,7 +273,7 @@ const BuyMerch = () => {
           "Sorry! This feature is only available on mobile devices. Please scan the QR code",
       });
     }
-    const receiverUPI = "pranavjayasurya0203@oksbi";
+    const receiverUPI = "shivamadithya-1@okicici";
     const note = "Payment for Tshirt";
     const name = "SEDS";
 
@@ -289,7 +289,7 @@ const BuyMerch = () => {
     setCheckBox(checked);
   };
 
-  const upiid = "pranavjayasurya0203@oksbi";
+  const upiid = "shivamadithya-1@okicici";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(
