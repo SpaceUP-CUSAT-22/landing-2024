@@ -673,6 +673,14 @@ const BuyTicket = () => {
           </h2>
         </div>
       </div>
+
+      {/* Contact Information Section */}
+      <div className="w-full text-center py-6 bg-gray-900">
+        <h3 className="text-lg font-semibold mb-2">For any queries, contact:</h3>
+        <p>Aditya Kurup: 95536 85246</p>
+        <p>Jithin: 96334 52202</p>
+      </div>
+      
       
       <footer className="mt-auto p-4 text-center text-xs border-t border-gray-700 font-alternox-regular">
         copyright © 2024 | spaceupCUSAT
