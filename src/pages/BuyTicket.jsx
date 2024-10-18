@@ -659,12 +659,12 @@ const BuyTicket = () => {
             </div>
           </div>
 
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          {/* <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Scan to Pay</h2>
             <div className="bg-white p-2 rounded-lg inline-block">
               <img src="/qrcode.png" alt="QR Code for payment" className="w-full max-w-[200px] mx-auto" />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* SpaceUp and Astronaut Column - Hidden on mobile, visible on larger screens */}
