@@ -124,15 +124,6 @@ const BuyTicket = () => {
     }
   }, [toast]);
 
-  useEffect(() => {
-    // Apply discount if referral code is valid
-    if (isValidReferral) {
-      setPrice(399 * 0.9); // 10% discount
-    } else {
-      setPrice(399); // Regular price
-    }
-  }, [isValidReferral]);
-
   const checkWorkshopAvailability = async (workshop) => {
     const workshopRef = doc(db, 'workshopCounts', workshop);
     const workshopDoc = await getDoc(workshopRef);
