@@ -213,7 +213,7 @@ const BuyTicket = () => {
       });
       return;
     }
-    const receiverUPI = "sheenakm10-2@oksbi";
+    const receiverUPI = "shivamadithya-1@okicici";
     const note = "Payment for SpaceUp CUSAT Ticket";
     const name = "SEDS";
 
@@ -223,7 +223,7 @@ const BuyTicket = () => {
     window.location.href = upiUrl;
   };
 
-  const upiid = "sheenakm10-2@oksbi";
+  const upiid = "shivamadithya-1@okicici";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(
@@ -650,12 +650,12 @@ const BuyTicket = () => {
             </div>
           </div>
 
-          {/* <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Scan to Pay</h2>
             <div className="bg-white p-2 rounded-lg inline-block">
               <img src="/qrcode.png" alt="QR Code for payment" className="w-full max-w-[200px] mx-auto" />
             </div>
-          </div> */}
+          </div>
         </div>
 
         {/* SpaceUp and Astronaut Column - Hidden on mobile, visible on larger screens */}
