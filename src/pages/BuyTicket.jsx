@@ -340,16 +340,16 @@ const BuyTicket = () => {
 
     try {
       // Check for duplicate entries
-      const isWorkshopAvailable = await checkWorkshopAvailability(formData.workshop);
-      if (!isWorkshopAvailable) {
-        setToast({
-          value: true,
-          color: "red",
-          message: "Sorry, this workshop is full. Please choose another.",
-        });
-        setIsLoading(false);
-        return;
-      }
+      // const isWorkshopAvailable = await checkWorkshopAvailability(formData.workshop);
+      // if (!isWorkshopAvailable) {
+      //   setToast({
+      //     value: true,
+      //     color: "red",
+      //     message: "Sorry, this workshop is full. Please choose another.",
+      //   });
+      //   setIsLoading(false);
+      //   return;
+      // }
 
 
       const q = query(
@@ -521,8 +521,8 @@ const BuyTicket = () => {
               >
                 <option value="">Select Workshop</option>
                 <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option>
-                <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option>
-                <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option>
+                {/* <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option> */}
+                {/* <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option> */}
                 <option value="Quiz">Quiz</option>
               </select>
     
