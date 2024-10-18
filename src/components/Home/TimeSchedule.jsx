@@ -21,7 +21,7 @@ const TimeSchedule = () => {
   const stars = generateStars(50);
   const venueSchedules = [
     [
-      { time: "09:00 AM - 10:00 AM", activity: "Innauguration" },
+      { time: "09:00 AM - 10:00 AM", activity: "Inauguration" },
       { time: "10:30 AM - 11:30 AM", activity: "Talk Session - Dr. Murthy Remilla" },
       { time: "12:00 PM - 01:00 PM", activity: "Talk Session - Dr. Satish R Thampi" },
       { time: "01:00 PM - 02:30 PM", activity: "Lunch Break" },
