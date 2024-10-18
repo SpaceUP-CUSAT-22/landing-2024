@@ -49,7 +49,7 @@ const BuyTicket = () => {
 
   const [workshopLimits, setWorkshopLimits] = useState({
     "Dr. Yedu Krishna": 400,
-    "TEAM MARUTSAKA": 80,
+    "TEAM MARUTSAKA": 50,
     "AMAL SREE AJITH": 120,
     "Quiz": 16
   });
@@ -222,7 +222,7 @@ const BuyTicket = () => {
       });
       return;
     }
-    const receiverUPI = "shivamadithya-1@okicici";
+    const receiverUPI = "sheenakm10-2@oksbi";
     const note = "Payment for SpaceUp CUSAT Ticket";
     const name = "SEDS";
 
@@ -232,7 +232,7 @@ const BuyTicket = () => {
     window.location.href = upiUrl;
   };
 
-  const upiid = "shivamadithya-1@okicici";
+  const upiid = "sheenakm10-2@oksbi";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(
@@ -455,204 +455,225 @@ const BuyTicket = () => {
   };
 
   return (
-    <div className="bg-black text-white min-h-screen flex flex-col">
-      {/* Toast Notification */}
-      <div
-        className={`fixed bg-orange-500 top-10 left-1/2 transform -translate-x-1/2 z-[101] transition duration-300 ease-in ${
-          toast.value ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        <div className={`bg-${toast.color}-500 px-10 py-5 rounded`}>
-          <p className="exo text-center text-white">{toast.message}</p>
+      <div className="bg-black text-white min-h-screen flex flex-col">
+        {/* Toast Notification */}
+        <div
+          className={`fixed top-10 left-1/2 transform -translate-x-1/2 z-[101] transition duration-300 ease-in ${
+            toast.value ? "opacity-100" : "opacity-0"
+          }`}
+        >
+          <div className={`bg-${toast.color}-500 px-6 py-3 rounded-lg shadow-lg`}>
+            <p className="text-white text-center font-semibold">{toast.message}</p>
+          </div>
         </div>
-      </div>
-
-      <img
-        src="/logo.svg"
-        alt="Space"
-        className="w-[350px] m-3 max-w-md"
-      />
-      <h1 className="text-xl p-6">Get Your Ticket Here</h1>
-      
-      
-      <div className="flex-grow flex flex-col lg:flex-row justify-between items-start p-6 sm:px-12">
-        {/* Form Column */}
-        <div className="w-full lg:w-1/3 lg:pr-4 mb-6 lg:mb-0">
-          <form onSubmit={handleSubmit} className="flex flex-col space-y-3">
-            <input
-              type="text"
-              name="name"
-              placeholder="NAME"
-              value={formData.name}
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="EMAIL"
-              value={formData.email}
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
-            <input
-              type="tel"
-              name="phone"
-              placeholder="PHONE"
-              value={formData.phone}
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
-            <input
-              type="text"
-              name="college"
-              placeholder="COLLEGE/SCHOOL"
-              value={formData.college}
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
-            <input
-              type="text"
-              name="year"
-              placeholder="YEAR/CLASS"
-              value={formData.year}
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
-            <select
-              name="workshop"
-              value={formData.workshop}
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            >
-              <option value="">SELECT WORKSHOP</option>
-              <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option>
-              <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option>
-              <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option>
-              <option value="Quiz">Quiz</option>
-            </select>
-            {showTeamOptions && (
-              <div className="space-y-3">
-                <div className="flex space-x-3">
-                  <button
-                    type="button"
-                    onClick={() => handleTeamAction('create')}
-                    className={`flex-1 py-2 rounded ${teamAction === 'create' ? 'bg-purple-600 text-white' : 'bg-gray-600 text-gray-200'}`}
-                  >
-                    Create Team
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => handleTeamAction('join')}
-                    className={`flex-1 py-2 rounded ${teamAction === 'join' ? 'bg-purple-600 text-white' : 'bg-gray-600 text-gray-200'}`}
-                  >
-                    Join Team
-                  </button>
-                </div>
-                {teamAction && (
-                  <div className="space-y-3">
-                    <input
-                      type="text"
-                      placeholder={teamAction === 'create' ? "Enter new team name" : "Enter team name to join"}
-                      value={teamName}
-                      onChange={handleTeamNameChange}
-                      className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-                    />
+    
+        <header className="bg-gray-900 py-4 px-6 flex justify-between items-center">
+          <img src="/logo.svg" alt="SpaceUp CUSAT" className="h-12" />
+          <h1 className="text-2xl font-bold">Get Your Ticket</h1>
+        </header>
+    
+        <main className="flex-grow flex flex-col lg:flex-row justify-between p-6 lg:p-12 space-y-8 lg:space-y-0 lg:space-x-8">
+          {/* Form Column */}
+          <div className="w-full lg:w-1/2 xl:w-2/5">
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              />
+              <input
+                type="tel"
+                name="phone"
+                placeholder="Phone"
+                value={formData.phone}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              />
+              <input
+                type="text"
+                name="college"
+                placeholder="College/School"
+                value={formData.college}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              />
+              <input
+                type="text"
+                name="year"
+                placeholder="Year/Class"
+                value={formData.year}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              />
+              <select
+                name="workshop"
+                value={formData.workshop}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              >
+                <option value="">Select Workshop</option>
+                <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option>
+                <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option>
+                <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option>
+                <option value="Quiz">Quiz</option>
+              </select>
+    
+              {showTeamOptions && (
+                <div className="space-y-4">
+                  <div className="flex space-x-4">
                     <button
                       type="button"
-                      onClick={teamAction === 'create' ? handleCreateTeam : handleJoinTeam}
-                      className="w-full py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors duration-200"
+                      onClick={() => handleTeamAction('create')}
+                      className={`flex-1 py-2 rounded-lg ${teamAction === 'create' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300'}`}
                     >
-                      {teamAction === 'create' ? 'Create Team' : 'Join Team'}
+                      Create Team
                     </button>
-                    {teamMessage && (
-                      <p className="text-sm text-yellow-400">{teamMessage}</p>
-                    )}
+                    <button
+                      type="button"
+                      onClick={() => handleTeamAction('join')}
+                      className={`flex-1 py-2 rounded-lg ${teamAction === 'join' ? 'bg-purple-600 text-white' : 'bg-gray-700 text-gray-300'}`}
+                    >
+                      Join Team
+                    </button>
                   </div>
-                )}
+                  {teamAction && (
+                    <div className="space-y-3">
+                      <input
+                        type="text"
+                        placeholder={teamAction === 'create' ? "Enter new team name" : "Enter team name to join"}
+                        value={teamName}
+                        onChange={handleTeamNameChange}
+                        className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                      />
+                      <button
+                        type="button"
+                        onClick={teamAction === 'create' ? handleCreateTeam : handleJoinTeam}
+                        className="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200"
+                      >
+                        {teamAction === 'create' ? 'Create Team' : 'Join Team'}
+                      </button>
+                      {teamMessage && (
+                        <p className="text-sm text-yellow-400">{teamMessage}</p>
+                      )}
+                    </div>
+                  )}
                 </div>
-                )}
-            <input
-              type="text"
-              name="referralCode"
-              placeholder="COUPON CODE (OPTIONAL)"
-              value={referralCode}
-              onChange={handleReferralCodeChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-            />
-            <button
-              type="button"
-              onClick={verifyReferralCode}
-              disabled={isVerifying}
-              className="w-2/5 px-2 py-3 bg-transparent border border-purple-500 text-purple-500 rounded text-sm whitespace-nowrap transition-colors duration-200"
-            >
-              {isVerifying ? "Verifying..." : "Verify Code"}
-            </button>
-            {verificationMessage && (
-              <p className={`text-sm ${isValidReferral ? "text-green-500" : "text-red-500"}`}>
-                {verificationMessage}
+              )}
+    
+              <div className="flex space-x-4">
+                <input
+                  type="text"
+                  name="referralCode"
+                  placeholder="Coupon Code (Optional)"
+                  value={referralCode}
+                  onChange={handleReferralCodeChange}
+                  className="flex-grow py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                />
+                <button
+                  type="button"
+                  onClick={verifyReferralCode}
+                  disabled={isVerifying}
+                  className="px-4 py-3 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition-colors duration-200 whitespace-nowrap"
+                >
+                  {isVerifying ? "Verifying..." : "Verify Code"}
+                </button>
+              </div>
+              {verificationMessage && (
+                <p className={`text-sm ${isValidReferral ? "text-green-500" : "text-red-500"}`}>
+                  {verificationMessage}
+                </p>
+              )}
+    
+              <div className="space-y-4">
+                <button
+                  onClick={handleGPayRedirect}
+                  type="button"
+                  className="w-full py-3 bg-red-600 text-white rounded-lg text-sm hover:bg-red-700 transition-colors duration-200"
+                >
+                    
+                Pay ₹ {price.toFixed(2)}
+                </button>
+              <p className="text-center text-gray-400">OR</p>
+              <p className="text-center text-gray-300">
+                Scan the QR code below and pay ₹ {price.toFixed(2)} to{" "}
+                <span
+                  onClick={handleCopy}
+                  className="bg-gray-800 px-2 py-1 text-blue-400 rounded cursor-pointer hover:bg-gray-700 transition-colors duration-200"
+                  title="Click to copy"
+                >
+                  {upiid}
+                  <i className="fas fa-copy ml-2"></i>
+                </span>
               </p>
-            )}
-            <button
-              onClick={handleGPayRedirect}
-              type="button"
-              className="w-full py-3 bg-red-500 text-white rounded text-sm hover:bg-red-600 transition-colors duration-200"
-            >
-              Pay ₹ {price.toFixed(2)}
-            </button>
-            <span className="text-center text-white">OR</span>
-            <span className="text-center text-white">
-              Scan the QR code below and pay ₹ {price.toFixed(2)} to{" "}
-              <span
-                onClick={handleCopy}
-                style={{ cursor: "pointer" }}
-                className="bg-[#050B17] p-1 text-blue-500 rounded"
-                title="Click to copy"
-              >
-                {upiid}
-                <i className="fa-solid fa-copy ml-3"></i>
-              </span>
-            </span>
-            
-            <input
-              type="file"
-              name="file"
-              onChange={handleInputChange}
-              className="w-full py-3 pl-3 bg-transparent border border-gray-600 rounded text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-              required
-            />
+            </div>
+
+            <div className="space-y-2">
+              <label htmlFor="file" className="block text-sm text-gray-400">Upload Payment Screenshot</label>
+              <input
+                type="file"
+                id="file"
+                name="file"
+                onChange={handleInputChange}
+                className="w-full py-2 px-3 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              />
+            </div>
+
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3 bg-purple-600 text-white rounded text-sm hover:bg-purple-700 transition-colors duration-200"
+              className="w-full py-3 bg-purple-600 text-white rounded-lg text-sm hover:bg-purple-700 transition-colors duration-200"
             >
               {isLoading ? "Processing..." : "SUBMIT"}
             </button>
           </form>
         </div>
-        
-        {/* Scan to Pay Column */}
-        <div className="w-full lg:w-1/3 lg:px-4 mb-6 lg:mb-0 flex flex-col items-center">
-          <h2 className="text-lg mb-3 font-alternox-regular">SCAN TO PAY</h2>
-          <div className="bg-white p-2 rounded-lg">
-            {/* Replace with an actual QR code image */}
-            <img src="/qrcode.png" alt="qrcode" />
+
+        {/* Payment Info and QR Code Column */}
+        <div className="w-full lg:w-1/2 xl:w-1/3 space-y-8">
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
+            <div className="space-y-2 text-sm">
+              <p><span className="text-gray-400">Account no.:</span> 42144526050</p>
+              <p><span className="text-gray-400">IFSC CODE:</span> SBIN0070235</p>
+              <p><span className="text-gray-400">Bank Name:</span> SBI</p>
+              <p><span className="text-gray-400">Branch Name:</span> CUSAT Branch</p>
+              <p><span className="text-gray-400">SWIFT CODE:</span> SBININBBT30</p>
+            </div>
+          </div>
+
+          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+            <h2 className="text-xl font-semibold mb-4">Scan to Pay</h2>
+            <div className="bg-white p-2 rounded-lg inline-block">
+              <img src="/qrcode.png" alt="QR Code for payment" className="w-full max-w-[200px] mx-auto" />
+            </div>
           </div>
         </div>
 
-        {/* SpaceUp and Astronaut Column */}
-        <div className="w-full lg:w-1/3 lg:pl-4 flex flex-col items-center justify-center relative h-[60vh] lg:h-auto">
+        {/* SpaceUp and Astronaut Column - Hidden on mobile, visible on larger screens */}
+        <div className="hidden xl:block w-1/4 relative">
           <h1
             ref={spaceupRef}
-            className="hidden font-alternox-regular text-center font-bold tracking-wider text-white z-10 absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            className="hidden font-alternox-regular text-center font-bold tracking-wider text-white absolute top-1/4 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
             style={{
-              fontSize: "clamp(3rem, 8vw, 6rem)",
+              fontSize: "clamp(2.5rem, 5vw, 4rem)",
               textShadow: "0 0 15px #800080, 0 0 25px #800080, 0 0 35px #800080",
             }}
           >
@@ -661,18 +682,17 @@ const BuyTicket = () => {
           <img
             ref={astronautRef}
             src="/Astronaut1.png"
-            alt="Space"
-            className="hidden w-3/4 max-w-md z-20 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+            alt="Astronaut"
+            className="hidden w-full max-w-[300px] absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
           />
-          
           <h2
             ref={cusatRef}
-            className="hidden font-alternox-regular text-center text-2xl font-semibold tracking-widest text-white z-30 absolute bottom-1/4 left-1/2 transform -translate-x-1/2 translate-y-1/2"
+            className="hidden font-alternox-regular text-center text-2xl font-semibold tracking-widest text-white absolute bottom-1/4 left-1/2 transform -translate-x-1/2 translate-y-1/2"
           >
             C U S A T
           </h2>
         </div>
-      </div>
+      </main>
 
       {/* Contact Information Section */}
       <div className="w-full text-center py-6 bg-gray-900">
@@ -680,17 +700,12 @@ const BuyTicket = () => {
         <p>Aditya Kurup: 95536 85246</p>
         <p>Jithin: 96334 52202</p>
       </div>
-      
-      
-      <footer className="mt-auto p-4 text-center text-xs border-t border-gray-700 font-alternox-regular">
-        copyright © 2024 | spaceupCUSAT
+
+      <footer className="mt-auto p-4 text-center text-xs border-t border-gray-800">
+        &copy; 2024 SpaceUp CUSAT. All rights reserved.
       </footer>
     </div>
   );
-};
+}
 
-export default BuyTicket;
-
-
-
-      
+export default BuyTicket
