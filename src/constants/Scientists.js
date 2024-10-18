@@ -15,8 +15,8 @@ const scientists = [
     },
     {
         name: "Dr. R. Satheesh Thampi",
-        title: "Head of the Planetary Science Branch at the Space Physics Laboratory",
-        location: "Tamil Nadu, India",
+        title: "Head of the Planetary Science Branch at the Space Physics Laboratory, Vikram Sarabhai Space Centre",
+        location: "Thiruvananthapuram",
         image: "/speakers/speaker3.png",
         description: "Dr. R. Satheesh Thampi  leads the Planetary Science Branch at VSSC and is the Principal Investigator of the PAPA payload on the Aditya-L1 mission. His work significantly advances solar research, enhancing our understanding of solar phenomena, and underscores his dedication to space science and planetary exploration."
     },
