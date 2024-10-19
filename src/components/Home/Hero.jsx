@@ -207,7 +207,7 @@ const Hero = () => {
         <div className="relative flex h-full flex-col items-center justify-center">
           <button
             onClick={() => window.location.replace('/buyticket')}
-            className="merch-banner fixed top-0 md:top-5 w-11/12 sm:w-auto"
+            className="hidden merch-banner fixed top-0 md:top-5 w-11/12 sm:w-auto"
             ref={merchBannerRef}
           >
             <div className="merch-banner-content">
