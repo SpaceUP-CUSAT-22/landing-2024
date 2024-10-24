@@ -129,7 +129,7 @@ const Events = () => {
     { 
       title: "QUIZ", 
       image: "/img1.jpg",
-      description: "A brainstorming aerospace quiz with twists and turns will be there, featuring an exciting prize pool of 50k."
+      description: "A dynamic and challenging aerospace quiz, featuring an enticing prize pool of 15k INR, will take place in a team format. Each team must consist of four members, all of whom must be registered for SpaceUp. The first team member should register as the team lead, creating a new team for the quiz, while the remaining three members should join using the same team name."
     },
     { 
       title: "GAMES", 

@@ -15,6 +15,7 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import emailjs from "@emailjs/browser";
+import { Link } from "react-router-dom";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_APIKEY,
@@ -45,6 +46,7 @@ const BuyTicket = () => {
     year: "",
     workshop: "",
     file: null,
+    food: ""
   });
 
   const [workshopLimits, setWorkshopLimits] = useState({
@@ -213,7 +215,7 @@ const BuyTicket = () => {
       });
       return;
     }
-    const receiverUPI = "akurup32@fifederal";
+    const receiverUPI = "sheenakm10-2@oksbi";
     const note = "Payment for SpaceUp CUSAT Ticket";
     const name = "SEDS";
 
@@ -223,7 +225,7 @@ const BuyTicket = () => {
     window.location.href = upiUrl;
   };
 
-  const upiid = "akurup32@fifederal";
+  const upiid = "sheenakm10-2@oksbi";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(
@@ -339,19 +341,19 @@ const BuyTicket = () => {
     setIsLoading(true);
 
     try {
-      // Check for duplicate entries
       // const isWorkshopAvailable = await checkWorkshopAvailability(formData.workshop);
       // if (!isWorkshopAvailable) {
-      //   setToast({
-      //     value: true,
-      //     color: "red",
-      //     message: "Sorry, this workshop is full. Please choose another.",
-      //   });
-      //   setIsLoading(false);
-      //   return;
-      // }
-
-
+        //   setToast({
+          //     value: true,
+          //     color: "red",
+          //     message: "Sorry, this workshop is full. Please choose another.",
+          //   });
+          //   setIsLoading(false);
+          //   return;
+          // }
+          
+          
+      // Check for duplicate entries
       const q = query(
         collection(db, "ticketorders"),
         where("email", "==", formData.email),
@@ -447,21 +449,28 @@ const BuyTicket = () => {
 
   return (
       <div className="bg-black text-white min-h-screen flex flex-col">
+        <div className="bg-gradient-to-r from-purple-600 via-pink-500 to-red-500 py-2 px-4">
+          <p className="text-center font-bold animate-pulse">
+            🚀 FLASH SALE ON NOW! Limited Time Offer 🚀
+          </p>
+        </div>
         {/* Toast Notification */}
         <div
           className={`fixed top-10 left-1/2 transform -translate-x-1/2 z-[101] transition duration-300 ease-in ${
             toast.value ? "opacity-100" : "opacity-0"
           }`}
         >
-          <div className={`bg-${toast.color}-500 px-6 py-3 rounded-lg shadow-lg`}>
+          <div className={`bg-orange-500 px-6 py-3 rounded-lg shadow-lg`}>
             <p className="text-white text-center font-semibold">{toast.message}</p>
           </div>
         </div>
     
-        <header className="bg-gray-900 py-4 px-6 flex justify-between items-center">
+        <Link to="/" className="bg-gray-900 py-4 px-6 flex justify-between items-center">
           <img src="/logo.svg" alt="SpaceUp CUSAT" className="h-12" />
           <h1 className="text-2xl font-bold">Get Your Ticket</h1>
-        </header>
+        </Link>
+
+        
     
         <main className="flex-grow flex flex-col lg:flex-row justify-between p-6 lg:p-12 space-y-8 lg:space-y-0 lg:space-x-8">
           {/* Form Column */}
@@ -520,10 +529,21 @@ const BuyTicket = () => {
                 required
               >
                 <option value="">Select Workshop</option>
-                {/* <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option> */}
-                {/* <option value="AMAL SREE AJITH">AMAL SREE AJITH - Astrophotography</option> */}
-                {/* <option value="TEAM MARUTSAKA">TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option> */}
+                <option value="Dr. Yedu Krishna">Dr. Yedu Krishna - The role of R&D startups in reliant India</option>
+                <option value="Dr. Yedu Krishna">(SOLD OUT) AMAL SREE AJITH - Astrophotography</option>
+                <option value="Dr. Yedu Krishna">(SOLD OUT) TEAM MARUTSAKA - Skies unlocked, Inside team Marutsakha's journey</option>
                 {/* <option value="Quiz">Quiz</option> */}
+              </select>
+              <select
+                name="food"
+                value={formData.food}
+                onChange={handleInputChange}
+                className="w-full py-3 px-4 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
+                required
+              >
+                <option value="">Select Preference</option>
+                <option value="non-veg">Non-Veg</option>
+                <option value="veg">Veg</option>
               </select>
     
               {showTeamOptions && (
@@ -613,6 +633,48 @@ const BuyTicket = () => {
                   <i className="fas fa-copy ml-2"></i>
                 </span>
               </p>
+
+              {/* Bank Transfer Note */}
+              <div className="mt-4 p-3 bg-gray-800 rounded-lg">
+                <p className="text-sm text-yellow-400">
+                  ⚠️ If UPI payment is not working, please use bank transfer with the account details provided. 
+                  Don't forget to upload the payment screenshot!
+                </p>
+              </div>
+            </div>
+
+            {/* Mobile-only Payment Section */}
+            <div className="lg:hidden p-6 space-y-6">
+
+              {/* QR Code Section */}
+              <div className="bg-gray-800 p-4 rounded-lg shadow-lg text-center">
+                <h2 className="text-lg font-semibold mb-3">Scan to Pay ₹{price}</h2>
+                <div className="bg-white p-2 rounded-lg inline-block">
+                  <img src="/qrcode.png" alt="QR Code for payment" className="w-full max-w-[200px] mx-auto" />
+                </div>
+                <p className="mt-3 text-sm text-gray-300">
+                  UPI ID: <span
+                    onClick={handleCopy}
+                    className="bg-gray-700 px-2 py-1 text-blue-400 rounded cursor-pointer"
+                    title="Click to copy"
+                  >
+                    {upiid}
+                    <i className="fas fa-copy ml-2"></i>
+                  </span>
+                </p>
+              </div>
+
+              {/* Bank Details */}
+              <div className="bg-gray-800 p-4 rounded-lg shadow-lg">
+                <h2 className="text-lg font-semibold mb-3">Bank Transfer Details</h2>
+                <div className="space-y-2 text-sm">
+                  <p><span className="text-gray-400">Account no.:</span> 42144526050</p>
+                  <p><span className="text-gray-400">IFSC CODE:</span> SBIN0070235</p>
+                  <p><span className="text-gray-400">Bank Name:</span> SBI</p>
+                  <p><span className="text-gray-400">Branch:</span> CUSAT Branch</p>
+                  <p><span className="text-gray-400">SWIFT CODE:</span> SBININBBT30</p>
+                </div>
+              </div>
             </div>
 
             <div className="space-y-2">
@@ -637,19 +699,21 @@ const BuyTicket = () => {
           </form>
         </div>
 
-        {/* Payment Info and QR Code Column */}
-        <div className="w-full lg:w-1/2 xl:w-1/3 space-y-8">
+        <div className="hidden lg:block w-full lg:w-1/2 xl:w-1/3 space-y-8">
+
+          {/* Payment Details */}
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
             <div className="space-y-2 text-sm">
               <p><span className="text-gray-400">Account no.:</span> 42144526050</p>
               <p><span className="text-gray-400">IFSC CODE:</span> SBIN0070235</p>
               <p><span className="text-gray-400">Bank Name:</span> SBI</p>
-              <p><span className="text-gray-400">Branch Name:</span> CUSAT Branch</p>
+              <p><span className="text-gray-400">Branch:</span> CUSAT Branch</p>
               <p><span className="text-gray-400">SWIFT CODE:</span> SBININBBT30</p>
             </div>
           </div>
 
+          {/* QR Code */}
           <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Scan to Pay</h2>
             <div className="bg-white p-2 rounded-lg inline-block">
