@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Main from "./pages/Main"
 import BuyMerch from './pages/BuyMerch'
 import BuyTicket from './pages/BuyTicket'
+import Connect from './pages/Connect'
 
 function App() {
   return (
@@ -11,7 +12,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/buymerch" element={<BuyMerch />} />
-          {/* <Route path="/buyticket" element={<BuyTicket />} /> */}
+          <Route path="/buyticket" element={<BuyTicket />} />
+          <Route path="/connect" element={<Connect />} />
         </Routes>
       </BrowserRouter>
     </>
