@@ -210,7 +210,7 @@ const Hero = () => {
             className="hidden merch-banner fixed top-0 md:top-5 w-11/12 sm:w-auto"
             ref={merchBannerRef}
           >
-            <div className="merch-banner-content">
+            <div className="hidden merch-banner-content">
               <span className="merch-icon">🚀</span>
               <span className="merch-text">Get Your SpaceUp Tickets Now!</span>
               <span className="merch-cta">Buy Ticket</span>

@@ -685,7 +685,7 @@ const BuyTicket = () => {
                 name="file"
                 onChange={handleInputChange}
                 className="w-full py-2 px-3 bg-gray-800 border border-gray-700 rounded-lg text-sm focus:border-purple-500 focus:outline-none transition-colors duration-200"
-                required
+                // required
               />
             </div>
 

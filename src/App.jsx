@@ -12,7 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/buymerch" element={<BuyMerch />} />
-          {/* <Route path="/buyticket" element={<BuyTicket />} /> */}
+          <Route path="/secretroute" element={<BuyTicket />} />
           <Route path="/connect" element={<Connect />} />
         </Routes>
       </BrowserRouter>
