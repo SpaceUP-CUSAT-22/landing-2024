@@ -647,7 +647,7 @@ const BuyTicket = () => {
             <div className="lg:hidden p-6 space-y-6">
 
               {/* QR Code Section */}
-              <div className="bg-gray-800 p-4 rounded-lg shadow-lg text-center">
+              <div className="hidden bg-gray-800 p-4 rounded-lg shadow-lg text-center">
                 <h2 className="text-lg font-semibold mb-3">Scan to Pay ₹{price}</h2>
                 <div className="bg-white p-2 rounded-lg inline-block">
                   <img src="/qrcode.png" alt="QR Code for payment" className="w-full max-w-[200px] mx-auto" />
@@ -702,7 +702,7 @@ const BuyTicket = () => {
         <div className="hidden lg:block w-full lg:w-1/2 xl:w-1/3 space-y-8">
 
           {/* Payment Details */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="hidden bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Payment Details</h2>
             <div className="space-y-2 text-sm">
               <p><span className="text-gray-400">Account no.:</span> 42144526050</p>
@@ -714,7 +714,7 @@ const BuyTicket = () => {
           </div>
 
           {/* QR Code */}
-          <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <div className="hidden bg-gray-800 p-6 rounded-lg shadow-lg">
             <h2 className="text-xl font-semibold mb-4">Scan to Pay</h2>
             <div className="bg-white p-2 rounded-lg inline-block">
               <img src="/qrcode.png" alt="QR Code for payment" className="w-full max-w-[200px] mx-auto" />
