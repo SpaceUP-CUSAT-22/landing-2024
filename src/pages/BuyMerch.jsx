@@ -32,10 +32,6 @@ const db = getFirestore(app);
 const storage = getStorage(app);
 
 const BuyMerch = () => {
-  const [referralCode, setReferralCode] = useState("");
-  const [isValidReferral, setIsValidReferral] = useState(false);
-  const [isVerifying, setIsVerifying] = useState(false);
-  const [verificationMessage, setVerificationMessage] = useState("");
 
   const [toast, setToast] = React.useState({
     value: false,
@@ -76,16 +72,13 @@ const BuyMerch = () => {
 
     let newPrice = basePrice;
 
-    if (isValidReferral) {
-      newPrice = basePrice * 0.95; // Apply 10% discount if referral code is verified
-    }
 
     if (checkbox) {
       newPrice += 60; // Add delivery charge
     }
 
     setPrice(Math.round(newPrice)); // Round to nearest integer
-  }, [formData.whiteShirt, formData.orangeShirt, formData.hoodie, isValidReferral, checkbox]);
+  }, [formData.whiteShirt, formData.orangeShirt, formData.hoodie, checkbox]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [viewSize, setViewSize] = useState(false);
@@ -98,41 +91,8 @@ const BuyMerch = () => {
     }));
   };
 
-  const handleReferralCodeChange = (e) => {
-    const code = e.target.value.trim();
-    setReferralCode(code);
-    setIsValidReferral(false);
-    setVerificationMessage("");
-  };
 
-  const verifyReferralCode = async () => {
-    if (!referralCode) {
-      setVerificationMessage("Please enter a referral code.");
-      return;
-    }
-    setIsVerifying(true);
-    setVerificationMessage("");
-    try {
-      const response = await fetch(
-        "https://ca.spaceupcusat.com/api/users/referrals",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ referralCode }),
-        },
-      );
-      const data = await response.json();
-      setIsValidReferral(data.isValid);
-      setVerificationMessage(data.message);
-    } catch (error) {
-      console.error("Error verifying referral code:", error);
-      setVerificationMessage("Error verifying code. Please try again.");
-    } finally {
-      setIsVerifying(false);
-    }
-  };
+ 
 
   const generateToken = () => {
     return Math.random().toString(36).substr(2, 9).toUpperCase();
@@ -221,7 +181,6 @@ const BuyMerch = () => {
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
         address: formData.address,
-        referralCode: isValidReferral ? referralCode : null,
         price,
         token: token,
         whiteShirt: formData.whiteShirt,
@@ -617,30 +576,8 @@ const BuyMerch = () => {
                 placeholder="Please enter your address"
                 required
               ></textarea>
-              <input
-                type="text"
-                name="referralCode"
-                placeholder="Referral Code (optional)"
-                value={referralCode}
-                onChange={handleReferralCodeChange}
-                className="exo flex-grow rounded-lg bg-[#050B17] p-2 text-white"
-              />
-              <button
-                type="button"
-                onClick={verifyReferralCode}
-                disabled={isVerifying}
-                className="exo whitespace-nowrap rounded-lg bg-blue-500 p-2 text-white"
-              >
-                {isVerifying ? "Verifying..." : "Verify Code"}
-              </button>
+              
             </div>
-            {verificationMessage && (
-              <p
-                className={`mt-2 text-sm ${isValidReferral ? "text-green-500" : "text-red-500"}`}
-              >
-                {verificationMessage}
-              </p>
-            )}
             <button
               onClick={handleGPayRedirect}
               type="button"
