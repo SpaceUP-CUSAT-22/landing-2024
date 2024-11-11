@@ -215,7 +215,7 @@ const BuyTicket = () => {
       });
       return;
     }
-    const receiverUPI = "sheenakm10-2@oksbi";
+    const receiverUPI = "pranavjayasurya0203@oksbi";
     const note = "Payment for SpaceUp CUSAT Ticket";
     const name = "SEDS";
 
@@ -225,7 +225,7 @@ const BuyTicket = () => {
     window.location.href = upiUrl;
   };
 
-  const upiid = "sheenakm10-2@oksbi";
+  const upiid = "pranavjayasurya0203@oksbi";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(

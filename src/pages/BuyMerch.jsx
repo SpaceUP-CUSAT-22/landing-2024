@@ -62,9 +62,9 @@ const BuyMerch = () => {
     size: "Small",
     address: "",
     file: null,
-    whiteShirt: 0,
-    orangeShirt: 0,
-    hoodie: 0,
+    whiteShirt: 1,
+    orangeShirt: 1,
+    hoodie: 1,
   });
   const [checkbox, setCheckBox] = useState(false);
 
@@ -273,7 +273,7 @@ const BuyMerch = () => {
           "Sorry! This feature is only available on mobile devices. Please scan the QR code",
       });
     }
-    const receiverUPI = "sheenakm10-2@oksbi";
+    const receiverUPI = "pranavjayasurya0203@oksbi";
     const note = "Payment for Tshirt";
     const name = "SEDS";
 
@@ -289,7 +289,7 @@ const BuyMerch = () => {
     setCheckBox(checked);
   };
 
-  const upiid = "sheenakm10-2@oksbi";
+  const upiid = "pranavjayasurya0203@oksbi";
 
   const handleCopy = () => {
     navigator.clipboard.writeText(upiid).then(
@@ -384,7 +384,7 @@ const BuyMerch = () => {
               onChange={(name, value) =>
                 setFormData((prev) => ({ ...prev, [name]: value }))
               }
-              label="Orange T-shirt"
+              label="Black T-shirt"
               price={349}
             />
             
@@ -517,7 +517,7 @@ const BuyMerch = () => {
     onChange={(name, value) =>
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
-    label="Orange T-shirt"
+    label="Black T-shirt"
     price={349}
   />
   
