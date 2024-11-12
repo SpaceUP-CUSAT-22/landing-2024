@@ -128,11 +128,11 @@ const BuyMerch = () => {
     setIsLoading(true);
 
     // Check if at least one T-shirt is selected
-    if (!formData.whiteShirt && !formData.orangeShirt && !formData.hoodie) {
+    if (!formData.whiteShirt && !formData.orangeShirt && !formData.hoodie && !formData.blackHoodie) {
       setToast({
         value: true,
         color: "red",
-        message: "Please select at least one T-shirt (White or Black).",
+        message: "Please select at least one T-shirt/Hoodie",
       });
       setIsLoading(false);
       return;
