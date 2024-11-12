@@ -58,9 +58,10 @@ const BuyMerch = () => {
     size: "Small",
     address: "",
     file: null,
-    whiteShirt: 1,
-    orangeShirt: 1,
-    hoodie: 1,
+    whiteShirt: 0,
+    orangeShirt: 0,
+    hoodie: 0,
+    blackHoodie: 0,
   });
   const [checkbox, setCheckBox] = useState(false);
 
@@ -69,16 +70,16 @@ const BuyMerch = () => {
     basePrice += formData.whiteShirt * 349;
     basePrice += formData.orangeShirt * 349;
     basePrice += formData.hoodie * 769;
+    basePrice += formData.blackHoodie * 769;
 
     let newPrice = basePrice;
 
-
     if (checkbox) {
-      newPrice += 60; // Add delivery charge
+      newPrice += 60;
     }
 
-    setPrice(Math.round(newPrice)); // Round to nearest integer
-  }, [formData.whiteShirt, formData.orangeShirt, formData.hoodie, checkbox]);
+    setPrice(Math.round(newPrice));
+  }, [formData.whiteShirt, formData.orangeShirt, formData.hoodie, formData.blackHoodie, checkbox]);
 
   const [isLoading, setIsLoading] = useState(false);
   const [viewSize, setViewSize] = useState(false);
@@ -177,7 +178,6 @@ const BuyMerch = () => {
         email: formData.email,
         phone: formData.phone,
         size: formData.size,
-        // cusatian: formData.cusatian,
         paymentScreenshot: fileUrl,
         timestamp: new Date(),
         address: formData.address,
@@ -185,7 +185,8 @@ const BuyMerch = () => {
         token: token,
         whiteShirt: formData.whiteShirt,
         orangeShirt: formData.orangeShirt,
-        hoodie: formData.hoodie
+        hoodie: formData.hoodie,
+        blackHoodie: formData.blackHoodie,
       });
 
       // Send email
@@ -208,7 +209,8 @@ const BuyMerch = () => {
         file: null,
         whiteShirt: 0,
         orangeShirt: 0,
-        hoodie: 0
+        hoodie: 0,
+        blackHoodie: 0,
       });
     } catch (error) {
       console.error("Error adding document: ", error);
@@ -357,6 +359,16 @@ const BuyMerch = () => {
               price={769}
             />
             
+            <QuantitySelector
+              name="blackHoodie"
+              value={formData.blackHoodie}
+              onChange={(name, value) =>
+                setFormData((prev) => ({ ...prev, [name]: value }))
+              }
+              label="Black Hoodie"
+              price={769}
+            />
+            
             {/* Rest of your form fields */}
             <input
               type="text"
@@ -452,6 +464,20 @@ const BuyMerch = () => {
                   />
                 </>
               )}
+              {formData.blackHoodie > 0 && (
+                <>
+                  <img
+                    src="/blackhoodie.png"
+                    className="mb-10 h-auto w-[350px] max-w-[40rem]"
+                    alt="black hoodie"
+                  />
+                  <img
+                    src="/blackhoodie2.png"
+                    className="mb-10 h-auto w-[350px] max-w-[40rem]"
+                    alt="black hoodie back"
+                  />
+                </>
+              )}
             </div>
 
             <div className="space-y-4">
@@ -487,6 +513,16 @@ const BuyMerch = () => {
       setFormData((prev) => ({ ...prev, [name]: value }))
     }
     label="Hoodie"
+    price={769}
+  />
+  
+  <QuantitySelector
+    name="blackHoodie"
+    value={formData.blackHoodie}
+    onChange={(name, value) =>
+      setFormData((prev) => ({ ...prev, [name]: value }))
+    }
+    label="Black Hoodie"
     price={769}
   />
               </div>
